@@ -5,13 +5,13 @@ import "firebase/auth";
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
-  apiKey: "AIzaSyD26XUmLKds2rS-ONbGjbXC80kHpa0mAxk",
-  authDomain: "covfefe-4e9ea.firebaseapp.com",
-  databaseURL: "https://covfefe-4e9ea.firebaseio.com",
-  projectId: "covfefe-4e9ea",
-  storageBucket: "covfefe-4e9ea.appspot.com",
-  messagingSenderId: "1015333247439",
-  appId: "1:1015333247439:web:903c647f24fac151355aba",
+    apiKey: "AIzaSyBJdh5HQXypjt8x7FNyn3fMSw_AJO3Vpcs",
+    authDomain: "whisky-c2f56.firebaseapp.com",
+    databaseURL: "https://whisky-c2f56.firebaseio.com",
+    projectId: "whisky-c2f56",
+    storageBucket: "whisky-c2f56.appspot.com",
+    messagingSenderId: "166359406379",
+    appId: "1:166359406379:web:baa8f516ec1187e81fd76e"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
