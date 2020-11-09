@@ -54,7 +54,7 @@ const UploadForm = () => {
           document.querySelector(".img-grid").style.display = "none";
         }}
       >
-        Legg til ny kaffetype
+        Legg til ny whisky
       </button>
       <div
         className="backdrop"
