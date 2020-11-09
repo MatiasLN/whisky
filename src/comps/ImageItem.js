@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 import StarRating from "./StarRating";
 import { projectFirestore } from "../firebase/config";
 import Image from "./Image";
 
-const ImageItem = ({ data, setData, rating, setRating }) => {
+const ImageItem = ({ data, rating }) => {
+  const setRating = useContext(GlobalContext);
+  const setData = useContext(GlobalContext);
   const [id, setCurrentId] = useState(data.id);
 
   const handleSetRating = (rating) => {

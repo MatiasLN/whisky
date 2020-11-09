@@ -1,5 +1,7 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
+import { GlobalContext } from "../context/GlobalContext";
+import { GlobalProvider } from "../context/GlobalContext";
 import ImageGrid from "./ImageGrid";
 import Logo from "./Logo";
 import Modal from "./Modal";
@@ -9,30 +11,23 @@ import SignIn from "./SignIn";
 import User from "./User";
 
 function MainContent() {
-  const newRating = (data) => {
-    if (data) {
-      setRating(data);
-    }
-  };
-
-  const [data, setData] = useState(null);
-  const [rating, setRating] = useState(newRating);
   const user = useContext(UserContext);
   const uid = user.user.uid;
+  const data = useContext(GlobalContext);
+  const setData = useContext(GlobalContext);
+  const setRating = useContext(GlobalContext);
+  const rating = useContext(GlobalContext);
+  const newRating = useContext(GlobalContext);
 
   if (uid) {
     return (
+      <GlobalProvider>
       <div className="MainContent">
         <Logo />
         <User />
         <Title />
         <UploadForm />
-        <ImageGrid
-          data={data}
-          setData={setData}
-          rating={rating}
-          setRating={setRating}
-        />
+        <ImageGrid />
         {data && (
           <Modal
             data={data}
@@ -43,6 +38,7 @@ function MainContent() {
           />
         )}
       </div>
+      </GlobalProvider>
     );
   } else {
     return (
@@ -54,5 +50,4 @@ function MainContent() {
     );
   }
 }
-
 export default MainContent;
