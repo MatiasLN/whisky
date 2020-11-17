@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ProgressBar from "./ProgressBar";
 import StarRating from "./StarRating";
+import ChangeForm from "./ChangeForm";
 
 const UploadForm = () => {
   const [file, setFile] = useState(null);
@@ -49,7 +50,7 @@ const UploadForm = () => {
       <button
         className="addNewBtn"
         onClick={(e) => {
-          document.querySelector("form").style.display = "flex";
+          document.querySelector(".uploadForm").style.display = "flex";
           document.querySelector(".backdrop").style.display = "block";
           document.querySelector(".img-grid").style.display = "none";
         }}
@@ -61,12 +62,12 @@ const UploadForm = () => {
         onClick={handleExit}
         style={{ display: "none" }}
       >
-        <form style={{ display: "none" }}>
+        <form className="uploadForm" style={{ display: "none" }}>
           <input
             id="file-title"
             type="text"
             name="title"
-            placeholder="Hva heter kaffetypen?"
+            placeholder="Hva heter whiskyen?"
             onChange={(event) => handleInput(event)}
           />
           <textarea
@@ -86,9 +87,10 @@ const UploadForm = () => {
           <input id="file-upload" type="file" onChange={handleUpload} />
           <div className="output">
             {error && <div className="error">{error}</div>}
-            {file && <ProgressBar file={file} setFile={setFile} />}
+            {/* {file && <ProgressBar file={file} setFile={setFile} />} */}
           </div>
         </form>
+        {file && <ChangeForm file={file} setFile={setFile} />}
       </div>
     </>
   );

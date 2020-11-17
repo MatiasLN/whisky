@@ -9,6 +9,10 @@ const useStorage = (file) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
+  const [title, setTitle] = useState(null);
+  const [note, setNote] = useState(null);
+  const [star, setStar] = useState(localStorage.getItem("rating"));
+  const [docId, setDocId] = useState(null);
 
   useEffect(() => {
     // ref
@@ -30,16 +34,29 @@ const useStorage = (file) => {
         const title = localStorage.getItem("title");
         const star = localStorage.getItem("rating");
         const notes = localStorage.getItem("notes");
-        collectionRef.add({ url, createdAt, title, star, notes });
+        collectionRef
+          .add({ url, createdAt, title, star, notes })
+          .then(function (docRef) {
+            setDocId(docRef.id);
+          })
+          .then(() => {
+            document.querySelector(".uploadForm").style.display = "none";
+            document.querySelector(".changeForm").style.display = "flex";
+          })
+          .catch(function (error) {
+            console.error("Error adding document: ", error);
+          });
         setUrl(url);
-        document.querySelector("form").style.display = "none";
-        document.querySelector(".backdrop").style.display = "none";
-        document.querySelector(".img-grid").style.display = "grid";
+        setTitle(title);
+        setStar(star);
+        setNote(notes);
+        // document.querySelector(".backdrop").style.display = "none";
+        // document.querySelector(".img-grid").style.display = "grid";
       }
     );
   }, [file]);
 
-  return { progress, url, error };
+  return { progress, url, error, title, star, note, docId };
 };
 
 export default useStorage;
