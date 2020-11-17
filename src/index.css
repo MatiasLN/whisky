@@ -160,6 +160,11 @@ input[type="file"] {
   margin-top: 20px;
 }
 
+.thumbnail img {
+  max-width: 100px;
+  height: auto;
+}
+
 /* progress bar styles */
 .progress-bar {
   height: 5px;

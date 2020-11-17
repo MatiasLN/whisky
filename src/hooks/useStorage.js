@@ -9,9 +9,6 @@ const useStorage = (file) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
-  const [title, setTitle] = useState(null);
-  const [note, setNote] = useState(null);
-  const [star, setStar] = useState(localStorage.getItem("rating"));
   const [docId, setDocId] = useState(null);
 
   useEffect(() => {
@@ -43,14 +40,11 @@ const useStorage = (file) => {
             console.error("Error adding document: ", error);
           });
         setUrl(url);
-        setTitle(title);
-        setStar(star);
-        setNote(notes);
       }
     );
   }, [file]);
 
-  return { progress, url, error, title, star, note, docId };
+  return { progress, url, error, docId };
 };
 
 export default useStorage;

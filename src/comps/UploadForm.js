@@ -12,15 +12,20 @@ const UploadForm = () => {
   function handleUpload(e) {
     let selected = e.target.files[0];
     if (selected && types.includes(selected.type)) {
+      let image = document.createElement("img");
+      image.src = URL.createObjectURL(selected);
+      console.log(image);
       setSumbit(selected);
       setError("");
       document.querySelector(".submitForm").style.display = "block";
+      document.querySelector(".thumbnail").innerHTML = "";
+      document.querySelector(".thumbnail").appendChild(image);
       console.log(selected);
       document.querySelector(".custom-file-upload").innerHTML =
         "Velg et annet bilde";
     } else {
       setFile(null);
-      setError("Please select an image file (png, heic or jpeg)");
+      setError("Du kan bare legge til bildefiler (png, heic or jpeg)");
     }
   }
 
@@ -38,6 +43,7 @@ const UploadForm = () => {
       document.querySelector("#file-notes").value = "";
       document.querySelector(".custom-file-upload").innerHTML =
         "Legg til bilde";
+      document.querySelector(".thumbnail").innerHTML = "";
     }
   };
 
@@ -92,13 +98,20 @@ const UploadForm = () => {
           <div className="starRating">
             <StarRating rating={rating} setRating={handleSetRating} />
           </div>
+          {<div className="thumbnail"></div>}
           <label htmlFor="file-upload" className="custom-file-upload">
             Legg til bilde
           </label>
           <input id="file-upload" type="file" onChange={handleUpload} />
           <div className="output">
             {error && <div className="error">{error}</div>}
-            {file && <ProgressBar file={file} setFile={setFile} />}
+            {file && (
+              <ProgressBar
+                file={file}
+                setFile={setFile}
+                setRating={setRating}
+              />
+            )}
             {
               <button
                 type="submit"
