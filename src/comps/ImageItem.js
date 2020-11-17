@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import StarRating from "./StarRating";
 import { projectFirestore } from "../firebase/config";
 import Image from "./Image";
+import { UserContext } from "../context/UserContext";
 
 const ImageItem = ({ data, setData, rating, setRating }) => {
   const [id, setCurrentId] = useState(data.id);
+  const user = useContext(UserContext);
+  const uid = user.user.uid;
 
   const handleSetRating = (rating) => {
     setRating(rating);
 
-    const collectionRef = projectFirestore.collection("images").doc(id);
+    const collectionRef = projectFirestore.collection(uid).doc(id);
     collectionRef.update({ star: rating });
   };
 

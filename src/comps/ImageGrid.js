@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import useFirestore from "../hooks/useFirestore";
 import ImageItem from "./ImageItem";
+import { UserContext } from "../context/UserContext";
 
 const ImageGrid = ({ data, setData, rating, setRating }) => {
-  const { docs } = useFirestore("images");
+  const user = useContext(UserContext);
+  const uid = user.user.uid;
+  const { docs } = useFirestore(uid);
 
   return (
     <div className="img-grid">
