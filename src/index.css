@@ -75,8 +75,9 @@ form {
 
 @media only screen and (min-width: 800px) {
   form {
-    width: 40%;
-    top: 25%;
+    width: 60vw;
+    height: 90vh;
+    top: 5px;
   }
 }
 
@@ -161,8 +162,15 @@ input[type="file"] {
 }
 
 .thumbnail img {
-  max-width: 100px;
-  height: auto;
+  max-height: 100px;
+  width: auto;
+}
+
+@media only screen and (min-width: 800px) {
+  .thumbnail img {
+    max-width: 100px;
+    max-height: 100%;
+  }
 }
 
 /* progress bar styles */
