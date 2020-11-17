@@ -155,11 +155,17 @@ input[type="file"] {
   cursor: pointer;
 }
 
+.submitForm {
+  display: none;
+  margin-top: 20px;
+}
+
 /* progress bar styles */
 .progress-bar {
   height: 5px;
   background: var(--primary);
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* image grid styles */

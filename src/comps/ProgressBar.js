@@ -6,6 +6,13 @@ const ProgressBar = ({ file, setFile }) => {
   useEffect(() => {
     if (url) {
       setFile(null);
+      document.querySelector("form").style.display = "none";
+      document.querySelector(".img-grid").style.display = "grid";
+      document.querySelector(".backdrop").style.display = "none";
+      document.querySelector("#file-title").value = "";
+      document.querySelector("#file-notes").value = "";
+      document.querySelector(".custom-file-upload").innerHTML =
+        "Legg til bilde";
     }
   }, [url, setFile]);
 

@@ -1,24 +1,28 @@
 import React, { useState } from "react";
 import ProgressBar from "./ProgressBar";
 import StarRating from "./StarRating";
-import ChangeForm from "./ChangeForm";
 
 const UploadForm = () => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const types = ["image/png", "image/jpg", "image/jpeg", "image/heic"];
   const [rating, setRating] = useState(0);
+  const [submit, setSumbit] = useState("");
 
-  const handleUpload = (e) => {
+  function handleUpload(e) {
     let selected = e.target.files[0];
     if (selected && types.includes(selected.type)) {
-      setFile(selected);
+      setSumbit(selected);
       setError("");
+      document.querySelector(".submitForm").style.display = "block";
+      console.log(selected);
+      document.querySelector(".custom-file-upload").innerHTML =
+        "Velg et annet bilde";
     } else {
       setFile(null);
       setError("Please select an image file (png, heic or jpeg)");
     }
-  };
+  }
 
   const handleSetRating = (rating) => {
     setRating(rating);
@@ -32,6 +36,8 @@ const UploadForm = () => {
       document.querySelector(".backdrop").style.display = "none";
       document.querySelector("#file-title").value = "";
       document.querySelector("#file-notes").value = "";
+      document.querySelector(".custom-file-upload").innerHTML =
+        "Legg til bilde";
     }
   };
 
@@ -43,6 +49,11 @@ const UploadForm = () => {
     } else if (name === "notes") {
       localStorage.setItem("notes", value);
     }
+  };
+
+  const handleSumbit = (e) => {
+    e.preventDefault();
+    setFile(submit);
   };
 
   return (
@@ -87,10 +98,18 @@ const UploadForm = () => {
           <input id="file-upload" type="file" onChange={handleUpload} />
           <div className="output">
             {error && <div className="error">{error}</div>}
-            {/* {file && <ProgressBar file={file} setFile={setFile} />} */}
+            {file && <ProgressBar file={file} setFile={setFile} />}
+            {
+              <button
+                type="submit"
+                className="addNewBtn submitForm"
+                onClick={(e) => handleSumbit(e)}
+              >
+                Legg til i samlingen
+              </button>
+            }
           </div>
         </form>
-        {file && <ChangeForm file={file} setFile={setFile} />}
       </div>
     </>
   );

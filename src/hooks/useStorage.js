@@ -39,10 +39,6 @@ const useStorage = (file) => {
           .then(function (docRef) {
             setDocId(docRef.id);
           })
-          .then(() => {
-            document.querySelector(".uploadForm").style.display = "none";
-            document.querySelector(".changeForm").style.display = "flex";
-          })
           .catch(function (error) {
             console.error("Error adding document: ", error);
           });
@@ -50,8 +46,6 @@ const useStorage = (file) => {
         setTitle(title);
         setStar(star);
         setNote(notes);
-        // document.querySelector(".backdrop").style.display = "none";
-        // document.querySelector(".img-grid").style.display = "grid";
       }
     );
   }, [file]);
