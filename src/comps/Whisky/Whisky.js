@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import apiKey from "./apiKey";
+import apiKey from "../../api/Vinmonopolet";
 import PlaceHolder from "../../json/WhiskyPlaceholder.json";
 import ProductDetails from "./ProductDetails";
 
@@ -27,7 +27,8 @@ const Whisky = ({ title }) => {
     )
       .then((response) => response.text())
       .then((result) => {
-        setFetchData(result);
+        // setFetchData(result);
+        console.log("res is: " + result);
       })
       .catch((error) => {
         setError(error);
@@ -57,7 +58,10 @@ const Whisky = ({ title }) => {
 
       <div>
         <p>Stemmer ikke informasjonen?</p>
-        <button className="addNewBtn" onClick={() => getWhiskyData({ title })}>
+        <button
+          className="addNewBtn"
+          onClick={() => getWhiskyData("bowmore_15")}
+        >
           Finn produkt
         </button>
       </div>
