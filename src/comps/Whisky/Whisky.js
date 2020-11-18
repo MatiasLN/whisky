@@ -8,7 +8,6 @@ const Whisky = ({ title }) => {
   // const [fetchData, setFetchData] = useState(null);
   const [fetchData, setFetchData] = useState(PlaceHolder);
   const [error, setError] = useState(null);
-  console.log(fetchData);
 
   const getWhiskyData = (data) => {
     const myHeaders = new Headers();
@@ -27,8 +26,7 @@ const Whisky = ({ title }) => {
     )
       .then((response) => response.text())
       .then((result) => {
-        // setFetchData(result);
-        console.log("res is: " + result);
+        setFetchData(result);
       })
       .catch((error) => {
         setError(error);
