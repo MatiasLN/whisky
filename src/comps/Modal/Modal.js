@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import StarRating from "./../StarRating/StarRating";
 import { projectFirestore } from "../../firebase/config";
 import Image from "../ImageGrid/Image/Image";
+import { UserContext } from "../../context/UserContext";
+import Whisky from "../Whisky/Whisky";
 
 const Modal = ({ data, setData, initRating, rating, setRating }) => {
   const [notes, setNotes] = useState(data.notes);
   [rating, setRating] = useState(data.star);
+  const user = useContext(UserContext);
+  const uid = user.user.uid;
+
   const handleClick = (e) => {
     if (e.target.classList.contains("backdrop")) {
       setData(null);
@@ -14,14 +19,14 @@ const Modal = ({ data, setData, initRating, rating, setRating }) => {
 
   const changeHandlerTextarea = (e) => {
     setNotes(e.target.value);
-    const collectionRef = projectFirestore.collection("images").doc(data.id);
+    const collectionRef = projectFirestore.collection(uid).doc(data.id);
     collectionRef.update({ notes: notes });
   };
 
   const handleSetRating = (rating) => {
     setRating(rating);
     initRating(rating);
-    const collectionRef = projectFirestore.collection("images").doc(data.id);
+    const collectionRef = projectFirestore.collection(uid).doc(data.id);
     collectionRef.update({ star: rating });
   };
 
@@ -49,6 +54,7 @@ const Modal = ({ data, setData, initRating, rating, setRating }) => {
             </div>
           )}
         </div>
+        <Whisky title={data.title} />
       </div>
     </div>
   );
