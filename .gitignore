@@ -105,4 +105,4 @@ dist
 .tern-port
 
 # API key
-src/comps/Whisky/apiKey.js
+src/api/Vinmonopolet.js
