@@ -12,7 +12,7 @@ const ProductDetails = ({
   descTaste,
 }) => {
   return (
-    <div className="productData">
+    <div className="whiskyDetails">
       <h3>Informasjon fra Vinmonopolet</h3>
       <ul>
         <li>Navn: {name}</li>

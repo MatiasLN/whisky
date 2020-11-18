@@ -3,7 +3,7 @@ import StarRating from "./../StarRating/StarRating";
 import { projectFirestore } from "../../firebase/config";
 import Image from "../ImageGrid/Image/Image";
 import { UserContext } from "../../context/UserContext";
-import Whisky from "../Whisky/Whisky";
+import WhiskyData from "../WhiskyData/WhiskyData";
 
 const Modal = ({ data, setData, initRating, rating, setRating }) => {
   const [notes, setNotes] = useState(data.notes);
@@ -54,7 +54,7 @@ const Modal = ({ data, setData, initRating, rating, setRating }) => {
             </div>
           )}
         </div>
-        <Whisky title={data.title} />
+        <WhiskyData title={data.title} />
       </div>
     </div>
   );

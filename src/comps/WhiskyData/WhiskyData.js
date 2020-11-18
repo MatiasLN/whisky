@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import apiKey from "../../api/Vinmonopolet";
 import PlaceHolder from "../../json/WhiskyPlaceholder.json";
-import ProductDetails from "./ProductDetails";
+import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
 
-const Whisky = ({ title }) => {
+const WhiskyData = ({ title }) => {
   // should be null on fetch request
   // const [fetchData, setFetchData] = useState(null);
   const [fetchData, setFetchData] = useState(PlaceHolder);
@@ -34,10 +34,10 @@ const Whisky = ({ title }) => {
   };
 
   return (
-    <div className="productDataContainer">
+    <div className="whiskyDetailsContainer">
       {fetchData &&
         fetchData.map((data) => (
-          <ProductDetails
+          <WhiskyDetails
             key={data.basic.productId}
             productID={data.basic.productId}
             name={data.basic.productLongName}
@@ -67,4 +67,4 @@ const Whisky = ({ title }) => {
   );
 };
 
-export default Whisky;
+export default WhiskyData;
