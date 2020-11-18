@@ -8,3 +8,12 @@
 .productData {
   text-align: left;
 }
+
+.productData li {
+  list-style-type: none;
+  margin-left: -5px;
+}
+
+.productData ul {
+  padding-left: 0;
+}
