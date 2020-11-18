@@ -1,0 +1,10 @@
+.productDataContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.productData {
+  text-align: left;
+}
