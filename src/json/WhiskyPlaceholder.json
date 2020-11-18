@@ -1,0 +1,125 @@
+[
+    {
+        "basic": {
+            "productId": "3214401",
+            "productShortName": "Bowmore 15 YO",
+            "productLongName": "Bowmore 15 YO",
+            "volume": 0.700,
+            "alcoholContent": 43.00,
+            "vintage": 0,
+            "ageLimit": "20",
+            "packagingMaterialId": "03",
+            "packagingMaterial": "Glass",
+            "volumTypeId": "01",
+            "volumType": "Helflaske",
+            "corkTypeId": "",
+            "corkType": "",
+            "bottlePerSalesUnit": 1,
+            "introductionDate": "2016-11-04",
+            "productStatusSaleId": "",
+            "productStatusSaleName": "",
+            "productStatusSaleValidFrom": "0000-00-00"
+        },
+        "logistics": {
+            "wholesalerId": "30137",
+            "wholesalerName": "Edrington Norway AS",
+            "vendorId": "30000",
+            "vendorName": "Vectura AS",
+            "vendorValidFrom": "2015-01-07",
+            "manufacturerId": "66186",
+            "manufacturerName": "Bowmore",
+            "barcodes": [
+                {
+                    "gtin": "5010496020821",
+                    "isMainGtin": true
+                }
+            ],
+            "orderPack": "D06",
+            "minimumOrderQuantity": 6.000,
+            "packagingWeight": 0
+        },
+        "origins": {
+            "origin": {
+                "countryId": "GBS",
+                "country": "Skottland",
+                "regionId": "05",
+                "region": "Islay",
+                "subRegionId": "00",
+                "subRegion": "Øvrige"
+            },
+            "production": {
+                "countryId": "",
+                "country": "",
+                "regionId": "",
+                "region": ""
+            },
+            "localQualityClassifId": "",
+            "localQualityClassif": ""
+        },
+        "properties": {
+            "ecoLabellingId": "",
+            "ecoLabelling": "",
+            "storagePotentialId": "",
+            "storagePotential": "",
+            "organic": false,
+            "biodynamic": false,
+            "ethicallyCertified": false,
+            "vintageControlled": false,
+            "sweetWine": false,
+            "freeOrLowOnGluten": false,
+            "kosher": false,
+            "locallyProduced": false,
+            "noAddedSulphur": false,
+            "environmentallySmart": false,
+            "productionMethodStorage": "Tradisjonell dobbeltdestillasjon i pot stills, 168 md. lagring i brukte bourbon- og sherryfat (oloroso)."
+        },
+        "classification": {
+            "mainProductTypeId": "3",
+            "mainProductTypeName": "Brennevin",
+            "subProductTypeId": "312",
+            "subProductTypeName": "Whisky",
+            "productTypeId": "31202",
+            "productTypeName": "Whisky, malt",
+            "productGroupId": "52",
+            "productGroupName": "Whisky, Skottland, malt"
+        },
+        "ingredients": {
+            "grapes": [],
+            "ingredients": "Byggmalt",
+            "sugar": "",
+            "acid": ""
+        },
+        "description": {
+            "characteristics": {
+                "colour": "Dyp gulbrun.",
+                "odour": "Sval aroma preget av tørket frukt, urter, malt og litt røyk over et tydelig fatpreg.",
+                "taste": "Fokusert og sammensatt, preg av tørket frukt, lyst malt, røyk og fat. God fylde."
+            },
+            "freshness": "",
+            "fullness": "",
+            "bitterness": "",
+            "sweetness": "",
+            "tannins": "",
+            "recommendedFood": []
+        },
+        "assortment": {
+            "assortmentId": "15",
+            "assortment": "Bestillingsutvalget",
+            "validFrom": "2019-09-26",
+            "listedFrom": "2006-04-30",
+            "assortmentGrade": ""
+        },
+        "prices": [
+            {
+                "priceValidFrom": "2020-09-01",
+                "salesPrice": 589.90,
+                "salesPricePrLiter": 842.71,
+                "bottleReturnValue": 0
+            }
+        ],
+        "lastChanged": {
+            "date": "2020-09-01",
+            "time": "05:32:18"
+        }
+    }
+]
