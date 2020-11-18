@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ProgressBar from "./ProgressBar";
-import StarRating from "./StarRating";
+import StarRating from "./../StarRating/StarRating";
 
 const UploadForm = () => {
   const [file, setFile] = useState(null);

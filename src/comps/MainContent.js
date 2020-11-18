@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import ImageGrid from "./ImageGrid";
-import Logo from "./Logo";
-import Modal from "./Modal";
-import Title from "./Title";
-import UploadForm from "./UploadForm";
-import SignIn from "./SignIn";
-import User from "./User";
+import ImageGrid from "./ImageGrid/ImageGrid";
+import Logo from "./Logo/Logo";
+import Modal from "./Modal/Modal";
+import Title from "./Title/Title";
+import UploadForm from "./Forms/UploadForm";
+import SignIn from "./User/SignIn";
+import User from "./User/User";
 
 function MainContent() {
   const newRating = (data) => {

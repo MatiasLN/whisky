@@ -1,5 +1,5 @@
 import React from "react";
-import placeholderImg from "../images/placeholder.jpeg";
+import placeholderImg from "../../../images/placeholder.jpeg";
 
 const Image = ({ data }) => {
   const LOCAL_DOMAINS = ["localhost", "127.0.0.1"];

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { UserContext } from "../context/UserContext";
-import { logOut } from "../firebase/config";
+import { UserContext } from "../../context/UserContext";
+import { logOut } from "../../firebase/config";
 
 const User = () => {
   let user = useContext(UserContext);

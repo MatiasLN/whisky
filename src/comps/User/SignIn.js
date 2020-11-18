@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { UserContext } from "../context/UserContext";
-import { signInWithGoogle } from "../firebase/config";
+import { UserContext } from "../../context/UserContext";
+import { signInWithGoogle } from "../../firebase/config";
 export default function Login() {
   const user = useContext(UserContext);
   const uid = user.user.uid;

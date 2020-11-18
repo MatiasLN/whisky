@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import StarRating from "./StarRating";
-import { projectFirestore } from "../firebase/config";
-import Image from "./Image";
+import StarRating from "./../StarRating/StarRating";
+import { projectFirestore } from "../../firebase/config";
+import Image from "../ImageGrid/Image/Image";
 
 const Modal = ({ data, setData, initRating, rating, setRating }) => {
   const [notes, setNotes] = useState(data.notes);

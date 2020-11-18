@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
-import StarRating from "./StarRating";
-import { projectFirestore } from "../firebase/config";
-import Image from "./Image";
-import { UserContext } from "../context/UserContext";
+import StarRating from "../../StarRating/StarRating";
+import { projectFirestore } from "../../../firebase/config";
+import Image from "../Image/Image";
+import { UserContext } from "../../../context/UserContext";
 
 const ImageItem = ({ data, setData, rating, setRating }) => {
   const [id, setCurrentId] = useState(data.id);
