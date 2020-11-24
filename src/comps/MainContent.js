@@ -7,6 +7,7 @@ import Title from "./Title/Title";
 import UploadForm from "./Forms/UploadForm";
 import SignIn from "./User/SignIn";
 import User from "./User/User";
+import { WhiskyProvider } from "../context/WhiskyContext";
 
 function MainContent() {
   const newRating = (data) => {
@@ -33,15 +34,17 @@ function MainContent() {
           rating={rating}
           setRating={setRating}
         />
-        {data && (
-          <Modal
-            data={data}
-            setData={setData}
-            initRating={newRating}
-            rating={rating}
-            setRating={setRating}
-          />
-        )}
+        <WhiskyProvider>
+          {data && (
+            <Modal
+              data={data}
+              setData={setData}
+              initRating={newRating}
+              rating={rating}
+              setRating={setRating}
+            />
+          )}
+        </WhiskyProvider>
       </div>
     );
   } else {

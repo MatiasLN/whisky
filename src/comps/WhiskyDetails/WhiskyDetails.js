@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { WhiskyContext } from "../../context/WhiskyContext";
+
 const ProductDetails = ({
   productID,
   name,
@@ -11,6 +13,11 @@ const ProductDetails = ({
   descOdour,
   descTaste,
 }) => {
+  const { update } = useContext(WhiskyContext);
+  useEffect(() => {
+    update({ id: productID });
+  }, []);
+
   return (
     <div className="whiskyDetails">
       <h3>Informasjon fra Vinmonopolet</h3>
