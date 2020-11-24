@@ -3,16 +3,13 @@ import StarRating from "./../StarRating/StarRating";
 import { projectFirestore } from "../../firebase/config";
 import Image from "../ImageGrid/Image/Image";
 import { UserContext } from "../../context/UserContext";
-import { WhiskyContext } from "../../context/WhiskyContext";
 import WhiskyData from "../WhiskyData/WhiskyData";
 
 const Modal = ({ data, setData, initRating, rating, setRating }) => {
   const [notes, setNotes] = useState(data.notes);
   [rating, setRating] = useState(data.star);
   const user = useContext(UserContext);
-  const { state } = useContext(WhiskyContext);
   const uid = user.user.uid;
-  console.log(state.id);
 
   const handleClick = (e) => {
     if (e.target.classList.contains("backdrop")) {
