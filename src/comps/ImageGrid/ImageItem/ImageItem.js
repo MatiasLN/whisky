@@ -1,12 +1,16 @@
-import React, { useState, useContext } from "react";
-import StarRating from "../../StarRating/StarRating";
+import React, { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { projectFirestore } from "../../../firebase/config";
-import Image from "../Image/Image";
 import { UserContext } from "../../../context/UserContext";
+import { WhiskyContext } from "../../../context/WhiskyContext";
+
+import StarRating from "../../StarRating/StarRating";
+import Image from "../Image/Image";
 
 const ImageItem = ({ data, setData, rating, setRating }) => {
   const [id, setCurrentId] = useState(data.id);
   const user = useContext(UserContext);
+  const { update } = useContext(WhiskyContext);
   const uid = user.user.uid;
 
   const handleSetRating = (rating) => {
@@ -17,16 +21,19 @@ const ImageItem = ({ data, setData, rating, setRating }) => {
   };
 
   return (
-    <div className="coffeItem">
+    <div className="whiskyItem">
       <div
         className="image"
         key={data.id}
         onClick={() => {
           setCurrentId(data.id);
           setData(data);
+          update({ id: data.id });
         }}
       >
-        <Image data={data.url} />
+        <Link to="/whisky">
+          <Image data={data.url} />
+        </Link>
       </div>
       <h2>{data.title}</h2>
       <div
