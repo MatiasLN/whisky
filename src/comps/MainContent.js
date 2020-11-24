@@ -1,23 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
-import ImageGrid from "./ImageGrid/ImageGrid";
-import Logo from "./Logo/Logo";
-import Modal from "./Modal/Modal";
-import Title from "./Title/Title";
-import UploadForm from "./Forms/UploadForm";
-import SignIn from "./User/SignIn";
-import User from "./User/User";
 import { WhiskyProvider } from "../context/WhiskyContext";
 
-function MainContent() {
-  const newRating = (data) => {
-    if (data) {
-      setRating(data);
-    }
-  };
+import Home from "../Pages/Home";
+import Whisky from "../Pages/Whisky";
+import Error from "../Pages/Error";
 
-  const [data, setData] = useState(null);
-  const [rating, setRating] = useState(newRating);
+import Logo from "./Logo/Logo";
+import Title from "./Title/Title";
+import SignIn from "./User/SignIn";
+import User from "./User/User";
+
+function MainContent() {
   const user = useContext(UserContext);
   const uid = user.user.uid;
 
@@ -27,24 +22,15 @@ function MainContent() {
         <Logo />
         <User />
         <Title />
-        <UploadForm />
-        <ImageGrid
-          data={data}
-          setData={setData}
-          rating={rating}
-          setRating={setRating}
-        />
-        <WhiskyProvider>
-          {data && (
-            <Modal
-              data={data}
-              setData={setData}
-              initRating={newRating}
-              rating={rating}
-              setRating={setRating}
-            />
-          )}
-        </WhiskyProvider>
+        <BrowserRouter>
+          <Switch>
+            <WhiskyProvider>
+              <Route path="/" component={Home} exact />
+              <Route path="/whisky" component={Whisky} exact />
+            </WhiskyProvider>
+            <Route component={Error} />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   } else {
