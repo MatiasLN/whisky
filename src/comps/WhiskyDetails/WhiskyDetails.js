@@ -15,7 +15,7 @@ const ProductDetails = ({
 }) => {
   const { update } = useContext(WhiskyContext);
   useEffect(() => {
-    update({ id: productID });
+    update({ whisky: productID });
   }, []);
 
   return (

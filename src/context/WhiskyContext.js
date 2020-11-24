@@ -5,6 +5,7 @@ const reducer = (state, pair) => ({ ...state, ...pair });
 
 const initialState = {
   id: "",
+  whisky: "",
 };
 
 export function WhiskyProvider(props) {
