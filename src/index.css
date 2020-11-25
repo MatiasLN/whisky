@@ -34,13 +34,7 @@ body {
   text-align: center;
 }
 
-.logo {
-  display: block;
-  max-width: 90px;
-  height: auto;
-  margin: 20px auto 0;
-}
-
+@import "./comps//Logo/Logo.css";
 @import "./comps/Forms/ProgressBar.css";
 @import "./comps/Forms/UploadForm.css";
 @import "./comps/ImageGrid/ImageGrid.css";

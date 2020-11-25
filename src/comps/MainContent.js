@@ -19,12 +19,12 @@ function MainContent() {
   if (uid) {
     return (
       <div className="MainContent">
-        <Logo />
-        <User />
-        <Title />
         <BrowserRouter>
           <Switch>
             <WhiskyProvider>
+              <Logo />
+              <User />
+              <Title />
               <Route path="/" component={Home} exact />
               <Route path="/whisky" component={Whisky} exact />
             </WhiskyProvider>
