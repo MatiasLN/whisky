@@ -1,61 +1,16 @@
-import React, { useState, useContext } from "react";
-import StarRating from "./../StarRating/StarRating";
-import { projectFirestore } from "../../firebase/config";
+import React from "react";
 import Image from "../ImageGrid/Image/Image";
-import { UserContext } from "../../context/UserContext";
-import WhiskyData from "../WhiskyData/WhiskyData";
 
-const Modal = ({ data, setData, initRating, rating, setRating }) => {
-  const [notes, setNotes] = useState(data.notes);
-  [rating, setRating] = useState(data.star);
-  const user = useContext(UserContext);
-  const uid = user.user.uid;
-
+const Modal = ({ url }) => {
   const handleClick = (e) => {
     if (e.target.classList.contains("backdrop")) {
-      setData(null);
+      document.querySelector(".backdrop").style.display = "none";
     }
-  };
-
-  const changeHandlerTextarea = (e) => {
-    setNotes(e.target.value);
-    const collectionRef = projectFirestore.collection(uid).doc(data.id);
-    collectionRef.update({ notes: notes });
-  };
-
-  const handleSetRating = (rating) => {
-    setRating(rating);
-    initRating(rating);
-    const collectionRef = projectFirestore.collection(uid).doc(data.id);
-    collectionRef.update({ star: rating });
   };
 
   return (
     <div className="backdrop" onClick={handleClick}>
-      <div className="modal-container">
-        {data.url && (
-          <div className="modal-img">
-            <Image data={data.url} />
-          </div>
-        )}
-        <div className="modal-content">
-          {data.title && <h2>{data.title}</h2>}
-          <textarea
-            id="file-notes"
-            rows={5}
-            cols={5}
-            placeholder="Smaksnotater ..."
-            value={notes}
-            onChange={changeHandlerTextarea}
-          />
-          {data.star && (
-            <div className="modal-stars">
-              {<StarRating rating={rating} setRating={handleSetRating} />}
-            </div>
-          )}
-        </div>
-        <WhiskyData title={data.title} />
-      </div>
+      <Image data={url} />
     </div>
   );
 };
