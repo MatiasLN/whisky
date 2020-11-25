@@ -54,7 +54,7 @@ const WhiskyData = ({ title }) => {
 
       {error && <div className="error">{error}</div>}
 
-      <div>
+      <div className="getWhiskyInfo">
         <p>Stemmer ikke informasjonen?</p>
         <button
           className="addNewBtn"
