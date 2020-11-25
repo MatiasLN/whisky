@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import ImageGrid from "../comps/ImageGrid/ImageGrid";
-import Modal from "../comps/Modal/Modal";
 import UploadForm from "../comps/Forms/UploadForm";
 
 const Home = () => {
@@ -23,15 +22,6 @@ const Home = () => {
         rating={rating}
         setRating={setRating}
       />
-      {data && (
-        <Modal
-          data={data}
-          setData={setData}
-          initRating={newRating}
-          rating={rating}
-          setRating={setRating}
-        />
-      )}
     </>
   );
 };
