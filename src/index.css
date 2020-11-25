@@ -40,4 +40,7 @@ body {
 @import "./comps//StarRating/StarRating.css";
 @import "./comps//User/User.css";
 @import "./comps/Navigation/Navigation.css";
-@import "./comps/WhiskyData/WhiskyData.css";
+@import "./comps/WhiskyDetails/WhiskyDetails.css";
+
+/* Whisky page */
+@import "./comps/WhiskyItem/WhiskyItem.css";
