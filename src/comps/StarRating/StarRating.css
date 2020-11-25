@@ -10,12 +10,18 @@
   float: left;
   list-style: none;
   width: 20%;
-  max-width: 40px;
+  max-width: 35px;
   line-height: 0;
   margin-bottom: 10px;
   text-align: center;
   padding: 0 5px;
   box-sizing: border-box;
+}
+
+@media only screen and (min-width: 800px) {
+  .stars li {
+    max-width: 40px;
+  }
 }
 
 .stars li:first-child {

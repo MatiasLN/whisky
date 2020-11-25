@@ -4,7 +4,7 @@ import Star from "./Star";
 function StarRating({ rating, setRating }) {
   const renderStars = () => {
     let stars = [];
-    let maxRating = 5;
+    let maxRating = 10;
 
     for (let i = 0; i < maxRating; i++) {
       stars.push(
