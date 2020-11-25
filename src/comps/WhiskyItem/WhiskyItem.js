@@ -6,12 +6,15 @@ import { WhiskyContext } from "../../context/WhiskyContext";
 import StarRating from "../StarRating/StarRating";
 import Image from "../WhiskyItem/Image/Image";
 import WhiskyData from "../WhiskyData/WhiskyData";
+import Modal from "../Modal/Modal";
 
 const ImageItem = () => {
   const [data, setData] = useState("");
   const [rating, setRating] = useState("");
+  const [notes, setNotes] = useState("");
+  const [url, setUrl] = useState("");
   const user = useContext(UserContext);
-  const { state, update } = useContext(WhiskyContext);
+  const { state } = useContext(WhiskyContext);
   const uid = user.user.uid;
 
   const collectionRef = projectFirestore.collection(uid).doc(state.id);
@@ -21,6 +24,8 @@ const ImageItem = () => {
       .then((doc) => {
         setData(doc.data());
         setRating(doc.data().star);
+        setNotes(doc.data().notes);
+        setUrl(doc.data().url);
       })
       .catch(function (error) {
         console.log("Error getting document:", error);
@@ -32,31 +37,39 @@ const ImageItem = () => {
     collectionRef.update({ star: rating });
   };
 
+  const changeHandlerTextarea = (e) => {
+    setNotes(e.target.value);
+    collectionRef.update({ notes: notes });
+  };
+
+  const handleModal = () => {
+    document.querySelector(".backdrop").style.display = "block";
+  };
+
   return (
-    <div className="whiskyItem">
-      <div
-        className="image"
-        key={state.id}
-        onClick={() => {
-          //   setCurrentId(state.id);
-          //   setData(data);
-          //   update({ id: data.id });
-        }}
-      >
-        <Image data={data.url} />
+    <>
+      <div className="whiskyItem">
+        <div className="image" key={state.id} onClick={handleModal}>
+          <Image data={data.url} />
+        </div>
+        <h2>{data.title}</h2>
+        <div className="notes">
+          <textarea
+            id="file-notes"
+            rows={5}
+            cols={5}
+            placeholder="Smaksnotater ..."
+            value={data.notes}
+            onChange={changeHandlerTextarea}
+          />
+        </div>
+        <div className="rating">
+          <StarRating rating={rating} setRating={handleSetRating} />
+        </div>
+        <WhiskyData />
       </div>
-      <h2>{data.title}</h2>
-      <div
-        className="rating"
-        onClick={() => {
-          //   setCurrentId(data.id);
-        }}
-        data={data.id}
-      >
-        <StarRating rating={rating} setRating={handleSetRating} />
-      </div>
-      <WhiskyData />
-    </div>
+      <Modal url={url} />
+    </>
   );
 };
 
