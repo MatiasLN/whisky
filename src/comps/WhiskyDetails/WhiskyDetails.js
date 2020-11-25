@@ -19,25 +19,29 @@ const ProductDetails = ({
   }, []);
 
   return (
-    <div className="whiskyDetails">
-      <h3>Informasjon fra Vinmonopolet</h3>
-      <ul>
-        <li>Navn: {name}</li>
-        <li>Produkt ID: {productID}</li>
-        <li>Alkoholstyrke: {alcohol + "%"}</li>
-        <li>Pris: {price + ",- NOK"}</li>
-        <li>{country}</li>
-        <li>Region: {region}</li>
-        <li>Destilleri: {destilery}</li>
-      </ul>
+    <>
+      <div className="whiskyDetails">
+        <h3>Om whiskyen</h3>
+        <ul>
+          <li>Navn: {name}</li>
+          <li>Produkt ID: {productID}</li>
+          <li>Alkoholstyrke: {alcohol + "%"}</li>
+          <li>Pris: {price + ",- NOK"}</li>
+          <li>Land: {country}</li>
+          <li>Region: {region}</li>
+          <li>Destilleri: {destilery}</li>
+        </ul>
+      </div>
 
-      <h4>Beskrivelse</h4>
-      <ul>
-        <li>Farge: {descColour}</li>
-        <li>Lukt: {descOdour}</li>
-        <li>Smak: {descTaste}</li>
-      </ul>
-    </div>
+      <div className="whiskyDescription">
+        <h3>Beskrivelse</h3>
+        <ul>
+          <li>Farge: {descColour}</li>
+          <li>Lukt: {descOdour}</li>
+          <li>Smak: {descTaste}</li>
+        </ul>
+      </div>
+    </>
   );
 };
 export default ProductDetails;
