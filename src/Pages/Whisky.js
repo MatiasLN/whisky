@@ -1,14 +1,9 @@
-import React, { useContext } from "react";
-import { WhiskyContext } from "../context/WhiskyContext";
-
+import React from "react";
 import WhiskyItem from "../comps/WhiskyItem/WhiskyItem";
 
 const WhiskyPage = () => {
-  const { state } = useContext(WhiskyContext);
-  console.log(state.id);
-
   return (
-    <div>
+    <div className="whiskyContainer">
       <WhiskyItem />
     </div>
   );
