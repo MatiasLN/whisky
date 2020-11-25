@@ -45,8 +45,8 @@ body {
 @import "./comps/Forms/UploadForm.css";
 @import "./comps/ImageGrid/ImageGrid.css";
 @import "./comps/Modal/Modal.css";
-@import "./comps//StarRating/StarRating.css";
-@import "./comps//User/User.css";
+@import "./comps/StarRating/StarRating.css";
+@import "./comps/User/User.css";
 @import "./comps/Navigation/Navigation.css";
 @import "./comps/WhiskyDetails/WhiskyDetails.css";
 
