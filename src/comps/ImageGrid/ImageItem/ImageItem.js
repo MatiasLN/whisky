@@ -29,6 +29,7 @@ const ImageItem = ({ data, setData, rating, setRating }) => {
           setCurrentId(data.id);
           setData(data);
           update({ id: data.id });
+          update({ whisky: data.title });
         }}
       >
         <Link to="/whisky">

@@ -16,6 +16,7 @@ const ImageItem = () => {
   const user = useContext(UserContext);
   const { state } = useContext(WhiskyContext);
   const uid = user.user.uid;
+  let whiskyName = state.whisky.split(" ").join("_");
 
   const collectionRef = projectFirestore.collection(uid).doc(state.id);
   useEffect(() => {
@@ -66,7 +67,7 @@ const ImageItem = () => {
         <div className="rating">
           <StarRating rating={rating} setRating={handleSetRating} />
         </div>
-        <WhiskyData />
+        <WhiskyData title={whiskyName} />
       </div>
       <Modal url={url} />
     </>
