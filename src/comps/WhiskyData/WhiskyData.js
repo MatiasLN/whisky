@@ -64,6 +64,8 @@ export default ({ title }) => {
       </div>
     );
   } else {
-    return <h2>Fant ikke noe data fra Vinmonopolet</h2>;
+    return (
+      <h2 className="noWhiskyData">Fant ikke noe data fra Vinmonopolet</h2>
+    );
   }
 };
