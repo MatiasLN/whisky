@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import apiKey from "../../api/Vinmonopolet";
 import PlaceHolder from "../../json/WhiskyPlaceholder.json";
 import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
+import GetWhiskyData from "./GetWhiskyData";
 
 const useFetch = (url) => {
-  const [data, setData] = useState("");
+  const [data, setData] = useState(PlaceHolder);
   const [loading, setLoading] = useState(true);
 
   // Similar to componentDidMount and componentDidUpdate:
@@ -38,11 +39,11 @@ export default ({ title }) => {
   if (title) {
     const { data, loading } = useFetch(title);
     return (
-      <div className="whiskyDetailsContainer">
+      <>
         {loading ? (
-          <div>...loading</div>
+          <h2 className="loadingData">Laster inn data fra Vinmonopolet ...</h2>
         ) : (
-          <>
+          <div className="whiskyDetailsContainer">
             {data &&
               data.map((data) => (
                 <WhiskyDetails
@@ -59,13 +60,16 @@ export default ({ title }) => {
                   descTaste={data.description.characteristics.taste}
                 />
               ))}
-          </>
+            <GetWhiskyData />
+          </div>
         )}
-      </div>
+      </>
     );
   } else {
     return (
-      <h2 className="noWhiskyData">Fant ikke noe data fra Vinmonopolet</h2>
+      <>
+        <GetWhiskyData notFound />
+      </>
     );
   }
 };

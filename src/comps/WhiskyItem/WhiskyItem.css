@@ -69,7 +69,8 @@
     margin-bottom: 0;
   }
 
-  .whiskyContainer .whiskyItem .noWhiskyData {
+  .whiskyContainer .whiskyItem .noWhiskyData,
+  .whiskyContainer .whiskyItem .loadingData {
     grid-area: details;
     margin-top: 60px;
     font-weight: 100;
