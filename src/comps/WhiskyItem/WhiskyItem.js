@@ -68,6 +68,7 @@ const ImageItem = () => {
           <StarRating rating={rating} setRating={handleSetRating} />
         </div>
         <WhiskyData title={whiskyName} />
+        <div className="map">Kart</div>
       </div>
       <Modal url={url} />
     </>

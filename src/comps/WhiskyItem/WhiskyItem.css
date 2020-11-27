@@ -22,12 +22,12 @@
     display: grid;
     width: 100%;
     grid-template-areas:
-      "image header"
-      "image notes"
-      "image rating"
-      "details details";
+      "image header ..."
+      "image notes map"
+      "image rating map"
+      "details details details";
     grid-template-rows: 40px auto 60px 1fr;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 300px 1fr 1fr;
     grid-gap: 20px;
   }
 
@@ -70,10 +70,15 @@
   }
 
   .whiskyContainer .whiskyItem .noWhiskyData,
-  .whiskyContainer .whiskyItem .loadingData {
+  .whiskyContainer .whiskyItem .loadingData,
+  .getWhiskyInfo {
     grid-area: details;
     margin-top: 60px;
     font-weight: 100;
     text-align: center;
+  }
+
+  .whiskyContainer .whiskyItem .map {
+    grid-area: map;
   }
 }
