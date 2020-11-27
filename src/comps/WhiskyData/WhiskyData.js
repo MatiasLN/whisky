@@ -1,70 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import apiKey from "../../api/Vinmonopolet";
 import PlaceHolder from "../../json/WhiskyPlaceholder.json";
 import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
 
-const WhiskyData = ({ title }) => {
-  // should be null on fetch request
-  // const [fetchData, setFetchData] = useState(null);
-  const [fetchData, setFetchData] = useState(PlaceHolder);
-  const [error, setError] = useState(null);
+const useFetch = (url) => {
+  const [data, setData] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  const getWhiskyData = (data) => {
-    const myHeaders = new Headers();
-    myHeaders.append("Ocp-Apim-Subscription-Key", apiKey);
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() => {
+    const fetchData = async () => {
+      const myHeaders = new Headers();
+      myHeaders.append("Ocp-Apim-Subscription-Key", apiKey);
 
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
+      const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      const response = await fetch(
+        "https://apis.vinmonopolet.no/products/v0/details-normal?productShortNameContains=" +
+          url,
+        requestOptions
+      );
+      const data = await response.json();
+      setData(data);
+      setLoading(false);
     };
+    fetchData();
+  }, []);
 
-    fetch(
-      "https://apis.vinmonopolet.no/products/v0/details-normal?productShortNameContains=" +
-        data,
-      requestOptions
-    )
-      .then((response) => response.text())
-      .then((result) => {
-        setFetchData(result);
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  };
-
-  return (
-    <div className="whiskyDetailsContainer">
-      {fetchData &&
-        fetchData.map((data) => (
-          <WhiskyDetails
-            key={data.basic.productId}
-            productID={data.basic.productId}
-            name={data.basic.productLongName}
-            alcohol={data.basic.alcoholContent}
-            price={data.prices[0].salesPrice}
-            country={data.origins.origin.country}
-            region={data.origins.origin.region}
-            destilery={data.logistics.manufacturerName}
-            descColour={data.description.characteristics.colour}
-            descOdour={data.description.characteristics.odour}
-            descTaste={data.description.characteristics.taste}
-          />
-        ))}
-
-      {error && <div className="error">{error}</div>}
-
-      <div className="getWhiskyInfo">
-        <p>Stemmer ikke informasjonen?</p>
-        <button
-          className="addNewBtn"
-          onClick={() => getWhiskyData("bowmore_15")}
-        >
-          Finn produkt
-        </button>
-      </div>
-    </div>
-  );
+  return { data, loading };
 };
 
-export default WhiskyData;
+export default ({ title }) => {
+  if (title) {
+    const { data, loading } = useFetch(title);
+    return (
+      <div className="whiskyDetailsContainer">
+        {loading ? (
+          <div>...loading</div>
+        ) : (
+          <>
+            {data &&
+              data.map((data) => (
+                <WhiskyDetails
+                  key={data.basic.productId}
+                  productID={data.basic.productId}
+                  name={data.basic.productLongName}
+                  alcohol={data.basic.alcoholContent}
+                  price={data.prices[0].salesPrice}
+                  country={data.origins.origin.country}
+                  region={data.origins.origin.region}
+                  destilery={data.logistics.manufacturerName}
+                  descColour={data.description.characteristics.colour}
+                  descOdour={data.description.characteristics.odour}
+                  descTaste={data.description.characteristics.taste}
+                />
+              ))}
+          </>
+        )}
+      </div>
+    );
+  } else {
+    return <h2>Fant ikke noe data fra Vinmonopolet</h2>;
+  }
+};
