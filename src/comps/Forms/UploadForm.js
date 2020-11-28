@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ProgressBar from "./ProgressBar";
 import StarRating from "./../StarRating/StarRating";
+import { useHistory } from "react-router-dom";
 
 const UploadForm = () => {
   const [file, setFile] = useState(null);
@@ -8,6 +9,7 @@ const UploadForm = () => {
   const types = ["image/png", "image/jpg", "image/jpeg", "image/heic"];
   const [rating, setRating] = useState(0);
   const [submit, setSumbit] = useState("");
+  const history = useHistory();
 
   function handleUpload(e) {
     let selected = e.target.files[0];
@@ -35,6 +37,7 @@ const UploadForm = () => {
   };
 
   const handleExit = (e) => {
+    e.preventDefault();
     document.querySelector("form").style.display = "none";
     document.querySelector(".img-grid").style.display = "grid";
     document.querySelector("#file-title").value = "";
@@ -70,7 +73,12 @@ const UploadForm = () => {
         Legg til ny whisky
       </button>
       <form className="uploadForm" method="post" style={{ display: "none" }}>
-        <button className="closeForm" onClick={handleExit}>
+        <button
+          action="action"
+          type="submit"
+          className="closeForm"
+          onClick={(e) => handleExit(e)}
+        >
           Lukk
         </button>
         <input
