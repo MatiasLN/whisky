@@ -25,6 +25,7 @@ function MainContent() {
               <Logo />
               <User />
               <Title />
+              <Route path="/" component={Home} exact />
               <Route path="/whisky" component={Home} exact />
               <Route path="/whiskyType" component={Whisky} exact />
             </WhiskyProvider>
@@ -36,9 +37,13 @@ function MainContent() {
   } else {
     return (
       <>
-        <Logo />
-        <Title />
-        <SignIn />
+        <BrowserRouter>
+          <Switch>
+            <Logo />
+            <Title />
+            <SignIn />
+          </Switch>
+        </BrowserRouter>
       </>
     );
   }
