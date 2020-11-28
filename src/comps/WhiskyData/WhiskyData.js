@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import apiKey from "../../api/Vinmonopolet";
-import PlaceHolder from "../../json/WhiskyPlaceholder.json";
 import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
 import GetWhiskyData from "./GetWhiskyData";
 
 const useFetch = (url) => {
-  const [data, setData] = useState(PlaceHolder);
+  const [data, setData] = useState("");
   const [loading, setLoading] = useState(true);
 
   // Similar to componentDidMount and componentDidUpdate:
@@ -36,8 +35,8 @@ const useFetch = (url) => {
 };
 
 export default ({ title }) => {
-  if (title) {
-    const { data, loading } = useFetch(title);
+  const { data, loading } = useFetch(title);
+  if (title && data.length) {
     return (
       <>
         {loading ? (
