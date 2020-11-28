@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "eedfbdfc3778269a607a514ec8667fb3",
+    "revision": "ecf130d7bfe3b0af003a71919b106af9",
     "url": "/whisky/index.html"
   },
   {
-    "revision": "c91214253c07ae6d161a",
-    "url": "/whisky/static/css/main.b9ccef30.chunk.css"
+    "revision": "730bbaee45d25ecc7c2e",
+    "url": "/whisky/static/css/main.c28aca49.chunk.css"
   },
   {
     "revision": "981d842fb8bd466da109",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/whisky/static/js/2.ea80149a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c91214253c07ae6d161a",
-    "url": "/whisky/static/js/main.f71c6639.chunk.js"
+    "revision": "730bbaee45d25ecc7c2e",
+    "url": "/whisky/static/js/main.726074a9.chunk.js"
   },
   {
     "revision": "2cb66ebfca4802a89c9a",
