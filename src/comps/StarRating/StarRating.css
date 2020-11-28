@@ -18,12 +18,6 @@
   box-sizing: border-box;
 }
 
-@media only screen and (min-width: 800px) {
-  .stars li {
-    max-width: 40px;
-  }
-}
-
 .stars li:first-child {
   margin-left: -2px;
 }
@@ -52,5 +46,15 @@
   display: block;
   margin: 10px auto 20px auto;
   height: 50px;
-  width: 200px;
+  width: 355px;
+}
+
+@media only screen and (min-width: 800px) {
+  .stars li {
+    max-width: 40px;
+  }
+
+  .starRating {
+    width: 440px;
+  }
 }
