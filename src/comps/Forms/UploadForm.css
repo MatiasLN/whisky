@@ -21,29 +21,18 @@
 /* upload form styles */
 form {
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  max-width: 70%;
+  top: 0;
   left: 0;
   right: 0;
-  top: 15%;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
-  box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
-  border: 3px solid white;
-  border-bottom: 0;
   background: white;
   justify-items: center;
   align-items: center;
-  z-index: 1;
-  padding: 40px;
-}
-
-@media only screen and (min-width: 800px) {
-  form {
-    width: 60vw;
-    height: 90vh;
-    top: 5px;
-  }
+  min-height: 100vh;
+  padding: 40px 0;
 }
 
 input,
@@ -121,6 +110,26 @@ input[type="file"] {
   cursor: pointer;
 }
 
+.closeForm {
+  display: block;
+  margin: 50px auto 50px auto;
+  padding: 10px 15px;
+  background-color: var(--secondary);
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+  font-size: 1.2rem;
+  font-family: "Noto Serif";
+  color: white;
+  cursor: pointer;
+}
+
+.closeForm:hover {
+  border: 1px solid var(--secondary);
+  background: none;
+  color: var(--secondary);
+  cursor: pointer;
+}
+
 .submitForm {
   display: none;
   margin-top: 20px;
@@ -129,11 +138,25 @@ input[type="file"] {
 .thumbnail img {
   max-height: 100px;
   width: auto;
+  border: none;
+  margin: 20px auto;
+  border: none;
+  box-shadow: none;
 }
 
 @media only screen and (min-width: 800px) {
+  .form {
+    padding: 40px;
+  }
+
   .thumbnail img {
-    max-width: 100px;
+    max-width: 400px;
     max-height: 100%;
+  }
+
+  input,
+  label,
+  textarea {
+    width: 500px;
   }
 }
