@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { projectFirestore } from "../firebase/config";
+import useStorage from "./useStorage";
 
 const useFirestore = (collection) => {
   const [docs, setDocs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsub = projectFirestore
@@ -14,6 +16,7 @@ const useFirestore = (collection) => {
           documents.push({ ...doc.data(), id: doc.id });
         });
         setDocs(documents);
+        setLoading(false);
       });
 
     return () => unsub();
@@ -21,7 +24,7 @@ const useFirestore = (collection) => {
     // a component using the hook unmounts
   }, [collection]);
 
-  return { docs };
+  return { docs, loading };
 };
 
 export default useFirestore;

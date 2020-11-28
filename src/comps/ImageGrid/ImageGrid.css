@@ -21,6 +21,12 @@
   object-fit: cover;
 }
 
+.loading {
+  margin: 150px auto;
+  text-align: center;
+  width: 100vw;
+}
+
 @media only screen and (min-width: 800px) {
   .img-grid {
     grid-template-columns: 1fr 1fr;

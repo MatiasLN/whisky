@@ -6,21 +6,25 @@ import { UserContext } from "../../context/UserContext";
 const ImageGrid = ({ data, setData, rating, setRating }) => {
   const user = useContext(UserContext);
   const uid = user.user.uid;
-  const { docs } = useFirestore(uid);
+  const { docs, loading } = useFirestore(uid);
 
-  return (
-    <div className="img-grid">
-      {docs &&
-        docs.map((item) => (
-          <ImageItem
-            key={item.id}
-            data={item}
-            setData={setData}
-            rating={item.star}
-            setRating={setRating}
-          />
-        ))}
-    </div>
-  );
+  if (loading === false) {
+    return (
+      <div className="img-grid">
+        {docs &&
+          docs.map((item) => (
+            <ImageItem
+              key={item.id}
+              data={item}
+              setData={setData}
+              rating={item.star}
+              setRating={setRating}
+            />
+          ))}
+      </div>
+    );
+  }
+
+  return <p className="loading">Laster ...</p>;
 };
 export default ImageGrid;
