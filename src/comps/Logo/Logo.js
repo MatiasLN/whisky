@@ -5,7 +5,7 @@ const Logo = () => {
   const history = useHistory();
 
   function handleClick() {
-    history.push("/");
+    history.push("/home");
   }
 
   return (
