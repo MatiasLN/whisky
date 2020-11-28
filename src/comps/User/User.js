@@ -2,16 +2,16 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { logOut, projectFirestore } from "../../firebase/config";
 
+import Navigation from "../Navigation/Navigation";
+
 const User = () => {
   const [number, setNumber] = useState(0);
   let user = useContext(UserContext);
   const uid = user.user.uid;
   user = user.user;
 
-  const navigation = () => {
-    document.querySelector(".hamburger").classList.toggle("is-active");
+  const handleClose = () => {
     document.querySelector(".userPage").classList.toggle("show");
-    document.querySelector("nav").classList.toggle("active");
   };
 
   projectFirestore
@@ -23,23 +23,16 @@ const User = () => {
 
   return (
     <>
-      <nav>
-        <button
-          className="hamburger hamburger--slider"
-          type="button"
-          onClick={navigation}
-        >
-          <span className="hamburger-box">
-            <span className="hamburger-inner"></span>
-          </span>
-        </button>
-      </nav>
+      <Navigation />
 
       {user ? (
         <>
           <div className="userPage">
+            <button className="closeNav" onClick={handleClose}>
+              X
+            </button>
             <div className="userContent">
-              <img src={user.photoURL} alt={user.photoURL} />
+              <img src={user.photoURL} alt={user.displayName} />
               <p>Hei {user.displayName}</p>
               <p>Du har smakt {number} whiskyer</p>
               <button

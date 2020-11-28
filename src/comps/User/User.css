@@ -57,4 +57,6 @@
 .show {
   margin-right: 0 !important;
   transition-duration: 1s;
+  display: flex;
+  flex-direction: column;
 }
