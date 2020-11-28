@@ -32,7 +32,7 @@ const ImageItem = ({ data, setData, rating, setRating }) => {
           update({ whisky: data.title });
         }}
       >
-        <Link to="/whisky">
+        <Link to="/whiskyType">
           <Image data={data.url} />
         </Link>
       </div>

@@ -69,7 +69,7 @@ const UploadForm = () => {
       >
         Legg til ny whisky
       </button>
-      <form className="uploadForm" style={{ display: "none" }}>
+      <form className="uploadForm" method="post" style={{ display: "none" }}>
         <button className="closeForm" onClick={handleExit}>
           Lukk
         </button>
