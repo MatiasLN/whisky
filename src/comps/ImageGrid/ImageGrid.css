@@ -6,22 +6,10 @@
   grid-gap: 10px;
 }
 
-@media only screen and (min-width: 800px) {
-  .img-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media only screen and (min-width: 1400px) {
-  .img-grid {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
 .image {
   position: relative;
-  opacity: 0.9;
 }
+
 .image::after {
   content: "";
   display: block;
@@ -31,4 +19,20 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+@media only screen and (min-width: 800px) {
+  .img-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .image:hover {
+    opacity: 0.9;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .img-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
