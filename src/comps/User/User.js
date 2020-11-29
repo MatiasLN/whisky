@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
-import { logOut, projectFirestore } from "../../firebase/config";
+import { logOut } from "../../firebase/config";
+import useFirestore from "../../hooks/useFirestore";
 
 import Navigation from "../Navigation/Navigation";
 
@@ -9,17 +10,17 @@ const User = () => {
   let user = useContext(UserContext);
   const uid = user.user.uid;
   user = user.user;
+  const { titles } = useFirestore(uid);
+
+  useEffect(() => {
+    if (titles.length) {
+      setNumber(titles.length);
+    }
+  }, [titles]);
 
   const handleClose = () => {
     document.querySelector(".userPage").classList.toggle("show");
   };
-
-  projectFirestore
-    .collection(uid)
-    .get()
-    .then(function (querySnapshot) {
-      setNumber(querySnapshot.size);
-    });
 
   return (
     <>
