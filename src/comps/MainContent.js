@@ -9,6 +9,7 @@ import Error from "../Pages/Error";
 
 import Logo from "./Logo/Logo";
 import Title from "./Title/Title";
+import SearchBar from "./SearchBar/SearchBar";
 import SignIn from "./User/SignIn";
 import User from "./User/User";
 
@@ -25,6 +26,7 @@ function MainContent() {
               <Logo />
               <User />
               <Title />
+              <SearchBar />
               <Route path="/" component={Home} exact />
               <Route path="/whisky" component={Home} exact />
               <Route path="/whiskyType" component={Whisky} exact />
