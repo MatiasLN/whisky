@@ -11,7 +11,7 @@ const getWhiskyData = ({ notFound }) => {
         className="addNewBtn"
         onClick={() => alert("Her må det komme en popup med søkefelt")}
       >
-        Finn produkt
+        Finn riktig produkt
       </button>
     </div>
   );
