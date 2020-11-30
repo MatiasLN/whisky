@@ -1,17 +1,22 @@
 import React from "react";
 
-const SearchBar = ({ search, value }) => {
-  const handleChange = (e) => {
-    search(e.target.value);
+const SearchBar = ({ search }) => {
+  const handleInput = (event) => {
+    const { name, value } = event.currentTarget;
+    console.log(value);
+
+    if (name === "search") {
+      search(value);
+    }
   };
 
   return (
     <div className="search">
       <input
         type="text"
+        name="search"
         placeholder="Søk etter whisky"
-        onChange={handleChange}
-        value={value}
+        onChange={(event) => handleInput(event)}
       />
     </div>
   );
