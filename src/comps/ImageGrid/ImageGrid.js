@@ -3,23 +3,22 @@ import useFirestore from "../../hooks/useFirestore";
 import ImageItem from "./ImageItem/ImageItem";
 import { UserContext } from "../../context/UserContext";
 
-const ImageGrid = ({ data, setData, rating, setRating }) => {
+const ImageGrid = ({
+  data,
+  setData,
+  rating,
+  setRating,
+  search,
+  searchResult,
+}) => {
   const user = useContext(UserContext);
   const uid = user.user.uid;
   const { docs, loading } = useFirestore(uid);
-  const [countries, setCountries] = useState([]);
-  const [search, setSearch] = useState("");
-  const [filteredCountries, setFilteredCountries] = useState([]);
 
   if (loading === false) {
     return (
       <>
         <div>
-          <input
-            type="text"
-            placeholder="Search Countries"
-            onChange={(e) => setSearch(e.target.value)}
-          />
           <div className="img-grid">
             {docs &&
               docs.map((item) => (
@@ -31,7 +30,6 @@ const ImageGrid = ({ data, setData, rating, setRating }) => {
                   rating={item.star}
                   setRating={setRating}
                   search={search}
-                  // filteredCountries={filteredCountries}
                 />
               ))}
           </div>
