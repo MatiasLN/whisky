@@ -7,11 +7,20 @@ import { WhiskyContext } from "../../../context/WhiskyContext";
 import StarRating from "../../StarRating/StarRating";
 import Image from "../Image/Image";
 
-const ImageItem = ({ data, setData, rating, setRating }) => {
+const ImageItem = ({
+  data,
+  setData,
+  rating,
+  setRating,
+  search,
+  filteredCountries,
+}) => {
   const [id, setCurrentId] = useState(data.id);
   const user = useContext(UserContext);
   const { update } = useContext(WhiskyContext);
   const uid = user.user.uid;
+  console.log("search is " + search);
+  console.log("filtered " + filteredCountries);
 
   const handleSetRating = (rating) => {
     setRating(rating);
