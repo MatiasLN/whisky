@@ -11,18 +11,26 @@ const Home = () => {
     }
   };
 
+  const searchCallback = (result) => {
+    if (result) {
+      searchResult(result);
+    }
+  };
+
   const [data, setData] = useState(null);
   const [rating, setRating] = useState(newRating);
+  const [result, searchResult] = useState("");
 
   return (
     <>
-      <SearchBar />
+      <SearchBar value={result} search={searchCallback} />
       <UploadForm />
       <ImageGrid
         data={data}
         setData={setData}
         rating={rating}
         setRating={setRating}
+        search={result}
       />
     </>
   );
