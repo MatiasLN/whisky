@@ -11,19 +11,6 @@ const ImageGrid = ({ data, setData, rating, setRating }) => {
   const [search, setSearch] = useState("");
   const [filteredCountries, setFilteredCountries] = useState([]);
 
-  useEffect(() => {
-    var allDocs = docs.map((doc) => doc.title);
-    setCountries(allDocs);
-  }, [search, docs]);
-
-  useEffect(() => {
-    setFilteredCountries(
-      countries.filter((country) =>
-        country.toLowerCase().includes(search.toLowerCase())
-      )
-    );
-  }, [search, countries]);
-
   if (loading === false) {
     return (
       <>
@@ -44,7 +31,7 @@ const ImageGrid = ({ data, setData, rating, setRating }) => {
                   rating={item.star}
                   setRating={setRating}
                   search={search}
-                  filteredCountries={filteredCountries}
+                  // filteredCountries={filteredCountries}
                 />
               ))}
           </div>

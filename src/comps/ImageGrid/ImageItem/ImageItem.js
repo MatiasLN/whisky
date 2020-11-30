@@ -13,15 +13,13 @@ const ImageItem = ({
   rating,
   setRating,
   search,
-  filteredCountries,
+  // filteredCountries,
 }) => {
   const [id, setCurrentId] = useState(data.id);
   const user = useContext(UserContext);
   const { update } = useContext(WhiskyContext);
   const uid = user.user.uid;
-  console.log("search is " + search);
-  console.log("filtered " + filteredCountries);
-
+  // console.log("filtered " + filteredCountries);
   const handleSetRating = (rating) => {
     setRating(rating);
 
@@ -29,34 +27,39 @@ const ImageItem = ({
     collectionRef.update({ star: rating });
   };
 
-  return (
-    <div className="whiskyItem">
-      <div
-        className="image"
-        key={data.id}
-        onClick={() => {
-          setCurrentId(data.id);
-          setData(data);
-          update({ id: data.id });
-          update({ whisky: data.title });
-        }}
-      >
-        <Link to="/whiskyType">
-          <Image data={data.url} />
-        </Link>
+  if (data.title.includes(search)) {
+    console.log(data.title);
+    return (
+      <div className="whiskyItem">
+        <div
+          className="image"
+          key={data.id}
+          onClick={() => {
+            setCurrentId(data.id);
+            setData(data);
+            update({ id: data.id });
+            update({ whisky: data.title });
+          }}
+        >
+          <Link to="/whiskyType">
+            <Image data={data.url} />
+          </Link>
+        </div>
+        <h2>{data.title}</h2>
+        <div
+          className="rating"
+          onClick={() => {
+            setCurrentId(data.id);
+          }}
+          data={data.id}
+        >
+          <StarRating rating={rating} setRating={handleSetRating} />
+        </div>
       </div>
-      <h2>{data.title}</h2>
-      <div
-        className="rating"
-        onClick={() => {
-          setCurrentId(data.id);
-        }}
-        data={data.id}
-      >
-        <StarRating rating={rating} setRating={handleSetRating} />
-      </div>
-    </div>
-  );
+    );
+  }
+
+  return <></>;
 };
 
 export default ImageItem;
