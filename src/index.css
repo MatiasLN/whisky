@@ -43,6 +43,7 @@ body {
 @import "./comps/User/User.css";
 @import "./comps/Navigation/Navigation.css";
 @import "./comps/WhiskyDetails/WhiskyDetails.css";
+@import "./comps/SearchBar/SearchBar.css";
 
 /* Whisky page */
 @import "./comps/WhiskyItem/WhiskyItem.css";
