@@ -1,23 +1,20 @@
-import React, { useContext, useState, useEffect } from "react";
-import useFirestore from "../../hooks/useFirestore";
-import { UserContext } from "../../context/UserContext";
+import React from "react";
 
-export default function SearchBar() {
-  const [data, setData] = useState("");
-  const user = useContext(UserContext);
-  const uid = user.user.uid;
-  const { titles } = useFirestore(uid);
-
-  useEffect(() => {
-    if (titles.length) {
-      setData(titles);
-      console.log(titles);
-    }
-  }, [titles]);
+const SearchBar = ({ search, value }) => {
+  const handleChange = (e) => {
+    search(e.target.value);
+  };
 
   return (
     <div className="search">
-      <input type="text" placeholder="Søk etter whisky" />
+      <input
+        type="text"
+        placeholder="Søk etter whisky"
+        onChange={handleChange}
+        value={value}
+      />
     </div>
   );
-}
+};
+
+export default SearchBar;
