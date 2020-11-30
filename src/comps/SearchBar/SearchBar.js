@@ -11,6 +11,7 @@ export default function SearchBar() {
   useEffect(() => {
     if (titles.length) {
       setData(titles);
+      console.log(titles);
     }
   }, [titles]);
 

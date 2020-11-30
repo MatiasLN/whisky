@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import ImageGrid from "../comps/ImageGrid/ImageGrid";
 import UploadForm from "../comps/Forms/UploadForm";
+import SearchBar from "../comps/SearchBar/SearchBar";
 
 const Home = () => {
   const newRating = (data) => {
@@ -15,6 +16,7 @@ const Home = () => {
 
   return (
     <>
+      <SearchBar />
       <UploadForm />
       <ImageGrid
         data={data}

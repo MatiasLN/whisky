@@ -26,7 +26,7 @@ function MainContent() {
               <Logo />
               <User />
               <Title />
-              <SearchBar />
+              {/* <SearchBar /> */}
               <Route path="/" component={Home} exact />
               <Route path="/whisky" component={Home} exact />
               <Route path="/whiskyType" component={Whisky} exact />
@@ -39,13 +39,8 @@ function MainContent() {
   } else {
     return (
       <>
-        <BrowserRouter>
-          <Switch>
-            <Logo />
-            <Title />
-            <SignIn />
-          </Switch>
-        </BrowserRouter>
+        <Title />
+        <SignIn />
       </>
     );
   }
