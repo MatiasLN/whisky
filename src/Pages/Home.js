@@ -18,16 +18,9 @@ const Home = () => {
     }
   };
 
-  const backspaceCallback = (res) => {
-    if (res) {
-      setBackspace(true);
-    }
-  };
-
   const [data, setData] = useState(null);
   const [rating, setRating] = useState(newRating);
   const [result, searchResult] = useState("");
-  const [backspace, setBackspace] = useState(false);
 
   return (
     <>
