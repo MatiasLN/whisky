@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ProgressBar from "./ProgressBar";
 import StarRating from "./../StarRating/StarRating";
-import { useHistory } from "react-router-dom";
 
 const UploadForm = () => {
   const [file, setFile] = useState(null);
@@ -9,7 +8,6 @@ const UploadForm = () => {
   const types = ["image/png", "image/jpg", "image/jpeg", "image/heic"];
   const [rating, setRating] = useState(0);
   const [submit, setSumbit] = useState("");
-  const history = useHistory();
 
   function handleUpload(e) {
     let selected = e.target.files[0];
