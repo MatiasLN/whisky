@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import useFirestore from "../../hooks/useFirestore";
 import ImageItem from "./ImageItem/ImageItem";
 import { UserContext } from "../../context/UserContext";
