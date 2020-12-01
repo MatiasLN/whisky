@@ -1,38 +1,7 @@
-import React, { useState, useEffect } from "react";
-import apiKey from "../../api/Vinmonopolet";
+import React from "react";
 import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
 import GetWhiskyData from "./GetWhiskyData";
-
-const useFetch = (url) => {
-  const [data, setData] = useState("");
-  const [loading, setLoading] = useState(true);
-
-  // Similar to componentDidMount and componentDidUpdate:
-  useEffect(() => {
-    const fetchData = async () => {
-      const myHeaders = new Headers();
-      myHeaders.append("Ocp-Apim-Subscription-Key", apiKey);
-
-      const requestOptions = {
-        method: "GET",
-        headers: myHeaders,
-        redirect: "follow",
-      };
-
-      const response = await fetch(
-        "https://apis.vinmonopolet.no/products/v0/details-normal?productShortNameContains=" +
-          url,
-        requestOptions
-      );
-      const data = await response.json();
-      setData(data);
-      setLoading(false);
-    };
-    fetchData();
-  }, []);
-
-  return { data, loading };
-};
+import { useFetch } from "../../api/useFetch";
 
 export default ({ title }) => {
   const { data, loading } = useFetch(title);
@@ -67,7 +36,7 @@ export default ({ title }) => {
   } else {
     return (
       <>
-        <GetWhiskyData notFound />
+        <GetWhiskyData notFound fetch={useFetch} />
       </>
     );
   }
