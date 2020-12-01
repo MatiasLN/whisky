@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Logo = () => {
   return (
     <>
-      <Link to="/">
+      <Link to="/whisky">
         <svg x="0px" y="0px" viewBox="0 0 480 480" className="logo">
           <path
             d="M173.3,203.2l45.6-45.6c3-3.1,3-8.1-0.1-11.2s-8.1-3.1-11.2-0.1l-47.4,47.4c-1.2,1.2-2,2.7-2.2,4.3l-29.5,176.6
