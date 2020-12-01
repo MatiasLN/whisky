@@ -26,7 +26,7 @@ const SearchBar = ({ searchCallback }) => {
       <input
         type="text"
         name="search"
-        placeholder="Søk etter whisky"
+        placeholder="Filtrer etter navn"
         onChange={(event) => handleInput(event)}
         onKeyDown={(e) => {
           if (e.key === "Backspace") {
