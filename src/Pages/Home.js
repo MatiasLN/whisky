@@ -5,25 +5,33 @@ import UploadForm from "../comps/Forms/UploadForm";
 import SearchBar from "../comps/SearchBar/SearchBar";
 
 const Home = () => {
-  const newRating = (data) => {
-    if (data) {
-      setRating(data);
+  const newRating = (res) => {
+    if (res) {
+      setRating(res);
     }
   };
 
-  const searchCallback = (result) => {
-    if (result) {
-      searchResult(result);
+  const searchCallback = (res) => {
+    console.log();
+    if (res) {
+      searchResult(res);
+    }
+  };
+
+  const backspaceCallback = (res) => {
+    if (res) {
+      setBackspace(true);
     }
   };
 
   const [data, setData] = useState(null);
   const [rating, setRating] = useState(newRating);
   const [result, searchResult] = useState("");
+  const [backspace, setBackspace] = useState(false);
 
   return (
     <>
-      <SearchBar value={result} search={searchCallback} />
+      <SearchBar searchCallback={searchCallback} />
       <UploadForm />
       <ImageGrid
         data={data}
