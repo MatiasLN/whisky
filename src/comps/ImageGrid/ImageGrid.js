@@ -3,14 +3,7 @@ import useFirestore from "../../hooks/useFirestore";
 import ImageItem from "./ImageItem/ImageItem";
 import { UserContext } from "../../context/UserContext";
 
-const ImageGrid = ({
-  data,
-  setData,
-  rating,
-  setRating,
-  search,
-  searchResult,
-}) => {
+const ImageGrid = ({ data, setData, rating, setRating, search }) => {
   const user = useContext(UserContext);
   const uid = user.user.uid;
   const { docs, loading } = useFirestore(uid);
