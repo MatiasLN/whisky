@@ -13,8 +13,11 @@ const ImageItem = () => {
   const [rating, setRating] = useState("");
   const [notes, setNotes] = useState("");
   const [url, setUrl] = useState("");
+
   const user = useContext(UserContext);
   const { state } = useContext(WhiskyContext);
+
+  const LOCAL_DOMAINS = ["localhost", "127.0.0.1"];
   const uid = user.user.uid;
   let whiskyName = state.whisky.split(" ").join("_");
 
@@ -31,6 +34,30 @@ const ImageItem = () => {
       .catch(function (error) {
         console.log("Error getting document:", error);
       });
+
+    // if (LOCAL_DOMAINS.includes(window.location.hostname)) {
+    //   setData({
+    //     createdAt: { seconds: 1606776658, nanoseconds: 177000000 },
+    //     notes: "Frukt, nøtter og lang avslutning av citrus ",
+    //     star: "7",
+    //     title: "Glenfarclas 21",
+    //     url:
+    //       "https://firebasestorage.googleapis.com/v0/b/whisky-c2f56.appspot.com/o/67E0C835-0F90-4F9E-A9F8-5D4059A050D9.jpeg?alt=media&token=176ec1e8-1ead-456a-91b4-6a1912b967ae",
+    //   });
+    // } else {
+    //   collectionRef
+    //     .get()
+    //     .then((doc) => {
+    //       setData(doc.data());
+    //       setRating(doc.data().star);
+    //       setNotes(doc.data().notes);
+    //       setUrl(doc.data().url);
+    //       console.log(doc.data());
+    //     })
+    //     .catch(function (error) {
+    //       console.log("Error getting document:", error);
+    //     });
+    // }
   }, []);
 
   const handleSetRating = (rating) => {
