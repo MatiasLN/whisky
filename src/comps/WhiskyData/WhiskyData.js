@@ -1,6 +1,6 @@
 import React from "react";
 import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
-import GetWhiskyDataButton from "./GetWhiskyDataButton";
+import GetWhiskyData from "./GetWhiskyData";
 import { useFetch } from "../../api/useFetch";
 
 export default ({ title }) => {
@@ -28,7 +28,7 @@ export default ({ title }) => {
                   descTaste={data.description.characteristics.taste}
                 />
               ))}
-            <GetWhiskyDataButton />
+            <GetWhiskyData />
           </div>
         )}
       </>
@@ -36,7 +36,7 @@ export default ({ title }) => {
   } else {
     return (
       <>
-        <GetWhiskyDataButton notFound />
+        <GetWhiskyData notFound />
       </>
     );
   }
