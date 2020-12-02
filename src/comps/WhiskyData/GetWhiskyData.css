@@ -1,0 +1,18 @@
+.getWhiskyInfo {
+  min-width: 750px;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchForm {
+  display: flex;
+}
+
+.searchForm .search {
+  display: block;
+  margin-left: 20px;
+}
+
+.searchResults {
+  display: none;
+}
