@@ -16,3 +16,20 @@
 .searchResults {
   display: none;
 }
+
+ul.displayData {
+  padding: 0;
+}
+
+.displayData li {
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 10px;
+  border: 2px solid var(--primary);
+}
+
+.displayData li:hover {
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+}
