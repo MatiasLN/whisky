@@ -4,9 +4,11 @@ export const WhiskyContext = createContext();
 const reducer = (state, pair) => ({ ...state, ...pair });
 
 const initialState = {
-  id: "ioxoXTIksLO2rAedhvHI",
+  id: "",
   whisky: "",
 };
+
+// ioxoXTIksLO2rAedhvHI;
 
 export function WhiskyProvider(props) {
   const [state, update] = useReducer(reducer, initialState);
