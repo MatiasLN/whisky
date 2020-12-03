@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { WhiskyContext } from "../../context/WhiskyContext";
 
-const ProductDetails = ({
+let ProductDetails = ({
   productID,
   name,
   alcohol,
