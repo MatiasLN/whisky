@@ -106,3 +106,4 @@ dist
 
 # API key
 src/api/Vinmonopolet.js
+.DS_Store
