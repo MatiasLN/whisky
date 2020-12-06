@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { projectFirestore } from "../../firebase/config";
 import { UserContext } from "../../context/UserContext";
-import { WhiskyContext } from "../../context/WhiskyContext";
 
 import StarRating from "../StarRating/StarRating";
 import Image from "../WhiskyItem/Image/Image";
@@ -14,14 +13,13 @@ const ImageItem = () => {
   const [notes, setNotes] = useState("");
   const [url, setUrl] = useState("");
   const [title, setTitle] = useState("");
+  const [id] = useState(localStorage.getItem("id"));
 
   const user = useContext(UserContext);
-  const { state } = useContext(WhiskyContext);
   const uid = user.user.uid;
-  let whiskyName = state.whisky.split(" ").join("_");
 
   useEffect(() => {
-    const collectionRef = projectFirestore.collection(uid).doc(state.id);
+    const collectionRef = projectFirestore.collection(uid).doc(id);
     collectionRef
       .get()
       .then((doc) => {
@@ -37,13 +35,13 @@ const ImageItem = () => {
   }, []);
 
   const handleSetRating = (rating) => {
-    const collectionRef = projectFirestore.collection(uid).doc(state.id);
+    const collectionRef = projectFirestore.collection(uid).doc(id);
     setRating(rating);
     collectionRef.update({ star: rating });
   };
 
   const changeHandlerTextarea = (e) => {
-    const collectionRef = projectFirestore.collection(uid).doc(state.id);
+    const collectionRef = projectFirestore.collection(uid).doc(id);
     setNotes(e.target.value);
     collectionRef.update({ notes: notes });
   };
@@ -55,7 +53,7 @@ const ImageItem = () => {
   return (
     <>
       <div className="whiskyItem">
-        <div className="image" key={state.id} onClick={handleModal}>
+        <div className="image" key={id} onClick={handleModal}>
           <Image data={url} />
         </div>
         <h2>{title}</h2>
@@ -72,7 +70,7 @@ const ImageItem = () => {
         <div className="rating">
           <StarRating rating={rating} setRating={handleSetRating} />
         </div>
-        <WhiskyData title={whiskyName} />
+        <WhiskyData title={title} db={data} />
       </div>
       <Modal url={url} />
     </>

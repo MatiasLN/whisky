@@ -4,11 +4,14 @@ export const WhiskyContext = createContext();
 const reducer = (state, pair) => ({ ...state, ...pair });
 
 const initialState = {
-  id: "",
+  // doc ID
+  id: localStorage.getItem("id"),
+  // product ID
   whisky: "",
+  whiskyTitle: "",
+  whiskyNotes: "",
+  whiskyStars: "",
 };
-
-// ioxoXTIksLO2rAedhvHI;
 
 export function WhiskyProvider(props) {
   const [state, update] = useReducer(reducer, initialState);

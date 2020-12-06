@@ -10,7 +10,7 @@ import Image from "../Image/Image";
 const ImageItem = ({ data, setData, rating, setRating, search }) => {
   const [id, setCurrentId] = useState(data.id);
   const user = useContext(UserContext);
-  const { update } = useContext(WhiskyContext);
+  const { state, update } = useContext(WhiskyContext);
   const uid = user.user.uid;
 
   const handleSetRating = (rating) => {
@@ -27,10 +27,9 @@ const ImageItem = ({ data, setData, rating, setRating, search }) => {
           className="image"
           key={data.id}
           onClick={() => {
+            localStorage.setItem("id", data.id);
             setCurrentId(data.id);
             setData(data);
-            update({ id: data.id });
-            update({ whisky: data.title });
           }}
         >
           <Link to="/whiskyType">
