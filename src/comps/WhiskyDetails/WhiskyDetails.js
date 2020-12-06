@@ -26,7 +26,7 @@ let ProductDetails = ({
           <li>Navn: {name}</li>
           <li>Produkt ID: {productID}</li>
           <li>Alkoholstyrke: {alcohol + "%"}</li>
-          <li>Pris: {price + ",- NOK"}</li>
+          <li>Pris: {price + "0 NOK"}</li>
           <li>Land: {country}</li>
           <li>Region: {region}</li>
           <li>Destilleri: {destilery}</li>
