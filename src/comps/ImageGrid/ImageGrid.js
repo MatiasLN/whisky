@@ -18,6 +18,7 @@ const ImageGrid = ({ data, setData, rating, setRating, search }) => {
                 <ImageItem
                   name={item.title}
                   key={item.id}
+                  id={item.id}
                   data={item}
                   setData={setData}
                   rating={item.star}
