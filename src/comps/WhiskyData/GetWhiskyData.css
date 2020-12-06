@@ -1,16 +1,13 @@
-.getWhiskyInfo {
-  min-width: 750px;
+.searchForm {
   display: flex;
   flex-direction: column;
 }
-
-.searchForm {
-  display: flex;
+.searchForm input {
+  margin: 0 auto;
 }
-
 .searchForm .search {
   display: block;
-  margin-left: 20px;
+  margin: 20px auto;
 }
 
 .searchResults {
@@ -32,4 +29,20 @@
   background: var(--primary);
   color: white;
   cursor: pointer;
+}
+
+@media only screen and (min-width: 800px) {
+  .searchForm {
+    flex-direction: row;
+  }
+
+  .getWhiskyInfo {
+    min-width: 750px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .searchForm .search {
+    margin: 0 0 0 20px;
+  }
 }
