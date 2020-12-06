@@ -3,41 +3,11 @@ import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
 import GetWhiskyData from "./GetWhiskyData";
 import { useFetch } from "../../api/useFetch";
 
-export default ({ title }) => {
-  let name = localStorage.getItem("polet_name");
-  let key = localStorage.getItem("polet_name");
-  let productID = localStorage.getItem("polet_productID");
-  let percentage = localStorage.getItem("polet_percentage");
-  let country = localStorage.getItem("polet_country");
-  let region = localStorage.getItem("polet_region");
-  let destilery = localStorage.getItem("polet_destilery");
-  let descColour = localStorage.getItem("polet_descColour");
-  let descTaste = localStorage.getItem("polet_descTaste");
-  let descOdour = localStorage.getItem("polet_descOdour");
-  if (name) {
-    return (
-      <>
-        <div className="whiskyDetailsContainer">
-          <WhiskyDetails
-            key={key}
-            productID={productID}
-            name={name}
-            alcohol={percentage}
-            price={name}
-            country={country}
-            region={region}
-            destilery={destilery}
-            descColour={descColour}
-            descOdour={descTaste}
-            descTaste={descOdour}
-          />
-          <GetWhiskyData />
-        </div>
-      </>
-    );
-  } else {
+export default ({ title, db }) => {
+  title = title.split(" ").join("_");
+  if (title) {
     const { data, loading } = useFetch(title);
-    if (title && data.length) {
+    if (data.length) {
       return (
         <>
           {loading ? (
@@ -67,6 +37,27 @@ export default ({ title }) => {
           )}
         </>
       );
+    } else if (db.polet_name) {
+      return (
+        <>
+          <div className="whiskyDetailsContainer">
+            <WhiskyDetails
+              key={db.productID}
+              productID={db.productID}
+              name={db.polet_name}
+              alcohol={db.polet_percentage}
+              price={db.polet_price}
+              country={db.polet_country}
+              region={db.polet_region}
+              destilery={db.polet_destilery}
+              descColour={db.polet_descColour}
+              descOdour={db.polet_descOdour}
+              descTaste={db.polet_descTaste}
+            />
+            <GetWhiskyData />
+          </div>
+        </>
+      );
     } else {
       return (
         <>
@@ -75,4 +66,5 @@ export default ({ title }) => {
       );
     }
   }
+  return null;
 };
