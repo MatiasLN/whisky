@@ -1,6 +1,6 @@
 /* image grid styles */
 .img-grid {
-  margin: 40px auto;
+  margin: 20px auto;
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;

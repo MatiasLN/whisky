@@ -9,7 +9,6 @@ import Error from "../Pages/Error";
 
 import Logo from "./Logo/Logo";
 import Title from "./Title/Title";
-import SearchBar from "./SearchBar/SearchBar";
 import SignIn from "./User/SignIn";
 import User from "./User/User";
 

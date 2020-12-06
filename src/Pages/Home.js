@@ -24,8 +24,8 @@ const Home = () => {
 
   return (
     <>
-      <SearchBar searchCallback={searchCallback} />
       <UploadForm />
+      <SearchBar searchCallback={searchCallback} />
       <ImageGrid
         data={data}
         setData={setData}
