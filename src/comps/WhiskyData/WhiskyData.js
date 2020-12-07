@@ -1,70 +1,34 @@
 import React from "react";
 import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
 import GetWhiskyData from "./GetWhiskyData";
-import { useFetch } from "../../api/useFetch";
+import FetchData from "./FetchData";
 
-export default ({ title, db }) => {
+const WhiskyData = ({ title, db }) => {
   title = title.split(" ").join("_");
-  if (title) {
-    const { data, loading } = useFetch(title);
-    if (data.length) {
-      return (
-        <>
-          {loading ? (
-            <h2 className="loadingData">
-              Laster inn data fra Vinmonopolet ...
-            </h2>
-          ) : (
-            <div className="whiskyDetailsContainer">
-              {data &&
-                data.map((data) => (
-                  <WhiskyDetails
-                    key={data.basic.productId}
-                    productID={data.basic.productId}
-                    name={data.basic.productLongName}
-                    alcohol={data.basic.alcoholContent}
-                    price={data.prices[0].salesPrice}
-                    country={data.origins.origin.country}
-                    region={data.origins.origin.region}
-                    destilery={data.logistics.manufacturerName}
-                    descColour={data.description.characteristics.colour}
-                    descOdour={data.description.characteristics.odour}
-                    descTaste={data.description.characteristics.taste}
-                  />
-                ))}
-              <GetWhiskyData />
-            </div>
-          )}
-        </>
-      );
-    } else if (db.polet_name) {
-      return (
-        <>
-          <div className="whiskyDetailsContainer">
-            <WhiskyDetails
-              key={db.productID}
-              productID={db.productID}
-              name={db.polet_name}
-              alcohol={db.polet_percentage}
-              price={db.polet_price}
-              country={db.polet_country}
-              region={db.polet_region}
-              destilery={db.polet_destilery}
-              descColour={db.polet_descColour}
-              descOdour={db.polet_descOdour}
-              descTaste={db.polet_descTaste}
-            />
-            <GetWhiskyData />
-          </div>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <GetWhiskyData notFound />
-        </>
-      );
-    }
+  if (db.polet_name) {
+    return (
+      <>
+        <div className="whiskyDetailsContainer">
+          <WhiskyDetails
+            key={db.productID}
+            productID={db.polet_productID}
+            name={db.polet_name}
+            alcohol={db.polet_percentage}
+            price={db.polet_price}
+            country={db.polet_country}
+            region={db.polet_region}
+            destilery={db.polet_destilery}
+            descColour={db.polet_descColour}
+            descOdour={db.polet_descOdour}
+            descTaste={db.polet_descTaste}
+          />
+          <GetWhiskyData />
+        </div>
+      </>
+    );
+  } else {
+    return <FetchData title={title} />;
   }
-  return null;
 };
+
+export default WhiskyData;
