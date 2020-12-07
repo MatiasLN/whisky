@@ -36,6 +36,11 @@
     grid-gap: 20px;
   }
 
+  .whiskyContainer .map {
+    grid-area: map;
+    display: block;
+  }
+
   .whiskyContainer .whiskyItem h2 {
     grid-area: header;
     margin: 0;
@@ -81,10 +86,6 @@
     font-weight: 100;
     text-align: center;
   }
-}
-
-.whiskyContainer .map {
-  grid-area: map;
 }
 
 @media only screen and (min-width: 1600px) {
