@@ -17,6 +17,10 @@
   margin-bottom: 20px;
 }
 
+.whiskyContainer .map {
+  display: none;
+}
+
 @media only screen and (min-width: 800px) {
   .whiskyContainer .whiskyItem {
     display: grid;
@@ -25,7 +29,8 @@
       "image header"
       "image notes"
       "image rating"
-      "details details";
+      "details details"
+      "map map";
     grid-template-rows: 40px auto 60px 1fr;
     grid-template-columns: 300px 1fr;
     grid-gap: 20px;
@@ -75,5 +80,32 @@
     margin-top: 60px;
     font-weight: 100;
     text-align: center;
+  }
+}
+
+.whiskyContainer .map {
+  grid-area: map;
+}
+
+@media only screen and (min-width: 1600px) {
+  .whiskyContainer .whiskyItem {
+    display: grid;
+    width: 100%;
+    grid-template-areas:
+      "image header header"
+      "image notes map"
+      "image rating map"
+      "details details map";
+    grid-template-rows: 40px auto 60px 1fr;
+    grid-template-columns: 400px 1fr auto;
+    grid-gap: 20px;
+  }
+
+  .whiskyContainer .map {
+    grid-area: map;
+    display: flex;
+    width: 500px;
+    height: 500px;
+    overflow: none;
   }
 }
