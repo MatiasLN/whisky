@@ -14,13 +14,11 @@ const UploadForm = () => {
     if (selected && types.includes(selected.type)) {
       let image = document.createElement("img");
       image.src = URL.createObjectURL(selected);
-      console.log(image);
       setSumbit(selected);
       setError("");
       document.querySelector(".submitForm").style.display = "block";
       document.querySelector(".thumbnail").innerHTML = "";
       document.querySelector(".thumbnail").appendChild(image);
-      console.log(selected);
       document.querySelector(".custom-file-upload").innerHTML =
         "Velg et annet bilde";
     } else {
@@ -39,15 +37,20 @@ const UploadForm = () => {
     document.querySelector("form").style.display = "none";
     document.querySelector(".img-grid").style.display = "grid";
     document.querySelector("#file-title").value = "";
+    document.querySelector("#file-title").style.borderColor = "#4e4e4e";
     document.querySelector("#file-notes").value = "";
     document.querySelector(".custom-file-upload").innerHTML = "Legg til bilde";
     document.querySelector(".thumbnail").innerHTML = "";
+    if (document.body.classList.contains("error")) {
+      document.querySelector(".error").remove();
+    }
   };
 
   const handleInput = (event) => {
     const { name, value } = event.currentTarget;
 
     if (name === "title") {
+      console.log(value);
       localStorage.setItem("title", value);
     } else if (name === "notes") {
       localStorage.setItem("notes", value);
@@ -56,7 +59,17 @@ const UploadForm = () => {
 
   const handleSumbit = (e) => {
     e.preventDefault();
-    setFile(submit);
+    if (!document.getElementById("file-title").value) {
+      var node = document.getElementById("file-title");
+      node.insertAdjacentHTML(
+        "afterend",
+        "<div class='error'><p>Du må legge til en tittel</p></div>"
+      );
+      node.scrollIntoView();
+      node.style.borderColor = "red";
+    } else {
+      setFile(submit);
+    }
   };
 
   return (
