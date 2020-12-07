@@ -8,9 +8,7 @@ const initialState = {
   id: localStorage.getItem("id"),
   // product ID
   whisky: "",
-  whiskyTitle: "",
-  whiskyNotes: "",
-  whiskyStars: "",
+  searchResults: "",
 };
 
 export function WhiskyProvider(props) {

@@ -10,7 +10,6 @@ import Image from "../Image/Image";
 const ImageItem = ({ data, setData, rating, setRating, search }) => {
   const [id, setCurrentId] = useState(data.id);
   const user = useContext(UserContext);
-  const { state, update } = useContext(WhiskyContext);
   const uid = user.user.uid;
 
   const handleSetRating = (rating) => {

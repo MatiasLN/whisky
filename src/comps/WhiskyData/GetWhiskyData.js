@@ -1,18 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import apiKey from "../../api/Vinmonopolet";
 import { projectFirestore } from "../../firebase/config";
 import { UserContext } from "../../context/UserContext";
-import { useHistory } from "react-router";
+import { WhiskyContext } from "../../context/WhiskyContext";
 
-const GetWhiskyData = ({ notFound }) => {
+const GetWhiskyData = ({ notFound, setCallback }) => {
   const [input, setInput] = useState("");
   const [data, setData] = useState("");
   const [isLoading, setLoading] = useState(true);
   const [id] = useState(localStorage.getItem("id"));
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState(null);
   const [error, setError] = useState(null);
-  const history = useHistory();
 
+  const { update } = useContext(WhiskyContext);
   const user = useContext(UserContext);
   let uid = user.user.uid;
   let whiskyName = input.split(" ").join("_");
@@ -35,7 +35,6 @@ const GetWhiskyData = ({ notFound }) => {
         requestOptions
       );
       const data = await response.json();
-      console.log(data);
       if (data.length) {
         setError(null);
         setData(data);
@@ -49,40 +48,45 @@ const GetWhiskyData = ({ notFound }) => {
     document.querySelector(".searchResults").style.display = "block";
   };
 
-  if (selected) {
-    const updateDetails = async () => {
-      await collectionRef.update({
-        polet_name: selected.basic.productLongName,
-      });
-      await collectionRef.update({ polet_productID: selected.basic.productId });
-      await collectionRef.update({
-        polet_percentage: selected.basic.alcoholContent,
-      });
-      await collectionRef.update({
-        polet_price: selected.prices[0].salesPrice,
-      });
-      await collectionRef.update({
-        polet_country: selected.origins.origin.country,
-      });
-      await collectionRef.update({
-        polet_region: selected.origins.origin.region,
-      });
-      await collectionRef.update({
-        polet_destilery: selected.logistics.manufacturerName,
-      });
-      await collectionRef.update({
-        polet_descColour: selected.description.characteristics.colour,
-      });
-      await collectionRef.update({
-        polet_descTaste: selected.description.characteristics.taste,
-      });
-      await collectionRef.update({
-        polet_descOdour: selected.description.characteristics.odour,
-      });
-      history.go(0);
-    };
-    updateDetails();
-  }
+  useEffect(() => {
+    if (selected) {
+      const updateDetails = async () => {
+        await collectionRef.update({
+          polet_name: selected.basic.productLongName,
+        });
+        await collectionRef.update({
+          polet_productID: selected.basic.productId,
+        });
+        await collectionRef.update({
+          polet_percentage: selected.basic.alcoholContent,
+        });
+        await collectionRef.update({
+          polet_price: selected.prices[0].salesPrice,
+        });
+        await collectionRef.update({
+          polet_country: selected.origins.origin.country,
+        });
+        await collectionRef.update({
+          polet_region: selected.origins.origin.region,
+        });
+        await collectionRef.update({
+          polet_destilery: selected.logistics.manufacturerName,
+        });
+        await collectionRef.update({
+          polet_descColour: selected.description.characteristics.colour,
+        });
+        await collectionRef.update({
+          polet_descTaste: selected.description.characteristics.taste,
+        });
+        await collectionRef.update({
+          polet_descOdour: selected.description.characteristics.odour,
+        });
+      };
+      updateDetails();
+      update({ searchResults: selected });
+      document.querySelector(".searchResults").style.display = "none";
+    }
+  }, [selected]);
 
   return (
     <>

@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { projectFirestore } from "../../firebase/config";
 import { UserContext } from "../../context/UserContext";
+import { WhiskyContext } from "../../context/WhiskyContext";
 
 import StarRating from "../StarRating/StarRating";
 import Image from "../WhiskyItem/Image/Image";
@@ -15,6 +16,7 @@ const ImageItem = () => {
   const [title, setTitle] = useState("");
   const [id] = useState(localStorage.getItem("id"));
 
+  const { state } = useContext(WhiskyContext);
   const user = useContext(UserContext);
   const uid = user.user.uid;
 
@@ -32,7 +34,7 @@ const ImageItem = () => {
       .catch(function (error) {
         console.log("Error getting document:", error);
       });
-  }, []);
+  }, [state.searchResults]);
 
   const handleSetRating = (rating) => {
     const collectionRef = projectFirestore.collection(uid).doc(id);
@@ -70,7 +72,7 @@ const ImageItem = () => {
         <div className="rating">
           <StarRating rating={rating} setRating={handleSetRating} />
         </div>
-        <WhiskyData title={title} db={data} />
+        {title && <WhiskyData title={title} db={data} />}
       </div>
       <Modal url={url} />
     </>

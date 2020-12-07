@@ -13,10 +13,10 @@ let ProductDetails = ({
   descOdour,
   descTaste,
 }) => {
-  const { update } = useContext(WhiskyContext);
+  const { state } = useContext(WhiskyContext);
   useEffect(() => {
-    update({ whisky: productID });
-  }, []);
+    console.log(productID);
+  }, [state.searchResults]);
 
   return (
     <>
