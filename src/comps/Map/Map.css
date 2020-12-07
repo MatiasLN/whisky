@@ -1,0 +1,24 @@
+.map-container {
+  position: absolute;
+  width: 100%;
+  height: 750px;
+  left: 0;
+  margin-top: 50px;
+}
+
+.mapboxgl-ctrl-bottom-left,
+.mapboxgl-ctrl-attrib-button,
+.mapboxgl-ctrl {
+  display: none;
+}
+
+@media only screen and (min-width: 1600px) {
+  .map-container {
+    position: block;
+    width: 500px;
+    min-height: 60vh;
+    height: 70vh;
+    left: auto;
+    margin: 0;
+  }
+}

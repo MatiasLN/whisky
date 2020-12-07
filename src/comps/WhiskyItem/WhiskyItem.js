@@ -7,6 +7,7 @@ import StarRating from "../StarRating/StarRating";
 import Image from "../WhiskyItem/Image/Image";
 import WhiskyData from "../WhiskyData/WhiskyData";
 import Modal from "../Modal/Modal";
+import Map from "../Map/Map";
 
 const ImageItem = () => {
   const [data, setData] = useState("");
@@ -73,6 +74,7 @@ const ImageItem = () => {
           <StarRating rating={rating} setRating={handleSetRating} />
         </div>
         {title && <WhiskyData title={title} db={data} />}
+        <Map />
       </div>
       <Modal url={url} />
     </>
