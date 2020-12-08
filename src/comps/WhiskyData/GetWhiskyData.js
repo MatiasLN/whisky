@@ -45,7 +45,9 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
       setLoading(false);
     };
     fetchData();
-    document.querySelector(".searchResults").style.display = "block";
+    const searchResults = document.querySelector(".searchResults");
+    searchResults.scrollIntoView();
+    searchResults.style.display = "block";
   };
 
   useEffect(() => {
