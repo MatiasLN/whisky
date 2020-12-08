@@ -4,6 +4,8 @@
 
 .whiskyContainer .whiskyItem h2 {
   text-align: center;
+  font-family: "Noto Sans", Helvetica, Arial;
+  font-weight: 200;
 }
 
 .whiskyContainer .whiskyItem .notes textarea {
@@ -26,12 +28,12 @@
     display: grid;
     width: 100%;
     grid-template-areas:
-      "image header"
+      "header header"
       "image notes"
       "image rating"
       "details details"
       "map map";
-    grid-template-rows: 40px auto 60px 1fr;
+    grid-template-rows: auto auto 60px 1fr;
     grid-template-columns: 300px 1fr;
     grid-gap: 20px;
   }
@@ -45,6 +47,8 @@
     grid-area: header;
     margin: 0;
     text-align: left;
+    font-size: 2em;
+    margin-bottom: -10px;
   }
 
   .whiskyContainer .whiskyItem .image {
@@ -93,11 +97,11 @@
     display: grid;
     width: 100%;
     grid-template-areas:
-      "image header header"
+      "header header header"
       "image notes map"
       "image rating map"
       "details details map";
-    grid-template-rows: 40px auto 60px 1fr;
+    grid-template-rows: auto auto 60px 1fr;
     grid-template-columns: 400px 1fr auto;
     grid-gap: 20px;
   }
@@ -108,5 +112,9 @@
     width: 500px;
     height: 500px;
     overflow: none;
+  }
+
+  .whiskyContainer .whiskyItem h2 {
+    font-size: 3em;
   }
 }
