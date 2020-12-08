@@ -29,18 +29,14 @@
     width: 100%;
     grid-template-areas:
       "header header"
-      "image notes"
-      "image rating"
-      "details details"
+      "image details"
+      "rating details"
+      "notes details"
+      "notes .."
       "map map";
-    grid-template-rows: auto auto 60px 1fr;
-    grid-template-columns: 300px 1fr;
+    grid-template-rows: 40px 400px 90px 50px;
+    grid-template-columns: 400px 1fr;
     grid-gap: 20px;
-  }
-
-  .whiskyContainer .map {
-    grid-area: map;
-    display: block;
   }
 
   .whiskyContainer .whiskyItem h2 {
@@ -62,7 +58,6 @@
 
   .whiskyContainer .whiskyItem .rating {
     grid-area: rating;
-    margin-top: -15px;
   }
 
   .whiskyContainer .whiskyItem .notes {
@@ -70,7 +65,7 @@
   }
 
   .whiskyContainer .whiskyItem .notes textarea {
-    width: 400px;
+    width: 370px;
     height: 150px;
   }
 

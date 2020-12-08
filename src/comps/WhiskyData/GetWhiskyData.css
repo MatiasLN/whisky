@@ -45,6 +45,10 @@
     flex-direction: row;
   }
 
+  .searchForm input {
+    margin: 0;
+  }
+
   .getWhiskyInfo {
     min-width: 750px;
     display: flex;

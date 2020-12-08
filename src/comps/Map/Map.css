@@ -12,6 +12,18 @@
   display: none;
 }
 
+@media only screen and (min-width: 1200px) {
+  .map-container {
+    position: block;
+    width: 500px;
+    height: 500px;
+    left: auto;
+    margin: 0;
+    /* border-radius: 50%; */
+    border: 1px solid var(--primary);
+  }
+}
+
 @media only screen and (min-width: 1600px) {
   .map-container {
     position: block;

@@ -36,6 +36,8 @@ let ProductDetails = ({
           <li>
             <strong>Pris</strong> {price + "0 NOK"}
           </li>
+        </ul>
+        <ul>
           <li>
             <strong>Land</strong> {country}
           </li>
