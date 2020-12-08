@@ -28,22 +28,3 @@
     color: var(--seconadry);
   }
 }
-
-@media only screen and (min-width: 1920px) {
-  .logo {
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-
-  .logoTitle {
-    display: block;
-    font-size: 18px;
-    text-decoration: none;
-    color: var(--seconadry);
-    position: absolute;
-    left: 12px;
-    top: 105px;
-    margin: 10px 0;
-  }
-}
