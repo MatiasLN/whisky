@@ -37,8 +37,18 @@ body {
 }
 
 .title h1,
-.title p {
+.title p,
+.logoTitle {
   text-align: center;
+  font-family: "Noto Serif", Helvetica, Arial;
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Noto Sans", Helvetica, Arial;
+  font-weight: 400;
 }
 
 @import "./comps//Logo/Logo.css";
