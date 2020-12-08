@@ -16,7 +16,7 @@
 .whiskyDetailsContainer h3 {
   margin-top: 0;
   border-bottom: 1px solid var(--primary);
-  width: 120px;
+  width: 100%;
 }
 
 .whiskyDetails {
@@ -43,6 +43,7 @@
 
   .whiskyDetails h3 {
     grid-area: header;
+    width: 120px;
   }
 
   .whiskyDescription {
