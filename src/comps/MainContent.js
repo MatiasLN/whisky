@@ -24,7 +24,7 @@ function MainContent() {
             <WhiskyProvider>
               <Logo />
               <User />
-              <Title />
+              {/* <Title /> */}
               <Route path="/" component={Home} exact />
               <Route path="/whisky" component={Home} exact />
               <Route path="/whiskyType" component={Whisky} exact />
