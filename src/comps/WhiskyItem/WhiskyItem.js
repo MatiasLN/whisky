@@ -71,6 +71,7 @@ const ImageItem = () => {
           />
         </div>
         <div className="rating">
+          <h2 className="ratingNumber">{rating} / 10</h2>
           <StarRating rating={rating} setRating={handleSetRating} />
         </div>
         {title && <WhiskyData title={title} db={data} />}

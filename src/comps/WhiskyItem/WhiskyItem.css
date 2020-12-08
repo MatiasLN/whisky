@@ -2,6 +2,12 @@
   display: flex;
 }
 
+.ratingNumber {
+  text-align: center !important;
+  color: #2d4f9a;
+  font-weight: 700 !important;
+}
+
 .whiskyContainer .whiskyItem h2 {
   text-align: center;
   font-family: "Noto Sans", Helvetica, Arial;
@@ -36,7 +42,7 @@
       "map map";
     grid-template-rows: 40px 400px 90px 50px;
     grid-template-columns: 400px 1fr;
-    grid-gap: 20px;
+    grid-gap: 20px 40px;
   }
 
   .whiskyContainer .whiskyItem h2 {
@@ -96,7 +102,7 @@
       "image notes map"
       "image rating map"
       "details details map";
-    grid-template-rows: auto auto 60px 1fr;
+    grid-template-rows: auto auto 1fr;
     grid-template-columns: 400px 1fr auto;
     grid-gap: 20px;
   }
@@ -111,5 +117,13 @@
 
   .whiskyContainer .whiskyItem h2 {
     font-size: 3em;
+  }
+
+  .ratingNumber {
+    text-align: right !important;
+  }
+
+  .rating {
+    margin-top: -10px;
   }
 }
