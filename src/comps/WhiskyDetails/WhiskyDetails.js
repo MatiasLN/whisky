@@ -23,22 +23,43 @@ let ProductDetails = ({
       <div className="whiskyDetails">
         <h3>Om whiskyen</h3>
         <ul>
-          <li>Navn: {name}</li>
-          <li>Produkt ID: {productID}</li>
-          <li>Alkoholstyrke: {alcohol + "%"}</li>
-          <li>Pris: {price + "0 NOK"}</li>
-          <li>Land: {country}</li>
-          <li>Region: {region}</li>
-          <li>Destilleri: {destilery}</li>
+          <li>
+            <strong>Navn</strong>
+            {name}
+          </li>
+          <li>
+            <strong>Produkt ID</strong> {productID}
+          </li>
+          <li>
+            <strong>Alkoholstyrke</strong> {alcohol + "%"}
+          </li>
+          <li>
+            <strong>Pris</strong> {price + "0 NOK"}
+          </li>
+          <li>
+            <strong>Land</strong> {country}
+          </li>
+          <li>
+            <strong>Region</strong> {region}
+          </li>
+          <li>
+            <strong>Destilleri</strong> {destilery}
+          </li>
         </ul>
       </div>
 
       <div className="whiskyDescription">
         <h3>Beskrivelse</h3>
         <ul>
-          <li>Farge: {descColour}</li>
-          <li>Lukt: {descOdour}</li>
-          <li>Smak: {descTaste}</li>
+          <li>
+            <strong>Farge</strong> {descColour}
+          </li>
+          <li>
+            <strong>Lukt</strong> {descOdour}
+          </li>
+          <li>
+            <strong>Smak</strong> {descTaste}
+          </li>
         </ul>
       </div>
     </>

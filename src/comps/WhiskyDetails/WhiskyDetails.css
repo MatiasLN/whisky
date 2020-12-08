@@ -6,10 +6,16 @@
 .whiskyDetailsContainer li {
   list-style-type: none;
   margin-left: 0;
+  margin-bottom: 20px;
 }
 
 .whiskyDetailsContainer ul {
   padding-left: 0;
+}
+
+.whiskyDetailsContainer strong {
+  display: block;
+  width: 100%;
 }
 
 .whiskyDetailsContainer h3 {
