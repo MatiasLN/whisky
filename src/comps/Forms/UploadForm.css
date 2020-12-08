@@ -159,4 +159,8 @@ input[type="file"] {
   textarea {
     width: 500px;
   }
+
+  .addNewBtn {
+    margin-top: 30px;
+  }
 }
