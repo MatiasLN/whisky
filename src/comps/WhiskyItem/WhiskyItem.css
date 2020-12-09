@@ -142,7 +142,14 @@
     text-align: right !important;
   }
 
-  .rating {
+  .whiskyContainer .rating {
     margin-top: -10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .whiskyContainer .stars {
+    width: 400px;
   }
 }

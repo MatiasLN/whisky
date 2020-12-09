@@ -8,7 +8,6 @@ import Whisky from "../Pages/Whisky";
 import Error from "../Pages/Error";
 
 import Logo from "./Logo/Logo";
-import Title from "./Title/Title";
 import SignIn from "./User/SignIn";
 import User from "./User/User";
 
@@ -24,7 +23,6 @@ function MainContent() {
             <WhiskyProvider>
               <Logo />
               <User />
-              {/* <Title /> */}
               <Route path="/" component={Home} exact />
               <Route path="/whisky" component={Home} exact />
               <Route path="/whiskyType" component={Whisky} exact />
