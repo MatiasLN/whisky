@@ -80,8 +80,17 @@
   }
 
   .whiskyContainer .getWhiskyInfo {
+    margin-top: 100px;
     text-align: left;
     margin-bottom: 0;
+  }
+
+  .whiskyContainer .getWhiskyInfo .searchForm input {
+    width: 40%;
+  }
+
+  .whiskyContainer .getWhiskyInfo .search {
+    width: 25%;
   }
 
   .whiskyContainer .whiskyItem .noWhiskyData,
@@ -90,6 +99,16 @@
     margin-top: 60px;
     font-weight: 100;
     text-align: center;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .whiskyContainer .getWhiskyInfo .searchForm input {
+    width: 400px;
+  }
+
+  .whiskyContainer .getWhiskyInfo .search {
+    width: 300px;
   }
 }
 
