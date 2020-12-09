@@ -57,6 +57,35 @@ h3 {
   font-weight: 400;
 }
 
+.notLoggedIn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-image: url("../src/images/login.png");
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.notLoggedIn .container {
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  right: 0;
+}
+
+.notLoggedIn .container h1 {
+  font-size: 3em;
+  width: 100%;
+  color: ghostwhite;
+  text-transform: uppercase;
+  font-family: "Noto Sans", Helvetica, Arial, sans-serif;
+  margin-bottom: -30px;
+}
+
 @import "./comps//Logo/Logo.css";
 @import "./comps/Forms/ProgressBar.css";
 @import "./comps/Forms/UploadForm.css";

@@ -34,14 +34,15 @@ function MainContent() {
         </BrowserRouter>
       </div>
     );
-  } else {
-    return (
-      <>
-        <Title />
-        <SignIn />
-      </>
-    );
   }
-}
 
+  return (
+    <div className="notLoggedIn">
+      <div className="container">
+        <h1 className="logoTitle">Pet Sematary</h1>
+        <SignIn />
+      </div>
+    </div>
+  );
+}
 export default MainContent;
