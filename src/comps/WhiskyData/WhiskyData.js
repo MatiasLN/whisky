@@ -27,7 +27,11 @@ const WhiskyData = ({ title, db }) => {
       </>
     );
   } else {
-    return <FetchData title={title} />;
+    return (
+      <div className="whiskyDetailsContainer">
+        <FetchData title={title} />
+      </div>
+    );
   }
 };
 
