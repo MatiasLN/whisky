@@ -29,6 +29,36 @@
   display: none;
 }
 
+.whiskyContainer .whiskyItem .titleContainer {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.whiskyContainer .deleteButton {
+  background: var(--error);
+  padding: 6px 10px;
+  border-radius: 4px;
+  color: #fff;
+  border: 1px solid var(--error);
+  align-self: flex-start;
+  width: auto;
+  align-content: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.whiskyContainer .deleteButton:hover {
+  background: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  color: var(--error);
+  border: 1px solid var(--error);
+  align-self: flex-start;
+  width: auto;
+  align-content: center;
+  margin-bottom: 20px;
+}
+
 @media only screen and (min-width: 800px) {
   .whiskyContainer .whiskyItem {
     display: grid;
@@ -45,8 +75,12 @@
     grid-gap: 20px 40px;
   }
 
-  .whiskyContainer .whiskyItem h2 {
+  .whiskyContainer .whiskyItem .titleContainer {
     grid-area: header;
+    justify-content: space-between;
+  }
+
+  .whiskyContainer .whiskyItem .titleContainer h2 {
     margin: 0;
     text-align: left;
     font-size: 2em;
@@ -100,6 +134,18 @@
     font-weight: 100;
     text-align: center;
   }
+
+  .whiskyContainer .deleteButton {
+    background: var(--error);
+    padding: 6px 10px;
+    border-radius: 4px;
+    color: #fff;
+    border: 1px solid var(--error);
+    align-self: flex-start;
+    width: auto;
+    align-content: center;
+    margin-bottom: 20px;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -136,6 +182,7 @@
 
   .whiskyContainer .whiskyItem h2 {
     font-size: 3em;
+    margin: 0;
   }
 
   .ratingNumber {

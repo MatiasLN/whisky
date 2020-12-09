@@ -53,13 +53,23 @@ const ImageItem = () => {
     document.querySelector(".backdrop").style.display = "block";
   };
 
+  const handleDelete = () => {
+    const collectionRef = projectFirestore.collection(uid).doc(id);
+    collectionRef.delete();
+  };
+
   return (
     <>
       <div className="whiskyItem">
         <div className="image" key={id} onClick={handleModal}>
           <Image data={url} />
         </div>
-        <h2>{title}</h2>
+        <div className="titleContainer">
+          <h2>{title}</h2>
+          <button className="deleteButton" onClick={handleDelete}>
+            Slett {title}
+          </button>
+        </div>
         <div className="notes">
           <textarea
             id="file-notes"
