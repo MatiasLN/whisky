@@ -41,6 +41,10 @@
     grid-gap: 20px;
   }
 
+  .whiskyDetailsContainer h3 {
+    width: 105px;
+  }
+
   .whiskyDetails h3 {
     grid-area: header;
     width: 120px;
