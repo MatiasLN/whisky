@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import ImageGrid from "../comps/ImageGrid/ImageGrid";
 import UploadForm from "../comps/Forms/UploadForm";
-import SearchBar from "../comps/SearchBar/SearchBar";
+import FilterInput from "../comps/FilterInput/FilterInput";
 
 const Home = () => {
   const newRating = (res) => {
@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <>
       <UploadForm />
-      <SearchBar searchCallback={searchCallback} />
+      <FilterInput searchCallback={searchCallback} />
       <ImageGrid
         data={data}
         setData={setData}

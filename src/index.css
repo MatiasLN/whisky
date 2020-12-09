@@ -65,7 +65,7 @@ h3 {
 @import "./comps/StarRating/StarRating.css";
 @import "./comps/User/User.css";
 @import "./comps/Navigation/Navigation.css";
-@import "./comps/SearchBar/SearchBar.css";
+@import "./comps/FilterInput/FilterInput.css";
 @import "./comps/Map/Map.css";
 
 /* Whisky page */
