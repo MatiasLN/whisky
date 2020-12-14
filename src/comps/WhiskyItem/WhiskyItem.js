@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { projectFirestore } from "../../firebase/config";
 import { UserContext } from "../../context/UserContext";
 import { WhiskyContext } from "../../context/WhiskyContext";
+import { useHistory } from "react-router-dom";
 
 import StarRating from "../StarRating/StarRating";
 import Image from "../WhiskyItem/Image/Image";
@@ -20,6 +21,7 @@ const ImageItem = () => {
   const { state } = useContext(WhiskyContext);
   const user = useContext(UserContext);
   const uid = user.user.uid;
+  const history = useHistory();
 
   useEffect(() => {
     const collectionRef = projectFirestore.collection(uid).doc(id);
@@ -53,9 +55,21 @@ const ImageItem = () => {
     document.querySelector(".backdrop").style.display = "block";
   };
 
-  const handleDelete = () => {
+  const showDeletePopup = () => {
+    document.querySelector(".deleteItemContainer").style.display = "block";
+  };
+
+  const closeDeletePopup = () => {
+    document.querySelector(".deleteItemContainer").style.display = "none";
+  };
+
+  const confirmDelete = () => {
     const collectionRef = projectFirestore.collection(uid).doc(id);
-    collectionRef.delete();
+    const executeDelete = async () => {
+      await collectionRef.delete();
+    };
+    executeDelete();
+    history.push("/whisky");
   };
 
   return (
@@ -66,7 +80,7 @@ const ImageItem = () => {
         </div>
         <div className="titleContainer">
           <h2>{title}</h2>
-          <button className="deleteButton" onClick={handleDelete}>
+          <button className="deleteButton" onClick={showDeletePopup}>
             Slett {title}
           </button>
         </div>
@@ -88,6 +102,19 @@ const ImageItem = () => {
         <Map />
       </div>
       <Modal url={url} />
+      <div className="deleteItemContainer">
+        <div className="deleteItem">
+          <p className="deleteText">Vil du slette {title}?</p>
+          <div className="buttonGroup">
+            <button className="deleteButton" onClick={confirmDelete}>
+              Ja, slett
+            </button>
+            <button className="closeButton" onClick={closeDeletePopup}>
+              Nei, gå tilbake
+            </button>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
