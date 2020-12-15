@@ -2,13 +2,13 @@ import React, { useState, useContext, useEffect } from "react";
 import { projectFirestore } from "../../firebase/config";
 import { UserContext } from "../../context/UserContext";
 import { WhiskyContext } from "../../context/WhiskyContext";
-import { useHistory } from "react-router-dom";
 
 import StarRating from "../StarRating/StarRating";
 import Image from "../WhiskyItem/Image/Image";
 import WhiskyData from "../WhiskyData/WhiskyData";
 import Modal from "../Modal/Modal";
 import Map from "../Map/Map";
+import WhiskyDeleteItem from "../WhiskyDeleteItem/WhiskyDeleteItem";
 
 const ImageItem = () => {
   const [data, setData] = useState("");
@@ -21,7 +21,6 @@ const ImageItem = () => {
   const { state } = useContext(WhiskyContext);
   const user = useContext(UserContext);
   const uid = user.user.uid;
-  const history = useHistory();
 
   useEffect(() => {
     const collectionRef = projectFirestore.collection(uid).doc(id);
@@ -59,19 +58,6 @@ const ImageItem = () => {
     document.querySelector(".deleteItemContainer").style.display = "block";
   };
 
-  const closeDeletePopup = () => {
-    document.querySelector(".deleteItemContainer").style.display = "none";
-  };
-
-  const confirmDelete = () => {
-    const collectionRef = projectFirestore.collection(uid).doc(id);
-    const executeDelete = async () => {
-      await collectionRef.delete();
-    };
-    executeDelete();
-    history.push("/whisky");
-  };
-
   return (
     <>
       <div className="whiskyItem">
@@ -102,19 +88,7 @@ const ImageItem = () => {
         <Map />
       </div>
       <Modal url={url} />
-      <div className="deleteItemContainer">
-        <div className="deleteItem">
-          <p className="deleteText">Vil du slette {title}?</p>
-          <div className="buttonGroup">
-            <button className="deleteButton" onClick={confirmDelete}>
-              Ja, slett
-            </button>
-            <button className="closeButton" onClick={closeDeletePopup}>
-              Nei, gå tilbake
-            </button>
-          </div>
-        </div>
-      </div>
+      <WhiskyDeleteItem title={title} />
     </>
   );
 };
