@@ -9,6 +9,7 @@ import WhiskyData from "../WhiskyData/WhiskyData";
 import Modal from "../Modal/Modal";
 import Map from "../Map/Map";
 import WhiskyDeleteItem from "../WhiskyDeleteItem/WhiskyDeleteItem";
+import FetchDataFromWhiskyBase from "../WhiskyData/FetchDataFromWhiskyBase";
 
 const ImageItem = () => {
   const [data, setData] = useState("");
@@ -85,7 +86,7 @@ const ImageItem = () => {
           <StarRating rating={rating} setRating={handleSetRating} />
         </div>
         {title && <WhiskyData title={title} db={data} />}
-        <Map />
+        <FetchDataFromWhiskyBase />
       </div>
       <Modal url={url} />
       <WhiskyDeleteItem title={title} />

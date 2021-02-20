@@ -129,10 +129,12 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
                   ))}
               </ul>
               {error && (
-                <p>
-                  Fant dessverre ingen produkter på Vinmonopolet som matcher
-                  søket ditt.
-                </p>
+                <div>
+                  <p>
+                    Fant dessverre ingen produkter på Vinmonopolet som matcher
+                    søket ditt.
+                  </p>
+                </div>
               )}
             </div>
           )}
