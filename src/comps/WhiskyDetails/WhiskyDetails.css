@@ -23,6 +23,11 @@
   padding: 70px 0 30px 0;
 }
 
+.whiskyDetails input {
+  width: auto;
+  margin-top: 5px;
+}
+
 .whiskyDescription {
   margin-bottom: 50px;
 }

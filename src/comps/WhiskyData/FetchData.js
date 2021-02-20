@@ -6,7 +6,7 @@ import apiKey from "../../api/Vinmonopolet";
 import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
 import GetWhiskyData from "./GetWhiskyData";
 
-const FetchData = ({ title }) => {
+const FetchData = ({ title, origTitle }) => {
   const [data, setData] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -84,7 +84,10 @@ const FetchData = ({ title }) => {
       </>
     )
   ) : (
-    <GetWhiskyData notFound />
+    <>
+      <WhiskyDetails name={origTitle} />
+      <GetWhiskyData notFound />
+    </>
   );
 };
 
