@@ -30,7 +30,7 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
       };
 
       const response = await fetch(
-        "https://apis.vinmonopolet.no/products/v0/details-normal?productShortNameContains=" +
+        "https://apis.vinmonopolet.no/products/v0/details-normal?changedSince=2000-01-01&productShortNameContains=" +
           whiskyName,
         requestOptions
       );
@@ -83,9 +83,10 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
         await collectionRef.update({
           polet_descOdour: selected.description.characteristics.odour,
         });
+        await update({ searchResults: selected });
       };
       updateDetails();
-      update({ searchResults: selected });
+
       document.querySelector(".searchResults").style.display = "none";
     }
   }, [selected]);
