@@ -6,7 +6,13 @@ import FetchData from "./FetchData";
 const WhiskyData = ({ title, db }) => {
   const origTitle = title;
   title = title.split(" ").join("_");
-  if (db.polet_name) {
+  if (
+    db.polet_name &&
+    db.polet_productID &&
+    db.polet_percentage &&
+    db.polet_price &&
+    db.polet_country
+  ) {
     return (
       <>
         <div className="whiskyDetailsContainer">
@@ -30,7 +36,7 @@ const WhiskyData = ({ title, db }) => {
   } else {
     return (
       <div className="whiskyDetailsContainer">
-        <FetchData title={title} origTitle={origTitle} />
+        <FetchData title={title} origTitle={origTitle} db={db} />
       </div>
     );
   }
