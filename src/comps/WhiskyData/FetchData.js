@@ -4,6 +4,7 @@ import { UserContext } from "../../context/UserContext";
 
 import apiKey from "../../api/Vinmonopolet";
 import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
+import EditWhiskyDetails from "../WhiskyDetails/EditWhiskyDetails";
 import GetWhiskyData from "./GetWhiskyData";
 
 const FetchData = ({ title, origTitle }) => {
@@ -85,7 +86,7 @@ const FetchData = ({ title, origTitle }) => {
     )
   ) : (
     <>
-      <WhiskyDetails name={origTitle} />
+      <EditWhiskyDetails name={origTitle} />
       <GetWhiskyData notFound />
     </>
   );
