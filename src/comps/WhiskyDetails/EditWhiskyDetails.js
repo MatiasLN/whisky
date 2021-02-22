@@ -1,58 +1,61 @@
-import React, { useContext, useEffect, useState } from "react";
-import { WhiskyContext } from "../../context/WhiskyContext";
+import React, { useState, useContext, useEffect } from "react";
+import { projectFirestore } from "../../firebase/config";
+import { UserContext } from "../../context/UserContext";
 
-let ProductDetails = ({
-  productID,
-  name,
-  alcohol,
-  price,
-  country,
-  region,
-  destilery,
-  descColour,
-  descOdour,
-  descTaste,
-}) => {
-  const [stateProductID, setProductID] = useState("");
-  if (!productID) {
-    setProductID("Produkt ID");
-  }
+let ProductDetails = ({ name, db }) => {
+  const [title, setTitle] = useState("");
+  const [productID, setProductID] = useState("");
+  const [percentage, setPercentage] = useState("");
+  const [price, setPrice] = useState("");
+  const [country, setCountry] = useState("");
+  const [region, setRegion] = useState("");
+  const [destilery, setDestilery] = useState("");
+  const [descColour, setDescColour] = useState("");
+  const [descOdour, setDescOdour] = useState("");
+  const [descTaste, setDescTaste] = useState("");
+  const [id] = useState(localStorage.getItem("id"));
 
-  if (!alcohol) {
-    alcohol = 43;
-  }
+  const user = useContext(UserContext);
+  let uid = user.user.uid;
+  const collectionRef = projectFirestore.collection(uid).doc(id);
 
-  if (!price) {
-    price = "799";
-  }
-
-  if (!country) {
-    country = "Skottland";
-  }
-
-  if (!region) {
-    region = "Islay";
-  }
-
-  if (!destilery) {
-    destilery = "Bowmore";
-  }
-
-  if (!descColour) {
-    descColour = "Strågul ...";
-  }
-
-  if (!descOdour) {
-    descOdour = "Lær og brente mandler ...";
-  }
-
-  if (!descTaste) {
-    descTaste = "Sitrus og plomme ...";
-  }
-  const { state } = useContext(WhiskyContext);
   useEffect(() => {
-    console.log(productID);
-  }, [state.searchResults]);
+    if (db.polet_alcohol) {
+      setPercentage(db.polet_alcohol);
+    }
+
+    if (db.polet_name) {
+      setTitle(db.polet_name);
+    }
+
+    if (db.polet_productID) {
+      setProductID(db.polet_productID);
+    }
+
+    if (db.polet_percentage) {
+      setPercentage(db.polet_percentage);
+    }
+
+    if (db.polet_price) {
+      setPrice(db.polet_price);
+    }
+
+    if (db.polet_country) {
+      setCountry(db.polet_country);
+    }
+  }, []);
+
+  useEffect(() => {
+    collectionRef.update({
+      polet_name: title,
+      polet_productID: productID,
+      polet_percentage: percentage,
+      polet_price: price,
+      polet_country: country,
+      polet_region: region,
+      polet_destilery: destilery,
+    });
+  }, [title, productID, percentage, price, country, region, destilery]);
 
   return (
     <>
@@ -61,37 +64,63 @@ let ProductDetails = ({
         <ul>
           <li>
             <strong>Navn</strong>
-            <input type="text" placeholder={name} />
+            <input
+              type="text"
+              placeholder={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </li>
           <li>
             <strong>Produkt ID</strong>
             <input
               type="text"
-              placeholder={stateProductID}
-              onChange={(event) => setProductID(event.target.value)}
+              placeholder={productID}
+              onChange={(e) => setProductID(e.target.value)}
             />
           </li>
           <li>
             <strong>Alkoholstyrke</strong>
-            <input type="text" placeholder={alcohol} /> %
+            <input
+              type="text"
+              placeholder={percentage}
+              onChange={(e) => setPercentage(e.target.value)}
+            />
+            %
           </li>
           <li>
             <strong>Pris</strong>
-            <input type="text" placeholder={price} /> 0 NOK
+            <input
+              type="text"
+              placeholder={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+            NOK
           </li>
         </ul>
         <ul>
           <li>
             <strong>Land</strong>
-            <input type="text" placeholder={country} />
+            <input
+              type="text"
+              placeholder={country}
+              onChange={(e) => setCountry(e.target.value)}
+            />
           </li>
           <li>
             <strong>Region</strong>
-            <input type="text" placeholder={region} />
+            <input
+              type="text"
+              placeholder={region}
+              onChange={(e) => setRegion(e.target.value)}
+            />
           </li>
           <li>
             <strong>Destilleri</strong>
-            <input type="text" placeholder={destilery} />
+            <input
+              type="text"
+              placeholder={"Bowmore"}
+              onChange={(e) => setDestilery(e.target.value)}
+            />
           </li>
         </ul>
       </div>
@@ -101,15 +130,27 @@ let ProductDetails = ({
         <ul>
           <li>
             <strong>Farge</strong>
-            <input type="text" placeholder={descColour} />
+            <input
+              type="text"
+              placeholder={"Beskrivelse av fargen ..."}
+              onChange={(e) => setDescColour(e.target.value)}
+            />
           </li>
           <li>
             <strong>Lukt</strong>
-            <input type="text" placeholder={descOdour} />
+            <input
+              type="text"
+              placeholder={"Beskrivelse av lukten ..."}
+              onChange={(e) => setDescOdour(e.target.value)}
+            />
           </li>
           <li>
             <strong>Smak</strong>
-            <input type="text" placeholder={descTaste} />
+            <input
+              type="text"
+              placeholder={"Beskrivelse av smaken ..."}
+              onChange={(e) => setDescTaste(e.target.value)}
+            />
           </li>
         </ul>
       </div>
