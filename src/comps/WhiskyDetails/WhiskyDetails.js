@@ -13,41 +13,6 @@ let ProductDetails = ({
   descOdour,
   descTaste,
 }) => {
-  if (!productID) {
-    productID = <input type="text" placeholder="Produkt ID" />;
-  }
-
-  if (!alcohol) {
-    alcohol = <input type="text" placeholder="43" />;
-  }
-
-  if (!price) {
-    price = <input type="text" placeholder="799" />;
-  }
-
-  if (!country) {
-    country = <input type="text" placeholder="Skottland" />;
-  }
-
-  if (!region) {
-    region = <input type="text" placeholder="Islay" />;
-  }
-
-  if (!destilery) {
-    destilery = <input type="text" placeholder="Bowmore" />;
-  }
-
-  if (!descColour) {
-    descColour = <input type="text" placeholder="Notater ..." />;
-  }
-
-  if (!descOdour) {
-    descOdour = <input type="text" placeholder="Notater ..." />;
-  }
-
-  if (!descTaste) {
-    descTaste = <input type="text" placeholder="Notater ..." />;
-  }
   const { state } = useContext(WhiskyContext);
   useEffect(() => {
     console.log(productID);
