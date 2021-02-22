@@ -7,7 +7,7 @@ import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
 import EditWhiskyDetails from "../WhiskyDetails/EditWhiskyDetails";
 import GetWhiskyData from "./GetWhiskyData";
 
-const FetchData = ({ title, origTitle }) => {
+const FetchData = ({ title, origTitle, db }) => {
   const [data, setData] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -86,7 +86,7 @@ const FetchData = ({ title, origTitle }) => {
     )
   ) : (
     <>
-      <EditWhiskyDetails name={origTitle} />
+      <EditWhiskyDetails name={origTitle} db={db} />
       <GetWhiskyData notFound />
     </>
   );
