@@ -6,18 +6,14 @@ import FetchData from "./FetchData";
 const WhiskyData = ({ title, db }) => {
   const origTitle = title;
   title = title.split(" ").join("_");
-  if (
-    db.polet_name &&
-    db.polet_productID &&
-    db.polet_percentage &&
-    db.polet_price &&
-    db.polet_country
-  ) {
+
+  if (origTitle) {
     return (
       <>
         <div className="whiskyDetailsContainer">
           <WhiskyDetails
             key={db.productID}
+            origTitle={origTitle}
             productID={db.polet_productID}
             name={db.polet_name}
             alcohol={db.polet_percentage}
