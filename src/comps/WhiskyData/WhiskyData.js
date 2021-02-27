@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
 import GetWhiskyData from "./GetWhiskyData";
 import FetchData from "./FetchData";
+import EditWhiskyDetails from "../WhiskyDetails/EditWhiskyDetails";
+
+import { WhiskyContext } from "../../context/WhiskyContext";
 
 const WhiskyData = ({ title, db }) => {
   const origTitle = title;
   title = title.split(" ").join("_");
+  const { state } = useContext(WhiskyContext);
 
-  if (origTitle) {
+  if (state.manual === true) {
+    return <EditWhiskyDetails db={db} />;
+  } else if (origTitle) {
     return (
       <>
         <div className="whiskyDetailsContainer">

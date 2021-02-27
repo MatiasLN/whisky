@@ -129,10 +129,20 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
                   ))}
               </ul>
               {error && (
-                <p>
-                  Fant dessverre ingen produkter på Vinmonopolet som matcher
-                  søket ditt.
-                </p>
+                <>
+                  <p>
+                    Fant dessverre ingen produkter på Vinmonopolet som matcher
+                    søket ditt.
+                  </p>
+                  <button
+                    className="addNewBtn"
+                    onClick={() => {
+                      update({ manual: true });
+                    }}
+                  >
+                    Vil du legge til manuelt?
+                  </button>
+                </>
               )}
             </div>
           )}

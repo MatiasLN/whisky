@@ -18,7 +18,7 @@ const ImageItem = () => {
   const [title, setTitle] = useState("");
   const [id] = useState(localStorage.getItem("id"));
 
-  const { state } = useContext(WhiskyContext);
+  const { state, update } = useContext(WhiskyContext);
   const user = useContext(UserContext);
   const uid = user.user.uid;
 
@@ -66,9 +66,19 @@ const ImageItem = () => {
         </div>
         <div className="titleContainer">
           <h2>{title}</h2>
-          <button className="deleteButton" onClick={showDeletePopup}>
-            Slett {title}
-          </button>
+          <div className="buttonGroup">
+            <button className="deleteButton" onClick={showDeletePopup}>
+              Slett
+            </button>
+            <button
+              className="editButton"
+              onClick={() => {
+                update({ manual: true });
+              }}
+            >
+              Rediger
+            </button>
+          </div>
         </div>
         <div className="notes">
           <textarea

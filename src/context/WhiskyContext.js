@@ -9,6 +9,7 @@ const initialState = {
   // product ID
   whisky: "",
   searchResults: "",
+  manual: false,
 };
 
 export function WhiskyProvider(props) {

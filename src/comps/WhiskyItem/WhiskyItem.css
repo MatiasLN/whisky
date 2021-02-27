@@ -34,7 +34,12 @@
   flex-direction: column-reverse;
 }
 
+.whiskyContainer .buttonGroup {
+  display: flex;
+}
+
 .whiskyContainer .deleteButton {
+  margin-right: 15px;
   background: var(--error);
   padding: 6px 10px;
   border-radius: 4px;
@@ -53,6 +58,31 @@
   border-radius: 4px;
   color: var(--error);
   border: 1px solid var(--error);
+  align-self: flex-start;
+  width: auto;
+  align-content: center;
+  margin-bottom: 20px;
+}
+
+.whiskyContainer .editButton {
+  background: green;
+  padding: 6px 10px;
+  border-radius: 4px;
+  color: #fff;
+  border: 1px solid green;
+  align-self: flex-start;
+  width: auto;
+  align-content: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.whiskyContainer .editButton:hover {
+  background: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  color: var(--error);
+  border: 1px solid green;
   align-self: flex-start;
   width: auto;
   align-content: center;

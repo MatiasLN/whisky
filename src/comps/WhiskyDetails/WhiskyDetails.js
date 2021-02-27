@@ -134,9 +134,9 @@ let ProductDetails = ({
       <div className="whiskyDetails">
         <h3>Om whiskyen</h3>
         <ul>
-          {origTitle ? (
+          {name ? (
             <li>
-              <strong>Navn</strong> {origTitle}
+              <strong>Navn</strong> {name}
             </li>
           ) : (
             <li>
@@ -264,7 +264,7 @@ let ProductDetails = ({
                 className={descColour ? "hasValue" : ""}
                 type="text"
                 placeholder={
-                  descOdour ? descColour : "Legg til informasjon om fargen"
+                  descColour ? descColour : "Legg til informasjon om fargen"
                 }
                 onChange={(e) => setDescColour(e.target.value)}
               />

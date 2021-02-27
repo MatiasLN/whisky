@@ -33,7 +33,7 @@
 }
 
 .whiskyDescription input {
-  width: 100%;
+  width: 90%;
 }
 
 .whiskyDescription {
@@ -96,6 +96,10 @@
 
   .whiskyDescription {
     margin-bottom: 0;
+  }
+
+  .whiskyDescription input {
+    width: 100%;
   }
 }
 
