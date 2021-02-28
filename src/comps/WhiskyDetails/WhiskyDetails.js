@@ -39,69 +39,6 @@ let ProductDetails = ({
   const [odourState, setDescOdour] = useState(descOdour);
   const [colourState, setDescColour] = useState(descColour);
 
-  // create collection item if it does not exist
-  // useEffect(() => {
-  //   if (!name) {
-  //     collectionRef.update({
-  //       polet_name: name,
-  //     });
-  //   }
-
-  //   if (!productID) {
-  //     collectionRef.update({
-  //       polet_productID: "",
-  //     });
-  //   }
-
-  //   if (!alcohol) {
-  //     collectionRef.update({
-  //       polet_percentage: "",
-  //     });
-  //   }
-
-  //   if (!price) {
-  //     collectionRef.update({
-  //       polet_price: "",
-  //     });
-  //   }
-
-  //   if (!country) {
-  //     collectionRef.update({
-  //       polet_country: "",
-  //     });
-  //   }
-
-  //   if (!region) {
-  //     collectionRef.update({
-  //       polet_region: "",
-  //     });
-  //   }
-
-  //   if (!destilery) {
-  //     collectionRef.update({
-  //       polet_destilery: "",
-  //     });
-  //   }
-
-  //   if (!descColour) {
-  //     collectionRef.update({
-  //       polet_descColour: "",
-  //     });
-  //   }
-
-  //   if (!descTaste) {
-  //     collectionRef.update({
-  //       polet_descTaste: "",
-  //     });
-  //   }
-
-  //   if (!descOdour) {
-  //     collectionRef.update({
-  //       polet_descOdour: "",
-  //     });
-  //   }
-  // }, []);
-
   useEffect(() => {
     collectionRef.update({
       polet_name: productNameState,
