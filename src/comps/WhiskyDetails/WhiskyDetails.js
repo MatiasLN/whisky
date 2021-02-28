@@ -20,7 +20,7 @@ let ProductDetails = ({
 
   // search
   useEffect(() => {
-    console.log(productID);
+    console.log("whiskyId is " + productID);
   }, [state.searchResults]);
 
   const user = useContext(UserContext);
