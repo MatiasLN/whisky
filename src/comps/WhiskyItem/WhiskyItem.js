@@ -22,6 +22,69 @@ const ImageItem = () => {
   const user = useContext(UserContext);
   const uid = user.user.uid;
 
+  // create collection item if it does not exist
+  // useEffect(() => {
+  //   if (!name) {
+  //     collectionRef.update({
+  //       polet_name: name,
+  //     });
+  //   }
+
+  //   if (!productID) {
+  //     collectionRef.update({
+  //       polet_productID: "",
+  //     });
+  //   }
+
+  //   if (!alcohol) {
+  //     collectionRef.update({
+  //       polet_percentage: "",
+  //     });
+  //   }
+
+  //   if (!price) {
+  //     collectionRef.update({
+  //       polet_price: "",
+  //     });
+  //   }
+
+  //   if (!country) {
+  //     collectionRef.update({
+  //       polet_country: "",
+  //     });
+  //   }
+
+  //   if (!region) {
+  //     collectionRef.update({
+  //       polet_region: "",
+  //     });
+  //   }
+
+  //   if (!destilery) {
+  //     collectionRef.update({
+  //       polet_destilery: "",
+  //     });
+  //   }
+
+  //   if (!descColour) {
+  //     collectionRef.update({
+  //       polet_descColour: "",
+  //     });
+  //   }
+
+  //   if (!descTaste) {
+  //     collectionRef.update({
+  //       polet_descTaste: "",
+  //     });
+  //   }
+
+  //   if (!descOdour) {
+  //     collectionRef.update({
+  //       polet_descOdour: "",
+  //     });
+  //   }
+  // }, []);
+
   useEffect(() => {
     const collectionRef = projectFirestore.collection(uid).doc(id);
     collectionRef
@@ -32,6 +95,69 @@ const ImageItem = () => {
         setNotes(doc.data().notes);
         setUrl(doc.data().url);
         setTitle(doc.data().title);
+
+        const updateData = async () => {
+          if (!doc.data().polet_name) {
+            await collectionRef.update({
+              polet_name: "",
+            });
+          }
+
+          if (!doc.data().polet_productID) {
+            await collectionRef.update({
+              polet_productID: "",
+            });
+          }
+
+          if (!doc.data().polet_percentage) {
+            await collectionRef.update({
+              polet_percentage: "",
+            });
+          }
+
+          if (!doc.data().polet_price) {
+            await collectionRef.update({
+              polet_price: "",
+            });
+          }
+
+          if (!doc.data().polet_country) {
+            await collectionRef.update({
+              polet_country: "",
+            });
+          }
+
+          if (!doc.data().polet_region) {
+            await collectionRef.update({
+              polet_region: "",
+            });
+          }
+
+          if (!doc.data().polet_destilery) {
+            await collectionRef.update({
+              polet_destilery: "",
+            });
+          }
+
+          if (!doc.data().polet_descColour) {
+            await collectionRef.update({
+              polet_descColour: "",
+            });
+          }
+
+          if (!doc.data().polet_descTaste) {
+            await collectionRef.update({
+              polet_descTaste: "",
+            });
+          }
+
+          if (!doc.data().polet_descOdour) {
+            await collectionRef.update({
+              polet_descOdour: "",
+            });
+          }
+        };
+        updateData();
       })
       .catch(function (error) {
         console.log("Error getting document:", error);
@@ -86,7 +212,7 @@ const ImageItem = () => {
             rows={5}
             cols={5}
             placeholder="Smaksnotater ..."
-            value={notes}
+            value={notes ? notes : "Skriv notater.."}
             onChange={changeHandlerTextarea}
           />
         </div>

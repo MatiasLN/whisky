@@ -35,8 +35,34 @@ const useStorage = (file) => {
         const title = localStorage.getItem("title");
         const star = localStorage.getItem("rating");
         const notes = localStorage.getItem("notes");
+        const polet_country = "";
+        const polet_descColour = "";
+        const polet_descOdour = "";
+        const polet_descTaste = "";
+        const polet_destilery = "";
+        const polet_name = "";
+        const polet_percentage = "";
+        const polet_price = "";
+        const polet_productID = "";
+        const polet_region = "";
         collectionRef
-          .add({ url, createdAt, title, star, notes })
+          .add({
+            url,
+            createdAt,
+            title,
+            star,
+            notes,
+            polet_country,
+            polet_descColour,
+            polet_descOdour,
+            polet_descTaste,
+            polet_destilery,
+            polet_name,
+            polet_percentage,
+            polet_price,
+            polet_productID,
+            polet_region,
+          })
           .then(function (docRef) {
             setDocId(docRef.id);
           })
