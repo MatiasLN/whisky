@@ -53,7 +53,6 @@ let ProductDetails = ({
       polet_descOdour: odourState,
     });
   }, [
-    collectionRef,
     productNameState,
     productIDState,
     percentageState,

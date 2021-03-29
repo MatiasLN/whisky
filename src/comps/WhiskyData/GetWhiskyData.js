@@ -20,6 +20,8 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
 
   const handleRequest = () => {
     const fetchData = async () => {
+      console.log("running manual fetch");
+
       const myHeaders = new Headers();
       myHeaders.append("Ocp-Apim-Subscription-Key", apiKey);
 

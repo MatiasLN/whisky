@@ -12,8 +12,12 @@ const WhiskyData = ({ title, db }) => {
   const { state } = useContext(WhiskyContext);
 
   if (state.manual === true) {
+    console.log("edit data");
+
     return <EditWhiskyDetails db={db} />;
-  } else if (origTitle) {
+  } else if (db.polet_percentage) {
+    console.log("has data");
+
     return (
       <>
         <div className="whiskyDetailsContainer">
@@ -36,6 +40,8 @@ const WhiskyData = ({ title, db }) => {
       </>
     );
   } else {
+    console.log("has no data");
+
     return (
       <div className="whiskyDetailsContainer">
         <FetchData title={title} origTitle={origTitle} db={db} />

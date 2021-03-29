@@ -19,6 +19,8 @@ const FetchData = ({ title, origTitle, db }) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log("running fetch");
+
       const myHeaders = new Headers();
       myHeaders.append("Ocp-Apim-Subscription-Key", apiKey);
 
