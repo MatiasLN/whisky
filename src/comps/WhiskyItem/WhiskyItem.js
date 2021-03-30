@@ -7,7 +7,7 @@ import StarRating from "../StarRating/StarRating";
 import Image from "../WhiskyItem/Image/Image";
 import WhiskyData from "../WhiskyData/WhiskyData";
 import Modal from "../Modal/Modal";
-import Map from "../Map/Map";
+import Stats from "../Stats/Stats";
 import WhiskyDeleteItem from "../WhiskyDeleteItem/WhiskyDeleteItem";
 
 const ImageItem = () => {
@@ -21,69 +21,6 @@ const ImageItem = () => {
   const { state, update } = useContext(WhiskyContext);
   const user = useContext(UserContext);
   const uid = user.user.uid;
-
-  // create collection item if it does not exist
-  // useEffect(() => {
-  //   if (!name) {
-  //     collectionRef.update({
-  //       polet_name: name,
-  //     });
-  //   }
-
-  //   if (!productID) {
-  //     collectionRef.update({
-  //       polet_productID: "",
-  //     });
-  //   }
-
-  //   if (!alcohol) {
-  //     collectionRef.update({
-  //       polet_percentage: "",
-  //     });
-  //   }
-
-  //   if (!price) {
-  //     collectionRef.update({
-  //       polet_price: "",
-  //     });
-  //   }
-
-  //   if (!country) {
-  //     collectionRef.update({
-  //       polet_country: "",
-  //     });
-  //   }
-
-  //   if (!region) {
-  //     collectionRef.update({
-  //       polet_region: "",
-  //     });
-  //   }
-
-  //   if (!destilery) {
-  //     collectionRef.update({
-  //       polet_destilery: "",
-  //     });
-  //   }
-
-  //   if (!descColour) {
-  //     collectionRef.update({
-  //       polet_descColour: "",
-  //     });
-  //   }
-
-  //   if (!descTaste) {
-  //     collectionRef.update({
-  //       polet_descTaste: "",
-  //     });
-  //   }
-
-  //   if (!descOdour) {
-  //     collectionRef.update({
-  //       polet_descOdour: "",
-  //     });
-  //   }
-  // }, []);
 
   useEffect(() => {
     const collectionRef = projectFirestore.collection(uid).doc(id);
@@ -221,7 +158,7 @@ const ImageItem = () => {
           <StarRating rating={rating} setRating={handleSetRating} />
         </div>
         {title && <WhiskyData title={title} db={data} />}
-        <Map />
+        <Stats db={data} />
       </div>
       <Modal url={url} />
       <WhiskyDeleteItem title={title} />

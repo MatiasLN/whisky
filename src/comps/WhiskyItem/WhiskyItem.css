@@ -159,8 +159,8 @@
       "image details"
       "rating details"
       "notes details"
-      "notes .."
-      "map map";
+      "notes details"
+      "sidebar sidebar";
     grid-template-rows: 40px 400px 90px 50px;
     grid-template-columns: 400px 1fr;
     grid-gap: 20px 40px;
@@ -203,6 +203,10 @@
 
   .whiskyContainer .whiskyItem .whiskyDetailsContainer {
     grid-area: details;
+  }
+
+  .whiskyContainer .whiskyItem .stats {
+    grid-area: sidebar;
   }
 
   .whiskyContainer .getWhiskyInfo {
@@ -262,7 +266,7 @@
       "header header header"
       "image notes map"
       "image rating map"
-      "details details map";
+      "details details sidebar";
     grid-template-rows: auto auto 1fr;
     grid-template-columns: 400px 1fr auto;
     grid-gap: 20px;

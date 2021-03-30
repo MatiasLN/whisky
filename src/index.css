@@ -95,7 +95,7 @@ h3 {
 @import "./comps/User/User.css";
 @import "./comps/Navigation/Navigation.css";
 @import "./comps/FilterInput/FilterInput.css";
-@import "./comps/Map/Map.css";
+@import "./comps/Stats/Stats.css";
 
 /* Whisky page */
 @import "./comps/WhiskyItem/WhiskyItem.css";
