@@ -13,7 +13,6 @@ const WhiskyData = ({ title, db }) => {
 
   if (state.manual === true) {
     console.log("edit data");
-
     return <EditWhiskyDetails db={db} />;
   } else if (db.polet_percentage) {
     console.log("has data");

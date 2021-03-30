@@ -57,32 +57,14 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
       const updateDetails = async () => {
         await collectionRef.update({
           polet_name: selected.basic.productLongName,
-        });
-        await collectionRef.update({
           polet_productID: selected.basic.productId,
-        });
-        await collectionRef.update({
           polet_percentage: selected.basic.alcoholContent,
-        });
-        await collectionRef.update({
           polet_price: selected.prices[0].salesPrice,
-        });
-        await collectionRef.update({
           polet_country: selected.origins.origin.country,
-        });
-        await collectionRef.update({
           polet_region: selected.origins.origin.region,
-        });
-        await collectionRef.update({
           polet_destilery: selected.logistics.manufacturerName,
-        });
-        await collectionRef.update({
           polet_descColour: selected.description.characteristics.colour,
-        });
-        await collectionRef.update({
           polet_descTaste: selected.description.characteristics.taste,
-        });
-        await collectionRef.update({
           polet_descOdour: selected.description.characteristics.odour,
         });
         await update({ searchResults: selected });
@@ -97,7 +79,7 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
     <>
       <div className="getWhiskyInfo">
         {notFound ? (
-          <p className="noWataFound">Fant ikke noe data fra Vinmonopolet</p>
+          <p className="noWataFound">Søk etter produktet hos Vinmonopolet</p>
         ) : (
           <p>Stemmer ikke informasjonen?</p>
         )}

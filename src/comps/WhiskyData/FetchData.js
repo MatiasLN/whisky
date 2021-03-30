@@ -4,7 +4,6 @@ import { UserContext } from "../../context/UserContext";
 
 import apiKey from "../../api/Vinmonopolet";
 import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
-import EditWhiskyDetails from "../WhiskyDetails/EditWhiskyDetails";
 import GetWhiskyData from "./GetWhiskyData";
 
 const FetchData = ({ title, origTitle, db }) => {
@@ -19,7 +18,7 @@ const FetchData = ({ title, origTitle, db }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log("running fetch");
+      console.log("running auto fetch");
 
       const myHeaders = new Headers();
       myHeaders.append("Ocp-Apim-Subscription-Key", apiKey);
@@ -88,7 +87,20 @@ const FetchData = ({ title, origTitle, db }) => {
     )
   ) : (
     <>
-      <EditWhiskyDetails name={origTitle} db={db} />
+      <WhiskyDetails
+        key={db.productID}
+        origTitle={origTitle}
+        productID={db.polet_productID}
+        name={db.polet_name}
+        alcohol={db.polet_percentage}
+        price={db.polet_price}
+        country={db.polet_country}
+        region={db.polet_region}
+        destilery={db.polet_destilery}
+        descColour={db.polet_descColour}
+        descOdour={db.polet_descOdour}
+        descTaste={db.polet_descTaste}
+      />
       <GetWhiskyData notFound />
     </>
   );
