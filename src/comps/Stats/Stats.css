@@ -1,16 +1,44 @@
 .stats {
   display: none;
-  /* display: flex; */
   justify-content: space-around;
   background: var(--primary);
+  position: absolute;
+  width: 100%;
+  left: 0;
+  padding: 50px 0;
 }
 
 .stats h2 {
   display: inline;
 }
 
+.country,
+.destilery,
+.region {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 800px) {
+  .stats {
+    display: flex;
+    padding: 0;
+    margin-top: 50px;
+  }
+
+  .country,
+  .destilery,
+  .region {
+    width: 200px;
+    height: 200px;
+  }
+}
+
 @media only screen and (min-width: 1600px) {
   .stats {
+    position: initial;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 150px 150px 150px;
@@ -23,12 +51,7 @@
   .region {
     border: 5px solid var(--primary);
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
   }
 
   .stats .country {

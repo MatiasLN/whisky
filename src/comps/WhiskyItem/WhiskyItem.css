@@ -207,6 +207,7 @@
 
   .whiskyContainer .whiskyItem .stats {
     grid-area: sidebar;
+    display: none;
   }
 
   .whiskyContainer .getWhiskyInfo {
@@ -287,6 +288,11 @@
     margin-top: -50px;
   }
 
+  .whiskyContainer .whiskyItem .stats {
+    grid-area: sidebar;
+    display: grid;
+  }
+
   .whiskyContainer .whiskyItem h2 {
     font-size: 3em;
     margin: 0;
@@ -305,5 +311,9 @@
 
   .whiskyContainer .stars {
     width: 400px;
+  }
+
+  .fullWidth {
+    display: none;
   }
 }

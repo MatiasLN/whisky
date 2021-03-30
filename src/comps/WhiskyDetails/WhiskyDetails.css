@@ -100,7 +100,7 @@
   }
 }
 
-@media only screen and (min-width: 1250px) {
+@media only screen and (min-width: 1200px) {
   .whiskyDetailsContainer {
     grid-template-rows: 330px auto;
   }
