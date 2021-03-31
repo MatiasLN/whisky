@@ -3,6 +3,7 @@ import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
 import GetWhiskyData from "./GetWhiskyData";
 import FetchData from "./FetchData";
 import EditWhiskyDetails from "../WhiskyDetails/EditWhiskyDetails";
+import Stats from "../Stats/Stats";
 
 import { WhiskyContext } from "../../context/WhiskyContext";
 
@@ -34,6 +35,13 @@ const WhiskyData = ({ title, db }) => {
             descOdour={db.polet_descOdour}
             descTaste={db.polet_descTaste}
           />
+          <GetWhiskyData />
+        </div>
+
+        <div className="fullWidth">
+          <Stats db={db} />
+        </div>
+        <div className="searchBlock">
           <GetWhiskyData />
         </div>
       </>

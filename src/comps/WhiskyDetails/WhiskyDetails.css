@@ -48,6 +48,14 @@
   padding-left: 5px;
 } */
 
+.whiskyContainer .getWhiskyInfo {
+  display: none;
+}
+
+.searchBlock .getWhiskyInfo {
+  display: flex;
+}
+
 @media only screen and (min-width: 800px) {
   .whiskyDetailsContainer {
     display: grid;
@@ -79,11 +87,6 @@
     display: inline-block;
     margin-right: 100px;
     grid-area: about;
-  }
-
-  .getWhiskyInfo {
-    grid-area: search;
-    margin-bottom: 50px !important;
   }
 
   .whiskyDetails {
@@ -130,5 +133,16 @@
 
   .whiskyDetails ul {
     margin: 0 50px 0 0;
+  }
+
+  /* for search box at the bottom of smaller screens */
+  .searchBlock {
+    display: none;
+  }
+
+  .whiskyContainer .getWhiskyInfo {
+    display: block;
+    grid-area: search;
+    margin-bottom: 50px !important;
   }
 }

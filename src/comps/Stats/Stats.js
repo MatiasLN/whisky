@@ -42,7 +42,7 @@ const Details = ({ db }) => {
     if (db.polet_region) {
       setRegion(checkDb(regions, db.polet_region));
     }
-  }, [db]);
+  }, [db, countries, distilleries, regions]);
 
   return (
     <div className="stats">
