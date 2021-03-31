@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/whisky/static/css/main.9fbc732f.chunk.css",
-    "main.js": "/whisky/static/js/main.1a9afc8d.chunk.js",
-    "main.js.map": "/whisky/static/js/main.1a9afc8d.chunk.js.map",
+    "main.css": "/whisky/static/css/main.b2ec4498.chunk.css",
+    "main.js": "/whisky/static/js/main.e916aed0.chunk.js",
+    "main.js.map": "/whisky/static/js/main.e916aed0.chunk.js.map",
     "runtime-main.js": "/whisky/static/js/runtime-main.d0106814.js",
     "runtime-main.js.map": "/whisky/static/js/runtime-main.d0106814.js.map",
     "static/js/2.debea7be.chunk.js": "/whisky/static/js/2.debea7be.chunk.js",
     "static/js/2.debea7be.chunk.js.map": "/whisky/static/js/2.debea7be.chunk.js.map",
     "index.html": "/whisky/index.html",
-    "precache-manifest.3b4ba50d6e74f4a70105a67b677f743a.js": "/whisky/precache-manifest.3b4ba50d6e74f4a70105a67b677f743a.js",
+    "precache-manifest.324ce5314dbc6aafba04911b3e60444c.js": "/whisky/precache-manifest.324ce5314dbc6aafba04911b3e60444c.js",
     "service-worker.js": "/whisky/service-worker.js",
-    "static/css/main.9fbc732f.chunk.css.map": "/whisky/static/css/main.9fbc732f.chunk.css.map",
+    "static/css/main.b2ec4498.chunk.css.map": "/whisky/static/css/main.b2ec4498.chunk.css.map",
     "static/js/2.debea7be.chunk.js.LICENSE.txt": "/whisky/static/js/2.debea7be.chunk.js.LICENSE.txt",
     "static/media/index.css": "/whisky/static/media/login.66da4d6a.png",
     "static/media/placeholder.jpeg": "/whisky/static/media/placeholder.505dce53.jpeg"
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.d0106814.js",
     "static/js/2.debea7be.chunk.js",
-    "static/css/main.9fbc732f.chunk.css",
-    "static/js/main.1a9afc8d.chunk.js"
+    "static/css/main.b2ec4498.chunk.css",
+    "static/js/main.e916aed0.chunk.js"
   ]
 }
