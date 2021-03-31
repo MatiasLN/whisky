@@ -47,9 +47,11 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
       setLoading(false);
     };
     fetchData();
-    const searchResults = document.querySelector(".searchResults");
-    searchResults.scrollIntoView();
-    searchResults.style.display = "block";
+    const searchResults = document.querySelectorAll(".searchResults");
+
+    // searchResults.scrollIntoView();
+    searchResults[0].style.display = "block";
+    searchResults[1].style.display = "block";
   };
 
   useEffect(() => {
@@ -71,7 +73,11 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
       };
       updateDetails();
 
-      document.querySelector(".searchResults").style.display = "none";
+      const searchResults = document.querySelectorAll(".searchResults");
+
+      // searchResults.scrollIntoView();
+      searchResults[0].style.display = "none";
+      searchResults[1].style.display = "none";
     }
   }, [selected]);
 

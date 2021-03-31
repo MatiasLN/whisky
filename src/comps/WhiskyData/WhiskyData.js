@@ -50,9 +50,14 @@ const WhiskyData = ({ title, db }) => {
     console.log("has no data");
 
     return (
-      <div className="whiskyDetailsContainer">
-        <FetchData title={title} origTitle={origTitle} db={db} />
-      </div>
+      <>
+        <div className="whiskyDetailsContainer">
+          <FetchData title={title} origTitle={origTitle} db={db} />
+        </div>
+        <div className="searchBlock" style={{ marginTop: "-50px" }}>
+          <GetWhiskyData />
+        </div>
+      </>
     );
   }
 };
