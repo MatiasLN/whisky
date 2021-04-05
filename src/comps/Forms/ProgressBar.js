@@ -15,7 +15,7 @@ const ProgressBar = ({ file, setFile, setRating }) => {
         "Legg til bilde";
       document.querySelector(".thumbnail").innerHTML = "";
     }
-  }, [url, setFile]);
+  }, [url, setFile, setRating]);
 
   return <div className="progress-bar" style={{ width: progress + "%" }}></div>;
 };

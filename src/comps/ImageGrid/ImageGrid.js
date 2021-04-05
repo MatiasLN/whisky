@@ -1,12 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import useFirestore from "../../hooks/useFirestore";
 import ImageItem from "./ImageItem/ImageItem";
-import { UserContext } from "../../context/UserContext";
 
 const ImageGrid = ({ data, setData, rating, setRating, search }) => {
-  const user = useContext(UserContext);
-  const uid = user.user.uid;
-  const { docs, loading } = useFirestore(uid);
+  const { docs, loading } = useFirestore();
 
   if (loading === false) {
     return (

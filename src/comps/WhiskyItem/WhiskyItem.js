@@ -149,7 +149,7 @@ const ImageItem = () => {
             rows={5}
             cols={5}
             placeholder="Smaksnotater ..."
-            value={notes ? notes : "Skriv notater.."}
+            value={notes ? notes : ""}
             onChange={changeHandlerTextarea}
           />
         </div>

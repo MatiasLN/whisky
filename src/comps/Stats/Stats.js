@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../context/UserContext";
+import React, { useEffect, useState } from "react";
 import useFirestore from "../../hooks/useFirestore";
 
 const Details = ({ db }) => {
@@ -7,9 +6,7 @@ const Details = ({ db }) => {
   const [region, setRegion] = useState(null);
   const [country, setCountry] = useState(null);
 
-  let user = useContext(UserContext);
-  const uid = user.user.uid;
-  const { distilleries, countries, regions } = useFirestore(uid);
+  const { distilleries, countries, regions } = useFirestore();
 
   function checkDb(checkFor, string) {
     let counts = {};

@@ -13,7 +13,6 @@ const useStorage = (file) => {
   const [docId, setDocId] = useState(null);
   const user = useContext(UserContext);
   const uid = user.user.uid;
-  console.log(uid);
 
   useEffect(() => {
     // ref
@@ -70,9 +69,11 @@ const useStorage = (file) => {
             console.error("Error adding document: ", error);
           });
         setUrl(url);
+        localStorage.setItem("rating", "");
+        localStorage.setItem("notes", "");
       }
     );
-  }, [file]);
+  }, [file, uid]);
 
   return { progress, url, error, docId };
 };
