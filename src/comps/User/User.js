@@ -1,22 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
-import { UserContext } from "../../context/UserContext";
+import React from "react";
 import { logOut } from "../../firebase/config";
-import useFirestore from "../../hooks/useFirestore";
+import useUser from "../../hooks/useUser";
 
 import Navigation from "../Navigation/Navigation";
 
 const User = () => {
-  const [number, setNumber] = useState(0);
-  let user = useContext(UserContext);
-  const uid = user.user.uid;
-  user = user.user;
-  const { titles } = useFirestore(uid);
-
-  useEffect(() => {
-    if (titles.length) {
-      setNumber(titles.length);
-    }
-  }, [titles]);
+  const { uid, photoURL, displayName } = useUser();
 
   const handleClose = () => {
     document.querySelector(".userPage").classList.toggle("show");
@@ -26,16 +15,15 @@ const User = () => {
     <>
       <Navigation />
 
-      {user ? (
+      {uid ? (
         <>
           <div className="userPage">
             <button className="closeNav" onClick={handleClose}>
               X
             </button>
             <div className="userContent">
-              <img src={user.photoURL} alt={user.displayName} />
-              <p>Hei {user.displayName}</p>
-              <p>Du har smakt {number} whiskyer</p>
+              <img src={photoURL} alt={displayName} />
+              <p>Hei {displayName}</p>
               <button
                 className="logOutBtn"
                 onClick={() => {

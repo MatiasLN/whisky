@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
-import { UserContext } from "../../context/UserContext";
+import React from "react";
+import useUser from "../../hooks/useUser";
 
 const Navigation = () => {
-  let user = useContext(UserContext);
-  user = user.user;
+  const { photoURL, displayName } = useUser();
 
   const handleNavigation = () => {
     document.querySelector(".userPage").classList.toggle("show");
@@ -11,11 +10,7 @@ const Navigation = () => {
 
   return (
     <nav>
-      <img
-        src={user.photoURL}
-        alt={user.displayName}
-        onClick={handleNavigation}
-      />
+      <img src={photoURL} alt={displayName} onClick={handleNavigation} />
     </nav>
   );
 };

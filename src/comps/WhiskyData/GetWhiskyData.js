@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import apiKey from "../../api/Vinmonopolet";
 import { projectFirestore } from "../../firebase/config";
-import { UserContext } from "../../context/UserContext";
 import { WhiskyContext } from "../../context/WhiskyContext";
 
 const GetWhiskyData = ({ notFound, setCallback }) => {
@@ -9,12 +8,11 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
   const [data, setData] = useState("");
   const [isLoading, setLoading] = useState(true);
   const [id] = useState(localStorage.getItem("id"));
+  const [uid] = useState(localStorage.getItem("uid"));
   const [selected, setSelected] = useState(null);
   const [error, setError] = useState(null);
 
   const { update } = useContext(WhiskyContext);
-  const user = useContext(UserContext);
-  let uid = user.user.uid;
   let whiskyName = input.split(" ").join("_");
   const collectionRef = projectFirestore.collection(uid).doc(id);
 

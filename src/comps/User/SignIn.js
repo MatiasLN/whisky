@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { UserContext } from "../../context/UserContext";
+import React from "react";
 import { signInWithGoogle } from "../../firebase/config";
+import useUser from "../../hooks/useUser";
+
 export default function Login() {
-  const user = useContext(UserContext);
-  const uid = user.user.uid;
+  const { uid } = useUser();
 
   if (!uid) {
     return (
@@ -13,5 +13,7 @@ export default function Login() {
         </button>
       </div>
     );
+  } else {
+    return <p>Sign in</p>;
   }
 }

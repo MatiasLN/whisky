@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import { projectFirestore } from "../../firebase/config";
-import { UserContext } from "../../context/UserContext";
 import { WhiskyContext } from "../../context/WhiskyContext";
 
 let ProductDetails = ({ name, db }) => {
@@ -11,15 +10,14 @@ let ProductDetails = ({ name, db }) => {
   const [country, setCountry] = useState(db.polet_country);
   const [region, setRegion] = useState(db.polet_region);
   const [destilery, setDestilery] = useState(db.polet_destilery);
-  const [descColour, setDescColour] = useState(db.descColour);
+  const [descColour, setDescColour] = useState(db.polet_descColour);
   const [descOdour, setDescOdour] = useState(db.polet_descOdour);
   const [descTaste, setDescTaste] = useState(db.polet_descTaste);
   const [id] = useState(localStorage.getItem("id"));
+  const [uid] = useState(localStorage.getItem("uid"));
   const [updateStatus, setUpdateStatus] = useState(null);
 
   const { update } = useContext(WhiskyContext);
-  const user = useContext(UserContext);
-  let uid = user.user.uid;
   const collectionRef = projectFirestore.collection(uid).doc(id);
 
   useEffect(() => {
@@ -60,10 +58,10 @@ let ProductDetails = ({ name, db }) => {
         });
         db.polet_destilery = destilery;
 
-        // await collectionRef.update({
-        //   polet_descColour: descColour,
-        // });
-        // db.polet_descColour = descColour;
+        await collectionRef.update({
+          polet_descColour: descColour,
+        });
+        db.polet_descColour = descColour;
 
         await collectionRef.update({
           polet_descTaste: descTaste,

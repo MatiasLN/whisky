@@ -1,16 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { projectFirestore } from "../../../firebase/config";
-import { UserContext } from "../../../context/UserContext";
-import { WhiskyContext } from "../../../context/WhiskyContext";
 
 import StarRating from "../../StarRating/StarRating";
 import Image from "../Image/Image";
 
 const ImageItem = ({ data, setData, rating, setRating, search }) => {
   const [id, setCurrentId] = useState(data.id);
-  const user = useContext(UserContext);
-  const uid = user.user.uid;
+  const [uid] = useState(localStorage.getItem("uid"));
 
   const handleSetRating = (rating) => {
     setRating(rating);

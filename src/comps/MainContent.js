@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { UserContext } from "../context/UserContext";
 import { WhiskyProvider } from "../context/WhiskyContext";
+import useUser from "../hooks/useUser";
 
 import Home from "../Pages/Home";
 import Whisky from "../Pages/Whisky";
@@ -12,8 +12,7 @@ import SignIn from "./User/SignIn";
 import User from "./User/User";
 
 function MainContent() {
-  const user = useContext(UserContext);
-  const uid = user.user.uid;
+  const { uid } = useUser();
 
   if (uid) {
     return (

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { WhiskyContext } from "../../context/WhiskyContext";
 import { projectFirestore } from "../../firebase/config";
-import { UserContext } from "../../context/UserContext";
 
 let ProductDetails = ({
   productID,
@@ -23,8 +22,7 @@ let ProductDetails = ({
     console.log("whiskyId is " + productID);
   }, [state.searchResults]);
 
-  const user = useContext(UserContext);
-  let uid = user.user.uid;
+  const [uid] = useState(localStorage.getItem("uid"));
   const [id] = useState(localStorage.getItem("id"));
   const collectionRef = projectFirestore.collection(uid).doc(id);
 

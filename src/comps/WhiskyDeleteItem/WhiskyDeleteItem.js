@@ -1,13 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { projectFirestore } from "../../firebase/config";
-import { UserContext } from "../../context/UserContext";
 
 export default function WhiskyDeleteItem({ title }) {
   const [id] = useState(localStorage.getItem("id"));
+  const [uid] = useState(localStorage.getItem("uid"));
 
-  const user = useContext(UserContext);
-  const uid = user.user.uid;
   const history = useHistory();
   const closeDeletePopup = () => {
     document.querySelector(".deleteItemContainer").style.display = "none";

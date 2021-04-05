@@ -1,18 +1,16 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import {
   projectStorage,
   projectFirestore,
   timestamp,
 } from "../firebase/config";
-import { UserContext } from "../context/UserContext";
 
 const useStorage = (file) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
   const [docId, setDocId] = useState(null);
-  const user = useContext(UserContext);
-  const uid = user.user.uid;
+  const [uid] = useState(localStorage.getItem("uid"));
 
   useEffect(() => {
     // ref

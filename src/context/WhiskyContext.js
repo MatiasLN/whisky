@@ -10,6 +10,8 @@ const initialState = {
   whisky: "",
   searchResults: "",
   manual: false,
+  countedWhiskyData: "",
+  currentWhisky: "",
 };
 
 export function WhiskyProvider(props) {

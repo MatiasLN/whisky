@@ -1,6 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { projectFirestore } from "../../firebase/config";
-import { UserContext } from "../../context/UserContext";
 
 import apiKey from "../../api/Vinmonopolet";
 import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
@@ -11,9 +10,8 @@ const FetchData = ({ title, origTitle, db }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [id] = useState(localStorage.getItem("id"));
+  const [uid] = useState(localStorage.getItem("uid"));
 
-  const user = useContext(UserContext);
-  let uid = user.user.uid;
   const collectionRef = projectFirestore.collection(uid).doc(id);
 
   useEffect(() => {
