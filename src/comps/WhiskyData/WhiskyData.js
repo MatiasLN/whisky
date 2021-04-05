@@ -15,7 +15,13 @@ const WhiskyData = ({ title, db }) => {
   if (state.manual === true) {
     console.log("edit data");
     return <EditWhiskyDetails db={db} />;
-  } else if (db.polet_percentage) {
+  } else if (
+    db.polet_percentage ||
+    db.polet_country ||
+    db.polet_price ||
+    db.polet_region ||
+    db.polet_descColour
+  ) {
     console.log("has data");
 
     return (
