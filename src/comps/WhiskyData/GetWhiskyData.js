@@ -12,7 +12,6 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
   const [selected, setSelected] = useState(null);
   const [error, setError] = useState(null);
   const [checkForType, setCheckFortype] = useState("");
-  const [test, setTest] = useState("");
 
   const { update } = useContext(WhiskyContext);
   let whiskyName = input.split(" ").join("_");

@@ -57,9 +57,11 @@ const WhiskyData = ({ title, db }) => {
 
     return (
       <>
-        <div className="whiskyDetailsContainer">
+        {/* Edit auto fetch to grab Product ID if mach is found}
+        {/* <div className="whiskyDetailsContainer">
           <FetchData title={title} origTitle={origTitle} db={db} />
-        </div>
+        </div> */}
+        <EditWhiskyDetails title={title} origTitle={origTitle} db={db} />
         <div className="searchBlock" style={{ marginTop: "-50px" }}>
           <GetWhiskyData />
         </div>
