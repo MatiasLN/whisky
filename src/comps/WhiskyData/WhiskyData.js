@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
 import GetWhiskyData from "./GetWhiskyData";
 import FetchData from "./FetchData";
+import NoData from "./NoData";
 import EditWhiskyDetails from "../WhiskyDetails/EditWhiskyDetails";
 import Stats from "../Stats/Stats";
 
@@ -57,11 +58,16 @@ const WhiskyData = ({ title, db }) => {
 
     return (
       <>
-        {/* Edit auto fetch to grab Product ID if mach is found}
+        {/* Autofatch needs to be redone. It does not work with the changed API}
         {/* <div className="whiskyDetailsContainer">
           <FetchData title={title} origTitle={origTitle} db={db} />
         </div> */}
-        <EditWhiskyDetails title={title} origTitle={origTitle} db={db} />
+
+        <div className="whiskyDetailsContainer">
+          <NoData name={origTitle} />
+          <GetWhiskyData />
+        </div>
+        {/* <EditWhiskyDetails title={title} origTitle={origTitle} db={db} /> */}
         <div className="searchBlock" style={{ marginTop: "-50px" }}>
           <GetWhiskyData />
         </div>
