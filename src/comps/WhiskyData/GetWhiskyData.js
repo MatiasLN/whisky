@@ -11,10 +11,20 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
   const [uid] = useState(localStorage.getItem("uid"));
   const [selected, setSelected] = useState(null);
   const [error, setError] = useState(null);
+  const [checkForType, setCheckFortype] = useState("");
+  const [test, setTest] = useState("");
 
   const { update } = useContext(WhiskyContext);
   let whiskyName = input.split(" ").join("_");
   const collectionRef = projectFirestore.collection(uid).doc(id);
+
+  useEffect(() => {
+    if (whiskyName.match(/^\d/)) {
+      setCheckFortype("productId=" + whiskyName);
+    } else {
+      setCheckFortype("productShortNameContains=" + whiskyName);
+    }
+  }, [input]);
 
   const handleRequest = () => {
     const fetchData = async () => {
@@ -30,10 +40,11 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
       };
 
       const response = await fetch(
-        "https://apis.vinmonopolet.no/products/v0/details-normal?changedSince=2000-01-01&productShortNameContains=" +
-          whiskyName,
+        "https://apis.vinmonopolet.no/products/v0/details-normal?changedSince=2000-01-01&" +
+          checkForType,
         requestOptions
       );
+
       const data = await response.json();
       if (data.length) {
         setError(null);
@@ -54,28 +65,55 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
 
   useEffect(() => {
     if (selected) {
-      const updateDetails = async () => {
-        await collectionRef.update({
-          polet_name: selected.basic.productLongName,
-          polet_productID: selected.basic.productId,
-          polet_percentage: selected.basic.alcoholContent,
-          polet_price: selected.prices[0].salesPrice,
-          polet_country: selected.origins.origin.country,
-          polet_region: selected.origins.origin.region,
-          polet_destilery: selected.logistics.manufacturerName,
-          polet_descColour: selected.description.characteristics.colour,
-          polet_descTaste: selected.description.characteristics.taste,
-          polet_descOdour: selected.description.characteristics.odour,
-        });
-        await update({ searchResults: selected });
+      // const updateDetails = async () => {
+      //   await collectionRef.update({
+      //     polet_name: selected.basic.productLongName,
+      //     polet_productID: selected.basic.productId,
+      //     polet_percentage: selected.basic.alcoholContent,
+      //     polet_price: selected.prices[0].salesPrice,
+      //     polet_country: selected.origins.origin.country,
+      //     polet_region: selected.origins.origin.region,
+      //     polet_destilery: selected.logistics.manufacturerName,
+      //     polet_descColour: selected.description.characteristics.colour,
+      //     polet_descTaste: selected.description.characteristics.taste,
+      //     polet_descOdour: selected.description.characteristics.odour,
+      //   });
+      //   await update({ searchResults: selected });
+      // };
+      // updateDetails();
+
+      const fetchData = async () => {
+        const myHeaders = new Headers();
+        const requestOptions = {
+          method: "GET",
+          headers: myHeaders,
+          redirect: "follow",
+        };
+
+        const response = await fetch(
+          "https://www.vinmonopolet.no/api/products/" +
+            selected.basic.productId,
+          requestOptions
+        );
+
+        const res = await response.json();
+        const updateDetails = async () => {
+          await collectionRef.update({
+            polet_name: res.name,
+            polet_productID: res.code,
+            polet_price: res.price.value,
+            polet_country: res.main_country.name,
+            polet_region: res.district.name,
+          });
+          await update({ searchResults: selected });
+        };
+        updateDetails();
+
+        const searchResults = document.querySelectorAll(".searchResults");
+        searchResults[0].style.display = "none";
+        searchResults[1].style.display = "none";
       };
-      updateDetails();
-
-      const searchResults = document.querySelectorAll(".searchResults");
-
-      // searchResults.scrollIntoView();
-      searchResults[0].style.display = "none";
-      searchResults[1].style.display = "none";
+      fetchData();
     }
   }, [selected]);
 
@@ -112,7 +150,7 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
                         setSelected(data);
                       }}
                     >
-                      {data.basic.productLongName}
+                      {data.basic.productShortName}
                     </li>
                   ))}
               </ul>
