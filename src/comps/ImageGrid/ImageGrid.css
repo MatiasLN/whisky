@@ -29,10 +29,15 @@
   left: 0;
 }
 
+.loadingAnimation {
+  margin: 75px auto;
+  display: block;
+}
+
 .loading {
-  margin: 150px auto;
+  margin: auto;
   text-align: center;
-  width: 100vw;
+  display: block;
 }
 
 @media only screen and (min-width: 800px) {
