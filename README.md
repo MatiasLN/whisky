@@ -1,18 +1,19 @@
-# whisky
+# React Express Example
 
-A whisky website to keep track of what I've tasted
+This project offers a simple example of how to set up a React project with Create React App and how to connect this app with an Express backend. React-Router is also used for routing.
 
-# Dependancies
+## Prerequisites
+In order to run this project node.js and npm both need to have been installed.
 
-npm v10.14.2 or greater
-yarn
-API key from Vinmonopolet:
+## Deployment
+<ol>
+<li>Clone this repo</li>
+<li>Run npm start from react-express-example to start the Express app</li>
+<li>Run npm start from the client directory to start the React app</li>
+<li>Visit http://localhost:3000/</li>
+</ol>
 
-./api/Vinmonopolet.js
-const apiKey = "your key here";
-export default apiKey;
-
-# Useful commands
-
-yarn start - Spin up local server
-yarn deploy - Publish project to Github
+## Built With
+* [React.js](https://reactjs.org/)
+* [Express.js](https://expressjs.com/)
+* [React-Router](https://reacttraining.com/react-router/core/guides/philosophy)
