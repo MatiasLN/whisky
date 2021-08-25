@@ -1,12 +1,10 @@
 const puppeteer = require("puppeteer");
+// "https://www.vinmonopolet.no/Land/Skottland/Deanston-12-YO-Single-Malt/p/10733101"
 
-const productScraper = async (callback) => {
+const productScraper = async (url) => {
   const browser = await puppeteer.launch({ headless: true });
-
   const page = await browser.newPage();
-  await page.goto(
-    "https://www.vinmonopolet.no/Land/Skottland/Deanston-12-YO-Single-Malt/p/10733101"
-  );
+  await page.goto(url);
 
   await page.waitForSelector(".product__tab-list");
   await page.waitForSelector(".product__contents-list__content-percentage");
@@ -47,13 +45,17 @@ const productScraper = async (callback) => {
       name: name,
       price: price,
       percentage: percentage,
+      productID: "",
+      destilery: "",
+      colour: "",
+      taste: "",
+      odour: "",
       details: productDetails,
     };
 
     return data;
   });
 
-  // logging results
   await browser.close();
   return productDetails;
 };
