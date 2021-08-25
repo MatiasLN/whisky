@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import apiKey from "../../api/Vinmonopolet";
 import { projectFirestore } from "../../firebase/config";
 import { WhiskyContext } from "../../context/WhiskyContext";
 
@@ -11,108 +10,99 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
   const [uid] = useState(localStorage.getItem("uid"));
   const [selected, setSelected] = useState(null);
   const [error, setError] = useState(null);
-  const [checkForType, setCheckFortype] = useState("");
+  const [url, setUrl] = useState("");
+  const [productUrl, setProductUrl] = useState("");
 
   const { update } = useContext(WhiskyContext);
   let whiskyName = input.split(" ").join("_");
   const collectionRef = projectFirestore.collection(uid).doc(id);
 
   useEffect(() => {
-    if (whiskyName.match(/^\d/)) {
-      setCheckFortype("productId=" + whiskyName);
-    } else {
-      setCheckFortype("productShortNameContains=" + whiskyName);
-    }
+    setUrl(
+      "https://www.vinmonopolet.no/vmp/search/?q=" +
+        whiskyName +
+        ":relevance:visibleInSearch:true:mainCategory:brennevin:mainSubCategory:brennevin_whisky&searchType=product"
+    );
   }, [input]);
 
   const handleRequest = () => {
-    const fetchData = async () => {
-      console.log("running manual fetch");
+    fetch("/search", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ url: url }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.length) {
+          setError(null);
+          setData(data);
+        } else {
+          setError(true);
+          setData(null);
+        }
+        setLoading(false);
+      });
 
-      const myHeaders = new Headers();
-      myHeaders.append("Ocp-Apim-Subscription-Key", apiKey);
-
-      const requestOptions = {
-        method: "GET",
-        headers: myHeaders,
-        redirect: "follow",
-      };
-
-      const response = await fetch(
-        "https://apis.vinmonopolet.no/products/v0/details-normal?changedSince=2000-01-01&" +
-          checkForType,
-        requestOptions
-      );
-
-      const data = await response.json();
-      if (data.length) {
-        setError(null);
-        setData(data);
-      } else {
-        setError(true);
-        setData(null);
-      }
-      setLoading(false);
-    };
-    fetchData();
     const searchResults = document.querySelectorAll(".searchResults");
-
-    // searchResults.scrollIntoView();
     searchResults[0].style.display = "block";
     searchResults[1].style.display = "block";
   };
 
   useEffect(() => {
     if (selected) {
-      // const updateDetails = async () => {
-      //   await collectionRef.update({
-      //     polet_name: selected.basic.productLongName,
-      //     polet_productID: selected.basic.productId,
-      //     polet_percentage: selected.basic.alcoholContent,
-      //     polet_price: selected.prices[0].salesPrice,
-      //     polet_country: selected.origins.origin.country,
-      //     polet_region: selected.origins.origin.region,
-      //     polet_destilery: selected.logistics.manufacturerName,
-      //     polet_descColour: selected.description.characteristics.colour,
-      //     polet_descTaste: selected.description.characteristics.taste,
-      //     polet_descOdour: selected.description.characteristics.odour,
-      //   });
-      //   await update({ searchResults: selected });
-      // };
-      // updateDetails();
+      fetch("/singleProduct", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ url: productUrl }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
 
-      const fetchData = async () => {
-        const myHeaders = new Headers();
-        const requestOptions = {
-          method: "GET",
-          headers: myHeaders,
-          redirect: "follow",
-        };
+          data.details.map(getProductDetails);
+          function getProductDetails(item) {
+            if (item.type === "Varenummer") {
+              data.productID = item.value;
+            }
+            if (item.type === "Produsent") {
+              data.destilery = item.value;
+            }
+            if (item.type === "Farge") {
+              data.colour = item.value;
+            }
+            if (item.type === "Smak") {
+              data.taste = item.value;
+            }
+            if (item.type === "Lukt") {
+              data.odour = item.value;
+            }
+          }
 
-        const response = await fetch(
-          "https://www.vinmonopolet.no/api/products/" +
-            selected.basic.productId,
-          requestOptions
-        );
+          const updateDetails = async () => {
+            await collectionRef.update({
+              polet_name: data.name,
+              polet_productID: data.productID,
+              polet_price: data.price,
+              polet_country: data.country,
+              polet_region: data.region,
+              polet_percentage: data.percentage,
+              polet_destilery: data.destilery,
+              polet_descColour: data.colour,
+              polet_descTaste: data.taste,
+              polet_descOdour: data.odour,
+            });
+            await update({ searchResults: selected });
+          };
+          updateDetails();
 
-        const res = await response.json();
-        const updateDetails = async () => {
-          await collectionRef.update({
-            polet_name: res.name,
-            polet_productID: res.code,
-            polet_price: res.price.value,
-            polet_country: res.main_country.name,
-            polet_region: res.district.name,
-          });
-          await update({ searchResults: selected });
-        };
-        updateDetails();
-
-        const searchResults = document.querySelectorAll(".searchResults");
-        searchResults[0].style.display = "none";
-        searchResults[1].style.display = "none";
-      };
-      fetchData();
+          const searchResults = document.querySelectorAll(".searchResults");
+          searchResults[0].style.display = "none";
+          searchResults[1].style.display = "none";
+        });
     }
   }, [selected]);
 
@@ -144,12 +134,13 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
                 {data &&
                   data.map((data) => (
                     <li
-                      key={data.basic.productId}
+                      key={data.url}
                       onClick={function () {
                         setSelected(data);
+                        setProductUrl("http://vinmonopolet.no" + data.url);
                       }}
                     >
-                      {data.basic.productShortName}
+                      {data.name}
                     </li>
                   ))}
               </ul>
