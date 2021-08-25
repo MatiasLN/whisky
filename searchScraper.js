@@ -1,13 +1,10 @@
 const puppeteer = require("puppeteer");
+// "https://www.vinmonopolet.no/vmp/search/?q=Deanston:relevance:visibleInSearch:true&searchType=product"
 
-(async function scrape() {
+const searchScraper = async (url) => {
   const browser = await puppeteer.launch({ headless: true });
-
   const page = await browser.newPage();
-  await page.goto(
-    "https://www.vinmonopolet.no/vmp/search/?q=Deanston:relevance:visibleInSearch:true&searchType=product"
-  );
-
+  await page.goto(url);
   await page.waitForSelector(".product-item");
 
   // extracting information from code
@@ -29,8 +26,8 @@ const puppeteer = require("puppeteer");
     return productDetails;
   });
 
-  // logging results
-  console.log(productDetails);
-
   await browser.close();
-})();
+  return productDetails;
+};
+
+module.exports = searchScraper;
