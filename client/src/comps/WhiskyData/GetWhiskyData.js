@@ -26,7 +26,7 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
   }, [input]);
 
   const handleRequest = () => {
-    fetch("/search", {
+    fetch("/api/search", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -52,7 +52,7 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
 
   useEffect(() => {
     if (selected) {
-      fetch("/singleProduct", {
+      fetch("/api/singleProduct", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -61,8 +61,6 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-
           data.details.map(getProductDetails);
           function getProductDetails(item) {
             if (item.type === "Varenummer") {
@@ -110,7 +108,7 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
     <>
       <div className="getWhiskyInfo">
         {notFound ? (
-          <p className="noWataFound">Søk etter produktet hos Vinmonopolet</p>
+          <p className="noDataFound">Søk etter produktet hos Vinmonopolet</p>
         ) : (
           <p>Stemmer ikke informasjonen?</p>
         )}
@@ -126,7 +124,7 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
         <div className="searchResults">
           {isLoading ? (
             <h3 className="loadingData">
-              Laster inn data fra Vinmonopolet ...
+              Søker etter produkter på Vinmonopolet ...
             </h3>
           ) : (
             <div className="displayData">

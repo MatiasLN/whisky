@@ -11,7 +11,7 @@ const productScraper = require("./productScraper");
 const searchScraper = require("./searchScraper");
 
 // Catches requests made for singleProduct
-app.post("/singleProduct", (request, response) => {
+app.post("/api/singleProduct", (request, response) => {
   if (request != null) {
     let url = request.body.url;
     const getData = async () => {
@@ -26,7 +26,7 @@ app.post("/singleProduct", (request, response) => {
 });
 
 // Catches requests made for global search
-app.post("/search", (request, response) => {
+app.post("/api/search", (request, response) => {
   if (request != null) {
     let url = request.body.url;
     const getData = async () => {
@@ -38,6 +38,12 @@ app.post("/search", (request, response) => {
   } else {
     response.end();
   }
+});
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
 
 const port = process.env.PORT || 5000;
