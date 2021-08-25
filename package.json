@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "author": "Matias Lie-Nielsen",
+  "homepage":".",
   "scripts": {
     "start": "node index.js",
     "heroku-postbuild": "cd client && yarn && yarn run build"
