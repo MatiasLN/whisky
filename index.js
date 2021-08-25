@@ -1,19 +1,21 @@
+const bodyParser = require("body-parser");
 const express = require("express");
 const path = require("path");
-
 const app = express();
 
-// Serve the static files from the React app
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "client/build")));
 
-//Import puppeteer function
 const productScraper = require("./productScraper");
+const searchScraper = require("./searchScraper");
 
-//Catches requests made to localhost:3000/search
-app.get("/singleProduct", (request, response) => {
+// Catches requests made for singleProduct
+app.post("/singleProduct", (request, response) => {
   if (request != null) {
+    let url = request.body.url;
     const getData = async () => {
-      const result = await productScraper();
+      const result = await productScraper(url);
       response.status(200);
       response.json(result);
     };
@@ -23,17 +25,20 @@ app.get("/singleProduct", (request, response) => {
   }
 });
 
-// An api endpoint that returns a short list of items
-// app.get("/api/getList", (req, res) => {
-//   var list = ["item1", "item2", "item3"];
-//   res.json(list);
-//   console.log("Sent list of items");
-// });
-
-// Handles any requests that don't match the ones above
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname + "/client/build/index.html"));
-// });
+// Catches requests made for global search
+app.post("/search", (request, response) => {
+  if (request != null) {
+    let url = request.body.url;
+    const getData = async () => {
+      const result = await searchScraper(url);
+      response.status(200);
+      response.json(result);
+    };
+    getData();
+  } else {
+    response.end();
+  }
+});
 
 const port = process.env.PORT || 5000;
 app.listen(port);
