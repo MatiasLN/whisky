@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { projectFirestore } from "../../firebase/config";
 import { WhiskyContext } from "../../context/WhiskyContext";
 
-const GetWhiskyData = ({ notFound, setCallback }) => {
+const FetchData = ({ notFound, setCallback }) => {
   const [input, setInput] = useState("");
   const [data, setData] = useState("");
   const [isLoading, setLoading] = useState(true);
@@ -166,4 +166,4 @@ const GetWhiskyData = ({ notFound, setCallback }) => {
   );
 };
 
-export default GetWhiskyData;
+export default FetchData;

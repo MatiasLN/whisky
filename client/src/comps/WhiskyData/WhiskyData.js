@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
-import GetWhiskyData from "./GetWhiskyData";
+import FetchData from "./FetchData";
 import NoData from "./NoData";
 import EditWhiskyDetails from "../WhiskyDetails/EditWhiskyDetails";
 import Stats from "../Stats/Stats";
@@ -41,14 +41,14 @@ const WhiskyData = ({ title, db }) => {
             descOdour={db.polet_descOdour}
             descTaste={db.polet_descTaste}
           />
-          <GetWhiskyData />
+          <FetchData />
         </div>
 
         <div className="fullWidth">
           <Stats db={db} />
         </div>
         <div className="searchBlock">
-          <GetWhiskyData />
+          <FetchData />
         </div>
       </>
     );
@@ -59,11 +59,11 @@ const WhiskyData = ({ title, db }) => {
       <>
         <div className="whiskyDetailsContainer">
           <NoData name={origTitle} />
-          <GetWhiskyData />
+          <FetchData />
         </div>
         {/* <EditWhiskyDetails title={title} origTitle={origTitle} db={db} /> */}
         <div className="searchBlock" style={{ marginTop: "-50px" }}>
-          <GetWhiskyData />
+          <FetchData />
         </div>
       </>
     );

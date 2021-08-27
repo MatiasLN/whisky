@@ -100,4 +100,4 @@ h3 {
 /* Whisky page */
 @import "./comps/WhiskyItem/WhiskyItem.css";
 @import "./comps/WhiskyDetails/WhiskyDetails.css";
-@import "./comps//WhiskyData/GetWhiskyData.css";
+@import "./comps//WhiskyData/FetchData.css";
