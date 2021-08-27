@@ -3,9 +3,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { WhiskyProvider } from "../context/WhiskyContext";
 import useUser from "../hooks/useUser";
 
-import Home from "../Pages/Home";
-import Whisky from "../Pages/Whisky";
-import Error from "../Pages/Error";
+import Home from "../pages/Home";
+import Whisky from "../pages/Whisky";
+import Error from "../pages/Error";
 
 import Logo from "./Logo/Logo";
 import SignIn from "./User/SignIn";
@@ -23,8 +23,7 @@ function MainContent() {
               <Logo />
               <User />
               <Route path="/" component={Home} exact />
-              <Route path="/whisky" component={Home} exact />
-              <Route path="/whiskyType" component={Whisky} exact />
+              <Route path="/whisky" component={Whisky} exact />
             </WhiskyProvider>
             <Route component={Error} />
           </Switch>

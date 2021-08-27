@@ -28,7 +28,7 @@ const ImageItem = ({ data, setData, rating, setRating, search }) => {
             setData(data);
           }}
         >
-          <Link to="/whiskyType">
+          <Link to="/whisky">
             <Image data={data.url} />
           </Link>
         </div>

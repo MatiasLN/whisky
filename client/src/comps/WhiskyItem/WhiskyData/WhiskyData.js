@@ -13,7 +13,6 @@ const WhiskyData = ({ title, db }) => {
   const { state } = useContext(WhiskyContext);
 
   if (state.manual === true) {
-    console.log("edit data");
     return <EditWhiskyDetails db={db} />;
   } else if (
     db.polet_percentage ||
@@ -22,8 +21,6 @@ const WhiskyData = ({ title, db }) => {
     db.polet_region ||
     db.polet_descColour
   ) {
-    console.log("has data");
-
     return (
       <>
         <div className="whiskyDetailsContainer">
@@ -61,7 +58,6 @@ const WhiskyData = ({ title, db }) => {
           <NoData name={origTitle} />
           <FetchData />
         </div>
-        {/* <EditWhiskyDetails title={title} origTitle={origTitle} db={db} /> */}
         <div className="searchBlock" style={{ marginTop: "-50px" }}>
           <FetchData />
         </div>

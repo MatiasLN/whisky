@@ -85,7 +85,7 @@ const ImageItem = () => {
       await collectionRef.delete();
     };
     executeDelete();
-    history.push("/whisky");
+    history.push("/");
   };
 
   return (
