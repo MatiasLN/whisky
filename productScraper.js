@@ -12,13 +12,14 @@ const productScraper = async (url) => {
     ],
   });
   const page = await browser.newPage();
-  await page.goto(url);
+  await page.goto(url, { timeout: 60000 });
 
   await page.waitForSelector(".product__tab-list");
   await page.waitForSelector(".product__contents-list__content-percentage");
   await page.waitForSelector(".product__price");
   await page.waitForSelector(".product__name");
   await page.waitForSelector(".product__region");
+  await page.waitFor(3000);
 
   // extracting information from code
   let productDetails = await page.evaluate(() => {
