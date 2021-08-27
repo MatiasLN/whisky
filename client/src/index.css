@@ -99,5 +99,5 @@ h3 {
 
 /* Whisky page */
 @import "./comps/WhiskyItem/WhiskyItem.css";
-@import "./comps/WhiskyDetails/WhiskyDetails.css";
-@import "./comps//WhiskyData/FetchData.css";
+@import "./comps/WhiskyItem/WhiskyDetails/WhiskyDetails.css";
+@import "./comps/WhiskyItem/WhiskyData/FetchData.css";

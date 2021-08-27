@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 import StarRating from "../StarRating/StarRating";
 import Image from "../WhiskyItem/Image/Image";
-import WhiskyData from "../WhiskyData/WhiskyData";
+import WhiskyData from "../WhiskyItem/WhiskyData/WhiskyData";
 import Modal from "../Modal/Modal";
 import Stats from "../Stats/Stats";
 

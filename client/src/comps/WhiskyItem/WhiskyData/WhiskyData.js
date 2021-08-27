@@ -3,9 +3,8 @@ import WhiskyDetails from "../WhiskyDetails/WhiskyDetails";
 import FetchData from "./FetchData";
 import NoData from "./NoData";
 import EditWhiskyDetails from "../WhiskyDetails/EditWhiskyDetails";
-import Stats from "../Stats/Stats";
-
-import { WhiskyContext } from "../../context/WhiskyContext";
+import Stats from "../../Stats/Stats";
+import { WhiskyContext } from "../../../context/WhiskyContext";
 
 const WhiskyData = ({ title, db }) => {
   const origTitle = title;

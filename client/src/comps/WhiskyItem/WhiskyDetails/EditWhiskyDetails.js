@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
-import { projectFirestore } from "../../firebase/config";
-import { WhiskyContext } from "../../context/WhiskyContext";
+import { projectFirestore } from "../../../firebase/config";
+import { WhiskyContext } from "../../../context/WhiskyContext";
 
 let ProductDetails = ({ name, db }) => {
   const [title, setTitle] = useState(db.polet_name);

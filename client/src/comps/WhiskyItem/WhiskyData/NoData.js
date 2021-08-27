@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { WhiskyContext } from "../../context/WhiskyContext";
-import { projectFirestore } from "../../firebase/config";
+import { WhiskyContext } from "../../../context/WhiskyContext";
+import { projectFirestore } from "../../../firebase/config";
 
 let ProductDetails = ({
   productID,
