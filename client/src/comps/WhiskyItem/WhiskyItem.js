@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import { projectFirestore } from "../../firebase/config";
 import { WhiskyContext } from "../../context/WhiskyContext";
+import { useHistory } from "react-router-dom";
 
 import StarRating from "../StarRating/StarRating";
 import Image from "../WhiskyItem/Image/Image";
 import WhiskyData from "../WhiskyData/WhiskyData";
 import Modal from "../Modal/Modal";
 import Stats from "../Stats/Stats";
-import WhiskyDeleteItem from "../WhiskyDeleteItem/WhiskyDeleteItem";
 
 const ImageItem = () => {
   const [data, setData] = useState("");
@@ -19,6 +19,7 @@ const ImageItem = () => {
   const [uid] = useState(localStorage.getItem("uid"));
 
   const { state, update } = useContext(WhiskyContext);
+  const history = useHistory();
 
   useEffect(() => {
     const collectionRef = projectFirestore.collection(uid).doc(id);
@@ -48,69 +49,6 @@ const ImageItem = () => {
             url: doc.data().url,
           },
         });
-
-        // const updateData = async () => {
-        //   if (!doc.data().polet_name) {
-        //     await collectionRef.update({
-        //       polet_name: "",
-        //     });
-        //   }
-
-        //   if (!doc.data().polet_productID) {
-        //     await collectionRef.update({
-        //       polet_productID: "",
-        //     });
-        //   }
-
-        //   if (!doc.data().polet_percentage) {
-        //     await collectionRef.update({
-        //       polet_percentage: "",
-        //     });
-        //   }
-
-        //   if (!doc.data().polet_price) {
-        //     await collectionRef.update({
-        //       polet_price: "",
-        //     });
-        //   }
-
-        //   if (!doc.data().polet_country) {
-        //     await collectionRef.update({
-        //       polet_country: "",
-        //     });
-        //   }
-
-        //   if (!doc.data().polet_region) {
-        //     await collectionRef.update({
-        //       polet_region: "",
-        //     });
-        //   }
-
-        //   if (!doc.data().polet_destilery) {
-        //     await collectionRef.update({
-        //       polet_destilery: "",
-        //     });
-        //   }
-
-        //   if (!doc.data().polet_descColour) {
-        //     await collectionRef.update({
-        //       polet_descColour: "",
-        //     });
-        //   }
-
-        //   if (!doc.data().polet_descTaste) {
-        //     await collectionRef.update({
-        //       polet_descTaste: "",
-        //     });
-        //   }
-
-        //   if (!doc.data().polet_descOdour) {
-        //     await collectionRef.update({
-        //       polet_descOdour: "",
-        //     });
-        //   }
-        // };
-        // updateData();
       })
       .catch(function (error) {
         console.log("Error getting document:", error);
@@ -135,6 +73,19 @@ const ImageItem = () => {
 
   const showDeletePopup = () => {
     document.querySelector(".deleteItemContainer").style.display = "block";
+  };
+
+  const closeDeletePopup = () => {
+    document.querySelector(".deleteItemContainer").style.display = "none";
+  };
+
+  const confirmDelete = () => {
+    const collectionRef = projectFirestore.collection(uid).doc(id);
+    const executeDelete = async () => {
+      await collectionRef.delete();
+    };
+    executeDelete();
+    history.push("/whisky");
   };
 
   return (
@@ -179,10 +130,22 @@ const ImageItem = () => {
             <Stats db={data} />
           </div>
           <Modal url={url} />
-          <WhiskyDeleteItem title={title} />
+          <div className="deleteItemContainer">
+            <div className="deleteItem">
+              <p className="deleteText">Vil du slette {title}?</p>
+              <div className="buttonGroup">
+                <button className="deleteButton" onClick={confirmDelete}>
+                  Ja, slett
+                </button>
+                <button className="closeButton" onClick={closeDeletePopup}>
+                  Nei, gå tilbake
+                </button>
+              </div>
+            </div>
+          </div>
         </>
       ) : (
-        <p>loading ....</p>
+        <p>Laster ...</p>
       )}
     </>
   );
