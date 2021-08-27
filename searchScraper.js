@@ -12,8 +12,9 @@ const searchScraper = async (url) => {
     ],
   });
   const page = await browser.newPage();
-  await page.goto(url);
+  await page.goto(url, { timeout: 60000 });
   await page.waitForSelector(".product-item");
+  await page.waitFor(3000);
 
   // extracting information from code
   let productDetails = await page.evaluate(() => {
