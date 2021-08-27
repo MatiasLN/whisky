@@ -2,7 +2,15 @@ const puppeteer = require("puppeteer");
 // "https://www.vinmonopolet.no/vmp/search/?q=Deanston:relevance:visibleInSearch:true&searchType=product"
 
 const searchScraper = async (url) => {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+      "--single-process",
+    ],
+  });
   const page = await browser.newPage();
   await page.goto(url);
   await page.waitForSelector(".product-item");
