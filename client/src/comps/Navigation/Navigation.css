@@ -12,27 +12,25 @@ nav img {
 }
 
 .closeNav {
-  align-self: flex-end;
-  padding: 10px 15px;
-  background-color: transparent;
-  border: 1px solid var(--primary);
-  border-radius: 50%;
-  font-size: 1.2rem;
-  font-family: "Verdana";
-  color: var(--primary);
-  width: 50px;
-}
-
-.closeNav:hover {
-  align-self: flex-end;
+  display: block;
+  margin-bottom: 50px;
   padding: 10px 15px;
   background-color: var(--primary);
   border: 1px solid var(--primary);
-  border-radius: 50%;
+  border-radius: 4px;
   font-size: 1.2rem;
-  font-family: "Verdana";
-  color: white;
-  width: 50px;
+  font-family: "Noto Serif";
+  color: var(--secondary);
+  width: auto;
+  align-self: flex-end;
+}
+
+.closeNav:hover {
+  border: 1px solid var(--primary);
+  background: none;
+  color: var(--primary);
+  cursor: pointer;
+  align-self: flex-end;
 }
 
 .logOutBtn {

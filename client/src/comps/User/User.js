@@ -1,5 +1,6 @@
 import React from "react";
 import { logOut } from "../../firebase/config";
+import { Link } from "react-router-dom";
 import useUser from "../../hooks/useUser";
 
 import Navigation from "../Navigation/Navigation";
@@ -18,12 +19,13 @@ const User = () => {
       {uid ? (
         <>
           <div className="userPage">
-            <button className="closeNav" onClick={handleClose}>
-              X
-            </button>
             <div className="userContent">
+              <button className="closeNav" onClick={handleClose}>
+                Lukk
+              </button>
               <img src={photoURL} alt={displayName} />
               <p>Hei {displayName}</p>
+              <Link to="/stats">Statistikk</Link>
               <button
                 className="logOutBtn"
                 onClick={() => {
