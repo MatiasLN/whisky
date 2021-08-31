@@ -6,6 +6,7 @@ import useUser from "../hooks/useUser";
 import Home from "../Pages/Home";
 import Whisky from "../Pages/Whisky";
 import Error from "../Pages/Error";
+import Statistics from "../Pages/Statistics";
 
 import Logo from "./Logo/Logo";
 import SignIn from "./User/SignIn";
@@ -24,6 +25,7 @@ function MainContent() {
               <User />
               <Route path="/" component={Home} exact />
               <Route path="/whisky" component={Whisky} exact />
+              <Route path="/stats" component={Statistics} exact />
             </WhiskyProvider>
             <Route component={Error} />
           </Switch>
