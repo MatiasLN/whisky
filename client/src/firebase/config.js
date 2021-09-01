@@ -5,13 +5,13 @@ import "firebase/auth";
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
-    apiKey: "AIzaSyBJdh5HQXypjt8x7FNyn3fMSw_AJO3Vpcs",
-    authDomain: "whisky-c2f56.firebaseapp.com",
-    databaseURL: "https://whisky-c2f56.firebaseio.com",
-    projectId: "whisky-c2f56",
-    storageBucket: "whisky-c2f56.appspot.com",
-    messagingSenderId: "166359406379",
-    appId: "1:166359406379:web:baa8f516ec1187e81fd76e"
+  apiKey: "AIzaSyBJdh5HQXypjt8x7FNyn3fMSw_AJO3Vpcs",
+  authDomain: "whisky-c2f56.firebaseapp.com",
+  databaseURL: "https://whisky-c2f56.firebaseio.com",
+  projectId: "whisky-c2f56",
+  storageBucket: "whisky-c2f56.appspot.com",
+  messagingSenderId: "166359406379",
+  appId: "1:166359406379:web:baa8f516ec1187e81fd76e",
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -45,5 +45,7 @@ export const logOut = () => {
       console.log(error.message);
     });
 };
+
+export const db = firebase.firestore();
 
 export { projectStorage, projectFirestore, provider, timestamp };
