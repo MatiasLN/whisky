@@ -4,17 +4,28 @@ import { db } from "../firebase/config";
 const StatisticsPage = () => {
   const [uid] = useState(localStorage.getItem("uid"));
   const [regions, setRegions] = useState([]);
+  const [price, setPrice] = useState([]);
+  const [priceAvg, setPriceAvg] = useState([]);
   const [percentages, setPercentages] = useState([]);
   const [averageProcentage, setAverageProcentage] = useState(null);
   const [countries, setCountries] = useState([]);
   const [destilery, setDestilery] = useState([]);
   const [stars, setStars] = useState([]);
-  const [titles, setTitles] = useState([null]);
+  const [titles, setTitles] = useState([]);
+
+  // calculate average of sum
+  function calc(num, value, set) {
+    let total = 0;
+    for (let i = 0; i < num.length; i++) {
+      total += num[i];
+    }
+    var value = total / num.length;
+    set(value);
+  }
 
   useEffect(() => {
     const getData = async () => {
-      const titles = [];
-      let total = 0;
+      //const titles = [];
       const response = db.collection(uid);
 
       const data = await response.get();
@@ -37,19 +48,21 @@ const StatisticsPage = () => {
         if (formattedNumber != "aN") {
           percentages.push(parseInt(formattedNumber));
         }
+
+        // add price to array and get them ready for avg calculation
+        var priceNumber = "";
+        priceNumber = item.data().polet_price;
+        var priceDec = priceNumber - Math.floor(priceNumber);
+        priceNumber = priceNumber - priceDec;
+        var priceFormattedNumber = ("0" + priceNumber).slice(-6);
+        if (formattedNumber != "aN") {
+          price.push(parseInt(priceFormattedNumber));
+        }
       });
 
-      // calculate average of %
-      for (let i = 0; i < percentages.length; i++) {
-        total += percentages[i];
-      }
-      const averageProcentage = total / percentages.length;
-      setAverageProcentage(averageProcentage);
-
-      //   setCountries(countries);
+      calc(percentages, averageProcentage, setAverageProcentage);
+      calc(price, priceAvg, setPriceAvg);
       setStars(stars);
-      //   setPercentages(percentages);
-      //   setRegions(regions);
       setTitles(titles);
     };
 
@@ -98,8 +111,14 @@ const StatisticsPage = () => {
       ) : null}
       {averageProcentage ? (
         <div>
-          <h2>Gjennomsnittet på prosent av det du har drukket er </h2>
+          <h2>Gjennomsnittlig prosent av det du har drukket er </h2>
           <p>{averageProcentage}%</p>
+        </div>
+      ) : null}
+      {priceAvg ? (
+        <div>
+          <h2>Gjennomsnittlig sum på det du har smakt på er</h2>
+          <p>{priceAvg}0 NOK</p>
         </div>
       ) : null}
     </div>
