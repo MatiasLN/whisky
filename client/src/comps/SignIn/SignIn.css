@@ -1,0 +1,11 @@
+/***** User *****/
+.userIsLoggedIn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  overflow: hidden;
+}
+
+.userIsLoggedIn p {
+  display: none;
+}

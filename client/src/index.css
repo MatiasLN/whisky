@@ -92,7 +92,7 @@ h3 {
 @import "./comps/ImageGrid/ImageGrid.css";
 @import "./comps/Modal/Modal.css";
 @import "./comps/StarRating/StarRating.css";
-@import "./comps/User/User.css";
+@import "./comps/SignIn/SignIn.css";
 @import "./comps/Navigation/Navigation.css";
 @import "./comps/FilterInput/FilterInput.css";
 @import "./comps/Stats/Stats.css";
