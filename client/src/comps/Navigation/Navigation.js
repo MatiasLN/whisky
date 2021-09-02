@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { logOut } from "../../firebase/config";
-import { Link } from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
 import useUser from "../../hooks/useUser";
 
 const Navigation = () => {
   const { uid, photoURL, displayName } = useUser();
+  const [isActive, setActive] = useState(false);
 
   const handleClose = () => {
     document.querySelector(".mainMenuContainer").classList.toggle("show");
+  };
+
+  const toggleClass = () => {
+    setActive(!isActive);
   };
 
   return (
@@ -22,10 +27,12 @@ const Navigation = () => {
               <img src={photoURL} alt={displayName} />
               <p>Hei {displayName}</p>
               <nav className="mainMenu">
-                <Link to="/" className="active">
+                <NavLink to="/" activeClassName="active" exact={true}>
                   Hovedside
-                </Link>
-                <Link to="/stats">Statistikk</Link>
+                </NavLink>
+                <NavLink to="/stats" activeClassName="active" exact={true}>
+                  Statistikk
+                </NavLink>
               </nav>
               <button
                 className="logOutBtn"

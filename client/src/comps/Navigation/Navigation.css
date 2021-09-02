@@ -23,6 +23,7 @@ nav img {
   padding: 5px;
 }
 
+.mainMenu a:hover,
 .active {
   font-weight: 700;
 }
