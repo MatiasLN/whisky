@@ -17,12 +17,14 @@ function MainContent() {
 
   if (uid) {
     return (
-      <div className="MainContent">
+      <>
         <BrowserRouter>
           <Switch>
             <WhiskyProvider>
-              <Logo />
-              <HamburgerMenu />
+              <header>
+                <Logo />
+                <HamburgerMenu />
+              </header>
               <Route path="/" component={Home} exact />
               <Route path="/whisky" component={Whisky} exact />
               <Route path="/stats" component={Statistics} exact />
@@ -30,7 +32,7 @@ function MainContent() {
             <Route component={Error} />
           </Switch>
         </BrowserRouter>
-      </div>
+      </>
     );
   }
 

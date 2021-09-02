@@ -3,9 +3,9 @@ import WhiskyItem from "../comps/WhiskyItem/WhiskyItem";
 
 const WhiskyPage = () => {
   return (
-    <div className="whiskyContainer">
+    <section className="whiskyContainer">
       <WhiskyItem />
-    </div>
+    </section>
   );
 };
 export default WhiskyPage;

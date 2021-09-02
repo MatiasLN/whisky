@@ -23,7 +23,7 @@ const Home = () => {
   const [result, searchResult] = useState("");
 
   return (
-    <>
+    <section>
       <UploadForm />
       <FilterInput searchCallback={searchCallback} />
       <ImageGrid
@@ -33,7 +33,7 @@ const Home = () => {
         setRating={setRating}
         search={result}
       />
-    </>
+    </section>
   );
 };
 export default Home;
