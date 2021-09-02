@@ -1,5 +1,5 @@
 /**** HAMBURGER ***/
-nav {
+.hamburgerMenu {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -9,6 +9,72 @@ nav {
 nav img {
   border-radius: 50%;
   width: 55px;
+}
+
+.mainMenu {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mainMenu a {
+  font-size: 24px;
+  padding: 5px;
+}
+
+.active {
+  font-weight: 700;
+}
+
+.mainMenuContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+.mainMenuContent p {
+  display: block;
+  font-size: 1.2rem;
+  padding: 0 15px;
+}
+
+@media only screen and (min-width: 800px) {
+  .mainMenuContent {
+    margin-top: 0;
+  }
+}
+
+.mainMenuContent img {
+  border-radius: 50%;
+  max-width: 70px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mainMenuContainer {
+  position: fixed;
+  box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
+  border: 3px solid white;
+  height: 100%;
+  width: 290px;
+  padding: 15px;
+  margin-right: -350px;
+  background: white;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  transition-duration: 1s;
+  overflow: hidden;
+}
+
+.show {
+  margin-right: 0 !important;
+  transition-duration: 1s;
+  display: flex;
+  flex-direction: column;
 }
 
 .closeNav {
