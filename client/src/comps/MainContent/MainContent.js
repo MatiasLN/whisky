@@ -1,16 +1,16 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { WhiskyProvider } from "../context/WhiskyContext";
-import useUser from "../hooks/useUser";
+import { WhiskyProvider } from "../../context/WhiskyContext";
+import useUser from "../../hooks/useUser";
 
-import Home from "../Pages/Home";
-import Whisky from "../Pages/Whisky";
-import Error from "../Pages/Error";
-import Statistics from "../Pages/Statistics";
+import Home from "../../Pages/Home";
+import Whisky from "../../Pages/Whisky";
+import Error from "../../Pages/Error";
+import Statistics from "../../Pages/Statistics";
 
-import Logo from "./Logo/Logo";
-import SignIn from "./User/SignIn";
-import User from "./User/User";
+import Logo from "../Logo/Logo";
+import SignIn from "../SignIn/SignIn";
+import HamburgerMenu from "../Navigation/HamburgerMenu";
 
 function MainContent() {
   const { uid } = useUser();
@@ -22,7 +22,7 @@ function MainContent() {
           <Switch>
             <WhiskyProvider>
               <Logo />
-              <User />
+              <HamburgerMenu />
               <Route path="/" component={Home} exact />
               <Route path="/whisky" component={Whisky} exact />
               <Route path="/stats" component={Statistics} exact />
