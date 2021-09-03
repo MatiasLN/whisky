@@ -52,6 +52,7 @@ const Statistics = () => {
         var dec = number - Math.floor(number);
         number = number - dec;
         var formattedNumber = ("0" + number).slice(-2);
+
         if (formattedNumber != "aN") {
           percentages.push(parseInt(formattedNumber));
         }
@@ -131,19 +132,19 @@ const Statistics = () => {
 
       <div className="percentageContainer">
         {averageProcentage ? (
-          <div>
-            <h2>Gjennomsnittlig prosent av det du har drukket er </h2>
-            <p>{averageProcentage} %</p>
-          </div>
+          <p>
+            Gjennomsnittet på alkoholenstyrken er <br />
+            <strong>{averageProcentage.toFixed(2)}</strong> %
+          </p>
         ) : null}
       </div>
 
       <div className="priceContainer">
         {priceAvg ? (
-          <div>
-            <h2>Gjennomsnittlig sum på det du har smakt på er</h2>
-            <p>{priceAvg}0 NOK</p>
-          </div>
+          <p>
+            Gjennomsnittlig pris på flaskene er <br />{" "}
+            <strong>{priceAvg}0</strong> NOK
+          </p>
         ) : null}
       </div>
     </>
