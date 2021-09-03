@@ -1,15 +1,18 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { db } from "../../firebase/config";
 
 const Statistics = () => {
   const [uid] = useState(localStorage.getItem("uid"));
-  const [regions, setRegions] = useState([]);
-  const [price, setPrice] = useState([]);
+  const [regions] = useState([]);
+  const [regionCount, setRegionCount] = useState(null);
+  const [price] = useState([]);
   const [priceAvg, setPriceAvg] = useState([]);
-  const [percentages, setPercentages] = useState([]);
+  const [percentages] = useState([]);
   const [averageProcentage, setAverageProcentage] = useState(null);
-  const [countries, setCountries] = useState([]);
-  const [destilery, setDestilery] = useState([]);
+  const [countries] = useState([]);
+  const [countryCount, setCountryCount] = useState(null);
+  const [destilery] = useState([]);
+  const [destilleryCount, setDestilleryCount] = useState(null);
   const [stars, setStars] = useState([]);
   const [titles, setTitles] = useState([]);
 
@@ -21,6 +24,12 @@ const Statistics = () => {
     }
     var value = total / num.length;
     set(value);
+  }
+
+  function count(value, set) {
+    var total = 0;
+    Object.entries(value).map(([]) => (total += 1));
+    set(total);
   }
 
   useEffect(() => {
@@ -60,6 +69,9 @@ const Statistics = () => {
 
       calc(percentages, averageProcentage, setAverageProcentage);
       calc(price, priceAvg, setPriceAvg);
+      count(destilery, setDestilleryCount);
+      count(countries, setCountryCount);
+      count(regions, setRegionCount);
       setStars(stars);
       setTitles(titles);
     };
@@ -72,13 +84,14 @@ const Statistics = () => {
       <div className="numberTasted">
         {titles ? (
           <p>
-            Du har smakt <strong>{titles.length}</strong> ulike whiskyer
+            Du har smakt <strong>{titles.length}</strong> ulike whiskyer.
           </p>
         ) : null}
       </div>
 
+      <h1>Dette er fordelt på</h1>
       <div className="destileriesContainer">
-        <h2>Destilleri</h2>
+        <h2>{destilleryCount} destillerier</h2>
         {destilery ? (
           <ul>
             {Object.entries(destilery).map(([destilery, value]) => (
@@ -91,7 +104,7 @@ const Statistics = () => {
       </div>
 
       <div className="districtsContainer">
-        <h2>Distrikter</h2>
+        <h2>{regionCount} Distrikter</h2>
         {regions ? (
           <ul>
             {Object.entries(regions).map(([region, value]) => (
@@ -104,7 +117,7 @@ const Statistics = () => {
       </div>
 
       <div className="countriesContainer">
-        <h2>Land</h2>
+        <h2>{countryCount} Land</h2>
         {countries ? (
           <ul>
             {Object.entries(countries).map(([country, value]) => (
