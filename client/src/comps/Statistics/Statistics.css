@@ -1,0 +1,55 @@
+.statisticsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.numberTasted {
+  align-self: center;
+}
+
+.numberTasted strong {
+  font-size: 48px;
+  padding: 0 10px;
+}
+
+.destileriesContainer,
+.countriesContainer {
+  background-color: var(--primary);
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.districtsContainer {
+  padding: 0 20px;
+  margin: 0;
+}
+
+.destileriesContainer ul,
+.districtsContainer ul,
+.countriesContainer ul {
+  padding-inline-start: 0;
+  list-style-type: none;
+}
+
+.destileriesContainer li,
+.districtsContainer li,
+.countriesContainer li {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.destileriesContainer span,
+.districtsContainer span,
+.countriesContainer span {
+  font-size: 1.5em;
+  justify-self: center;
+  align-self: center;
+}
+
+@media only screen and (min-width: 800px) {
+  .destileriesContainer {
+    padding: 40px 20px;
+    margin: 40px 0;
+  }
+}
