@@ -2,8 +2,10 @@ import React, { useState, useContext, useEffect } from "react";
 import Statistics from "../comps/Statistics/Statistics";
 
 const StatisticsPage = () => {
+  document.querySelector(".App").classList.add("fullWidthApp");
+
   return (
-    <section className="container">
+    <section className="statisticsContainer">
       <Statistics />
     </section>
   );

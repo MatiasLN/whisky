@@ -69,56 +69,70 @@ const Statistics = () => {
 
   return (
     <>
-      {titles ? (
-        <p>
-          Du har smakt <strong>{titles.length}</strong> ulike whiskyer
-        </p>
-      ) : null}
+      <div className="numberTasted">
+        {titles ? (
+          <p>
+            Du har smakt <strong>{titles.length}</strong> ulike whiskyer
+          </p>
+        ) : null}
+      </div>
 
-      <h2>Destilleri</h2>
-      {regions ? (
-        <ul>
-          {Object.entries(destilery).map(([destilery, value]) => (
-            <li key={destilery}>
-              <strong>{destilery}</strong>: {value}
-            </li>
-          ))}
-        </ul>
-      ) : null}
+      <div className="destileriesContainer">
+        <h2>Destilleri</h2>
+        {regions ? (
+          <ul>
+            {Object.entries(destilery).map(([destilery, value]) => (
+              <li key={destilery}>
+                <strong>{destilery}</strong>: {value}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </div>
 
-      <h2>Distrikter</h2>
-      {regions ? (
-        <ul>
-          {Object.entries(regions).map(([region, value]) => (
-            <li key={region}>
-              <strong>{region}</strong>: {value}
-            </li>
-          ))}
-        </ul>
-      ) : null}
+      <div className="districtsContainer">
+        <h2>Distrikter</h2>
+        {regions ? (
+          <ul>
+            {Object.entries(regions).map(([region, value]) => (
+              <li key={region}>
+                <strong>{region}</strong>: {value}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </div>
 
-      <h2>Land</h2>
-      {countries ? (
-        <ul>
-          {Object.entries(countries).map(([country, value]) => (
-            <li key={country}>
-              <strong>{country}</strong>: {value}
-            </li>
-          ))}
-        </ul>
-      ) : null}
-      {averageProcentage ? (
-        <div>
-          <h2>Gjennomsnittlig prosent av det du har drukket er </h2>
-          <p>{averageProcentage}%</p>
-        </div>
-      ) : null}
-      {priceAvg ? (
-        <div>
-          <h2>Gjennomsnittlig sum på det du har smakt på er</h2>
-          <p>{priceAvg}0 NOK</p>
-        </div>
-      ) : null}
+      <div className="countriesContainer">
+        <h2>Land</h2>
+        {countries ? (
+          <ul>
+            {Object.entries(countries).map(([country, value]) => (
+              <li key={country}>
+                <strong>{country}</strong>: {value}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </div>
+
+      <div className="percentageContainer">
+        {averageProcentage ? (
+          <div>
+            <h2>Gjennomsnittlig prosent av det du har drukket er </h2>
+            <p>{averageProcentage}%</p>
+          </div>
+        ) : null}
+      </div>
+
+      <div className="priceContainer">
+        {priceAvg ? (
+          <div>
+            <h2>Gjennomsnittlig sum på det du har smakt på er</h2>
+            <p>{priceAvg}0 NOK</p>
+          </div>
+        ) : null}
+      </div>
     </>
   );
 };
