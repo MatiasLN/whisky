@@ -79,11 +79,11 @@ const Statistics = () => {
 
       <div className="destileriesContainer">
         <h2>Destilleri</h2>
-        {regions ? (
+        {destilery ? (
           <ul>
             {Object.entries(destilery).map(([destilery, value]) => (
               <li key={destilery}>
-                <strong>{destilery}</strong>: {value}
+                <p>{destilery}</p> <span>{value}</span>
               </li>
             ))}
           </ul>
@@ -96,7 +96,7 @@ const Statistics = () => {
           <ul>
             {Object.entries(regions).map(([region, value]) => (
               <li key={region}>
-                <strong>{region}</strong>: {value}
+                <p>{region}</p> <span>{value}</span>
               </li>
             ))}
           </ul>
@@ -109,7 +109,7 @@ const Statistics = () => {
           <ul>
             {Object.entries(countries).map(([country, value]) => (
               <li key={country}>
-                <strong>{country}</strong>: {value}
+                <p>{country}</p> <span>{value}</span>
               </li>
             ))}
           </ul>
@@ -120,7 +120,7 @@ const Statistics = () => {
         {averageProcentage ? (
           <div>
             <h2>Gjennomsnittlig prosent av det du har drukket er </h2>
-            <p>{averageProcentage}%</p>
+            <p>{averageProcentage} %</p>
           </div>
         ) : null}
       </div>
