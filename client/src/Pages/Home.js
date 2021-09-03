@@ -5,6 +5,7 @@ import UploadForm from "../comps/Forms/UploadForm";
 import FilterInput from "../comps/FilterInput/FilterInput";
 
 const Home = () => {
+  document.querySelector(".App").classList.remove("fullWidthApp");
   const newRating = (res) => {
     if (res) {
       setRating(res);

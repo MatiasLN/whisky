@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React from "react";
 import Statistics from "../comps/Statistics/Statistics";
 
 const StatisticsPage = () => {
