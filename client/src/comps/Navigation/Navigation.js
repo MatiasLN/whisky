@@ -11,10 +11,6 @@ const Navigation = () => {
     document.querySelector(".mainMenuContainer").classList.toggle("show");
   };
 
-  const toggleClass = () => {
-    setActive(!isActive);
-  };
-
   return (
     <>
       {uid ? (
@@ -27,10 +23,20 @@ const Navigation = () => {
               <img src={photoURL} alt={displayName} />
               <p>Hei {displayName}</p>
               <nav className="mainMenu">
-                <NavLink to="/" activeClassName="active" exact={true}>
+                <NavLink
+                  to="/"
+                  activeClassName="active"
+                  exact={true}
+                  onClick={handleClose}
+                >
                   Hovedside
                 </NavLink>
-                <NavLink to="/stats" activeClassName="active" exact={true}>
+                <NavLink
+                  to="/stats"
+                  activeClassName="active"
+                  exact={true}
+                  onClick={handleClose}
+                >
                   Statistikk
                 </NavLink>
               </nav>
