@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../../firebase/config";
+import Loading from "../Loading/Loading";
 
 const Statistics = () => {
   const [uid] = useState(localStorage.getItem("uid"));
+  const [loading, setLoading] = useState(true);
   const [regions] = useState([]);
   const [regionCount, setRegionCount] = useState(null);
   const [price] = useState([]);
@@ -75,10 +77,15 @@ const Statistics = () => {
       count(regions, setRegionCount);
       setStars(stars);
       setTitles(titles);
+      setLoading(false);
     };
 
     getData();
   }, []);
+
+  if (loading === true) {
+    return <Loading />;
+  }
 
   return (
     <>

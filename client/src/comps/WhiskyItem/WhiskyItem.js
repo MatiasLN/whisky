@@ -8,6 +8,7 @@ import Image from "../WhiskyItem/Image/Image";
 import WhiskyData from "../WhiskyItem/WhiskyData/WhiskyData";
 import Modal from "../Modal/Modal";
 import Stats from "../Stats/Stats";
+import Loading from "../Loading/Loading";
 
 const ImageItem = () => {
   const [data, setData] = useState("");
@@ -17,6 +18,7 @@ const ImageItem = () => {
   const [title, setTitle] = useState("");
   const [id] = useState(localStorage.getItem("id"));
   const [uid] = useState(localStorage.getItem("uid"));
+  const [loading, setLoading] = useState(true);
 
   const { state, update } = useContext(WhiskyContext);
   const history = useHistory();
@@ -53,7 +55,8 @@ const ImageItem = () => {
       .catch(function (error) {
         console.log("Error getting document:", error);
       });
-  }, [state.searchResults, uid, id]);
+    setLoading(false);
+  }, [state.searchResults, uid, id, loading]);
 
   const handleSetRating = (rating) => {
     const collectionRef = projectFirestore.collection(uid).doc(id);
@@ -88,65 +91,63 @@ const ImageItem = () => {
     history.push("/");
   };
 
+  if (loading === true) {
+    return <Loading />;
+  }
+
   return (
     <>
-      {uid ? (
-        <>
-          <div className="whiskyItem">
-            <div className="image" key={id} onClick={handleModal}>
-              <Image data={url} />
-            </div>
-            <div className="titleContainer">
-              <h2>{title}</h2>
-              <div className="buttonGroup">
-                <button className="deleteButton" onClick={showDeletePopup}>
-                  Slett
-                </button>
-                <button
-                  className="editButton"
-                  onClick={() => {
-                    update({ manual: true });
-                  }}
-                >
-                  Rediger
-                </button>
-              </div>
-            </div>
-            <div className="notes">
-              <textarea
-                id="file-notes"
-                rows={5}
-                cols={5}
-                placeholder="Smaksnotater ..."
-                value={notes ? notes : ""}
-                onChange={changeHandlerTextarea}
-              />
-            </div>
-            <div className="rating">
-              <h2 className="ratingNumber">{rating} / 10</h2>
-              <StarRating rating={rating} setRating={handleSetRating} />
-            </div>
-            {title && <WhiskyData title={title} db={data} />}
-            <Stats db={data} />
+      <div className="whiskyItem">
+        <div className="image" key={id} onClick={handleModal}>
+          <Image data={url} />
+        </div>
+        <div className="titleContainer">
+          <h2>{title}</h2>
+          <div className="buttonGroup">
+            <button className="deleteButton" onClick={showDeletePopup}>
+              Slett
+            </button>
+            <button
+              className="editButton"
+              onClick={() => {
+                update({ manual: true });
+              }}
+            >
+              Rediger
+            </button>
           </div>
-          <Modal url={url} />
-          <div className="deleteItemContainer">
-            <div className="deleteItem">
-              <p className="deleteText">Vil du slette {title}?</p>
-              <div className="buttonGroup">
-                <button className="deleteButton" onClick={confirmDelete}>
-                  Ja, slett
-                </button>
-                <button className="closeButton" onClick={closeDeletePopup}>
-                  Nei, gå tilbake
-                </button>
-              </div>
-            </div>
+        </div>
+        <div className="notes">
+          <textarea
+            id="file-notes"
+            rows={5}
+            cols={5}
+            placeholder="Smaksnotater ..."
+            value={notes ? notes : ""}
+            onChange={changeHandlerTextarea}
+          />
+        </div>
+        <div className="rating">
+          <h2 className="ratingNumber">{rating} / 10</h2>
+          <StarRating rating={rating} setRating={handleSetRating} />
+        </div>
+        {title && <WhiskyData title={title} db={data} />}
+        <Stats db={data} />
+      </div>
+      <Modal url={url} />
+      <div className="deleteItemContainer">
+        <div className="deleteItem">
+          <p className="deleteText">Vil du slette {title}?</p>
+          <div className="buttonGroup">
+            <button className="deleteButton" onClick={confirmDelete}>
+              Ja, slett
+            </button>
+            <button className="closeButton" onClick={closeDeletePopup}>
+              Nei, gå tilbake
+            </button>
           </div>
-        </>
-      ) : (
-        <p>Laster ...</p>
-      )}
+        </div>
+      </div>
     </>
   );
 };

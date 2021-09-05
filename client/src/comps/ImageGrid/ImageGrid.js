@@ -1,7 +1,7 @@
 import React from "react";
 import useFirestore from "../../hooks/useFirestore";
 import ImageItem from "./ImageItem/ImageItem";
-import Loading from "../../images/loading.gif";
+import Loading from "../Loading/Loading";
 
 const ImageGrid = ({ data, setData, rating, setRating, search }) => {
   const { docs, loading } = useFirestore();
@@ -30,11 +30,6 @@ const ImageGrid = ({ data, setData, rating, setRating, search }) => {
     );
   }
 
-  return (
-    <div>
-      <img className="loadingAnimation" src={Loading} alt="loading animation" />
-      <p className="loading">Laster ...</p>;
-    </div>
-  );
+  return <Loading />;
 };
 export default ImageGrid;
