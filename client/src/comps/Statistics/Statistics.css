@@ -72,13 +72,6 @@
   align-self: center;
 }
 
-.fullWidthBlock {
-  margin: 40px auto;
-  padding: 40px 0;
-  background: var(--primary);
-  width: 100vw;
-}
-
 @media only screen and (min-width: 760px) {
   .destileriesContainer {
     padding: 40px 20px;
@@ -136,5 +129,12 @@
   .regionChart {
     width: 600px;
     margin: 0 20px;
+  }
+
+  .fullWidthBlock {
+    margin: 40px auto;
+    padding: 40px 0;
+    background: var(--primary);
+    width: 100vw;
   }
 }
