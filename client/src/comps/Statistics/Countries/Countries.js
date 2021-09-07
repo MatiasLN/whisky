@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useFirestore from "../../../hooks/useFirestore";
 import { Pie } from "react-chartjs-2";
+import { BrowserView, MobileOnlyView, TabletView } from "react-device-detect";
 
 const Countries = () => {
   const { docs } = useFirestore();
@@ -71,26 +72,38 @@ const Countries = () => {
 
   return (
     <>
-      <div className="chartContainer">
+      <BrowserView>
         <div className="chart countryChart">
           <h2>
-            <strong>{countryCount}</strong>land
+            Fra<strong>{countryCount}</strong>land
           </h2>
           <Pie data={data} options={options} />
         </div>
-      </div>
-      <div className="countriesContainer">
-        <h2>{countryCount} Land</h2>
-        {countries ? (
-          <ul>
-            {Object.entries(countries).map(([country, value]) => (
-              <li key={country}>
-                <p>{country}</p> <span>{value}</span>
-              </li>
-            ))}
-          </ul>
-        ) : null}
-      </div>
+      </BrowserView>
+
+      <TabletView>
+        <div className="chart countryChart">
+          <h2>
+            Fra<strong>{countryCount}</strong>land
+          </h2>
+          <Pie data={data} options={options} />
+        </div>
+      </TabletView>
+
+      <MobileOnlyView>
+        <div className="countriesContainer">
+          <h2>{countryCount} land</h2>
+          {countries ? (
+            <ul>
+              {Object.entries(countries).map(([country, value]) => (
+                <li key={country}>
+                  <p>{country}</p> <span>{value}</span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+      </MobileOnlyView>
     </>
   );
 };

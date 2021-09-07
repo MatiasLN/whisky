@@ -70,32 +70,31 @@ const Statistics = () => {
           </p>
         ) : null}
       </div>
-
-      <div></div>
-
       <h1>Dette er fordelt på</h1>
       <Distilleries />
-
-      <Regions />
-
-      <Countries />
-
-      <div className="percentageContainer">
-        {averageProcentage ? (
-          <p>
-            Gjennomsnittet på alkoholenstyrken er <br />
-            <strong>{averageProcentage.toFixed(2)}</strong> %
-          </p>
-        ) : null}
+      <div className="col-2">
+        <Regions />
+        <Countries />
       </div>
 
-      <div className="priceContainer">
-        {priceAvg ? (
-          <p>
-            Gjennomsnittlig pris på flaskene er <br />
-            <strong>{priceAvg}0</strong> NOK
-          </p>
-        ) : null}
+      <div className="fullWidthBlock">
+        <div className="percentageContainer">
+          {averageProcentage ? (
+            <p>
+              Gjennomsnittet på alkoholenstyrken er <br />
+              <strong>{averageProcentage.toFixed(2)}</strong> %
+            </p>
+          ) : null}
+        </div>
+
+        <div className="priceContainer">
+          {priceAvg ? (
+            <p>
+              Gjennomsnittlig pris på flaskene er <br />
+              <strong>{priceAvg}0</strong> NOK
+            </p>
+          ) : null}
+        </div>
       </div>
     </>
   );

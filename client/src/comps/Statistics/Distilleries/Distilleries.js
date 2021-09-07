@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useFirestore from "../../../hooks/useFirestore";
 import { Doughnut } from "react-chartjs-2";
+import { BrowserView, MobileOnlyView, TabletView } from "react-device-detect";
 
 const Distilleries = () => {
   const { docs } = useFirestore();
@@ -72,26 +73,38 @@ const Distilleries = () => {
 
   return (
     <>
-      <div className="chartContainer">
+      <BrowserView>
         <div className="chart destilleryChart">
           <h2>
-            <strong>{distCount}</strong>destillerier
+            Fra<strong>{distCount}</strong>destillerier
           </h2>
           <Doughnut data={data} options={options} />
         </div>
-      </div>
-      <div className="countriesContainer">
-        <h2>{distCount} Destillerier</h2>
-        {distilleries ? (
-          <ul>
-            {Object.entries(distilleries).map(([distillery, value]) => (
-              <li key={distillery}>
-                <p>{distillery}</p> <span>{value}</span>
-              </li>
-            ))}
-          </ul>
-        ) : null}
-      </div>
+      </BrowserView>
+
+      <TabletView>
+        <div className="chart destilleryChart">
+          <h2>
+            Fra<strong>{distCount}</strong>destillerier
+          </h2>
+          <Doughnut data={data} options={options} />
+        </div>
+      </TabletView>
+
+      <MobileOnlyView>
+        <div className="countriesContainer">
+          <h2>{distCount} destillerier</h2>
+          {distilleries ? (
+            <ul>
+              {Object.entries(distilleries).map(([distillery, value]) => (
+                <li key={distillery}>
+                  <p>{distillery}</p> <span>{value}</span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+      </MobileOnlyView>
     </>
   );
 };
