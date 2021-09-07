@@ -4,6 +4,7 @@ import useFirestore from "../../hooks/useFirestore";
 import Countries from "./Countries/Countries";
 import Distilleries from "./Distilleries/Distilleries";
 import Regions from "./Regions/Regions";
+import CreatedAt from "./CreatedAt/CreatedAt";
 
 const Statistics = () => {
   const [price] = useState([]);
@@ -96,6 +97,8 @@ const Statistics = () => {
           ) : null}
         </div>
       </div>
+
+      <CreatedAt />
     </>
   );
 };
