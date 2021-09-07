@@ -39,7 +39,7 @@ const Logo = () => {
 		C264,259.6,260.4,256,256,256z"
           />
         </svg>
-        <h1 className="logoTitle">Pet Sematary</h1>
+        <h1 className="logoTitle">Whisky &hearts;</h1>
       </Link>
     </>
   );
