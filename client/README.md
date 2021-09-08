@@ -2,17 +2,25 @@
 
 A whisky website to keep track of what I've tasted
 
-# Dependancies
+## Prerequisites
 
-npm v10.14.2 or greater
-yarn
-API key from Vinmonopolet:
+npm v10.14.2 or greater (v16.7.0 is recommended) needs to be installed.
+yarn needs to be installed globally
 
-./api/Vinmonopolet.js
-const apiKey = "your key here";
-export default apiKey;
+## Local development
 
-# Useful commands
+<ol>
+<li>Make sure you proxy port 5000 in package.json</li>
+<li>Run npm start from project root to start the Express server first</li>
+<li>Run yarn to install dependacies</li>
+<li>Run yarn start from the client directory to start the React app</li>
+<li>Visit http://localhost:3000/</li>
+</ol>
 
-yarn start - Spin up local server
-yarn deploy - Publish project to Github
+## Deployment to Heroku
+
+<ol>
+<li>initialise git repo</li>
+<li>Install heroku globally</li>
+<li>git push heroku master</li>
+</ol>
