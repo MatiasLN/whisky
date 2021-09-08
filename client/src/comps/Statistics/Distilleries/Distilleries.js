@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import useFirestore from "../../../hooks/useFirestore";
 import { Doughnut } from "react-chartjs-2";
-import { BrowserView, MobileOnlyView, TabletView } from "react-device-detect";
+import {
+  BrowserView,
+  MobileOnlyView,
+  TabletView,
+  MobileView,
+} from "react-device-detect";
 
 const Distilleries = () => {
   const { docs } = useFirestore();
@@ -14,6 +19,26 @@ const Distilleries = () => {
     plugins: {
       legend: {
         position: "right",
+      },
+    },
+  };
+
+  const tablet = {
+    plugins: {
+      legend: {
+        position: "bottom",
+        labels: {
+          align: "start",
+          padding: 15,
+        },
+      },
+    },
+  };
+
+  const mobile = {
+    plugins: {
+      legend: {
+        display: false,
       },
     },
   };
@@ -87,13 +112,18 @@ const Distilleries = () => {
           <h2>
             Fra<strong>{distCount}</strong>destillerier
           </h2>
-          <Doughnut data={data} options={options} />
+          <Doughnut data={data} options={tablet} />
         </div>
       </TabletView>
 
       <MobileOnlyView>
+        <div className="chart destilleryChart">
+          <h2>
+            Fra<strong>{distCount}</strong>destillerier
+          </h2>
+          <Doughnut data={data} options={mobile} />
+        </div>
         <div className="countriesContainer">
-          <h2>{distCount} destillerier</h2>
           {distilleries ? (
             <ul>
               {Object.entries(distilleries).map(([distillery, value]) => (

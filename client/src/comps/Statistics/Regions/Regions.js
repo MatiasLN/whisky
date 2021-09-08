@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import useFirestore from "../../../hooks/useFirestore";
 import { Bar } from "react-chartjs-2";
-import { BrowserView, MobileOnlyView, TabletView } from "react-device-detect";
+import {
+  BrowserView,
+  MobileOnlyView,
+  TabletView,
+  MobileView,
+} from "react-device-detect";
 
 const Regions = () => {
   const { docs } = useFirestore();
@@ -14,6 +19,26 @@ const Regions = () => {
     plugins: {
       legend: {
         position: "bottom",
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        grid: {
+          display: false,
+        },
+      },
+    },
+  };
+
+  const mobile = {
+    plugins: {
+      legend: {
+        display: false,
       },
     },
     scales: {
@@ -93,29 +118,14 @@ const Regions = () => {
         </div>
       </BrowserView>
 
-      <TabletView>
+      <MobileView>
         <div className="chart regionChart">
           <h2>
             Fra<strong>{regCount}</strong>regioner
           </h2>
-          <Bar data={data} options={options} />
+          <Bar data={data} options={mobile} />
         </div>
-      </TabletView>
-
-      <MobileOnlyView>
-        <div className="districtsContainer">
-          <h2>{regCount} regioner</h2>
-          {Regions ? (
-            <ul>
-              {Object.entries(Regions).map(([region, value]) => (
-                <li key={region}>
-                  <p>{region}</p> <span>{value}</span>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-        </div>
-      </MobileOnlyView>
+      </MobileView>
     </>
   );
 };

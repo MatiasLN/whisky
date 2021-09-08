@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import useFirestore from "../../../hooks/useFirestore";
 import { Pie } from "react-chartjs-2";
-import { BrowserView, MobileOnlyView, TabletView } from "react-device-detect";
+import {
+  BrowserView,
+  MobileOnlyView,
+  TabletView,
+  MobileView,
+} from "react-device-detect";
 
 const Countries = () => {
   const { docs } = useFirestore();
@@ -14,6 +19,17 @@ const Countries = () => {
     plugins: {
       legend: {
         position: "right",
+      },
+    },
+  };
+
+  const mobile = {
+    plugins: {
+      legend: {
+        position: "bottom",
+        labels: {
+          padding: 20,
+        },
       },
     },
   };
@@ -81,29 +97,14 @@ const Countries = () => {
         </div>
       </BrowserView>
 
-      <TabletView>
+      <MobileView>
         <div className="chart countryChart">
           <h2>
             Fra<strong>{countryCount}</strong>land
           </h2>
-          <Pie data={data} options={options} />
+          <Pie data={data} options={mobile} />
         </div>
-      </TabletView>
-
-      <MobileOnlyView>
-        <div className="countriesContainer">
-          <h2>{countryCount} land</h2>
-          {countries ? (
-            <ul>
-              {Object.entries(countries).map(([country, value]) => (
-                <li key={country}>
-                  <p>{country}</p> <span>{value}</span>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-        </div>
-      </MobileOnlyView>
+      </MobileView>
     </>
   );
 };

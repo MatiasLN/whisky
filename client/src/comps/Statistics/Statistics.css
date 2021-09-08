@@ -72,35 +72,70 @@
   align-self: center;
 }
 
+.createdAtChart h2 {
+  margin-bottom: 20px;
+}
+
+.chart strong {
+  font-size: 30px;
+  padding: 0 10px;
+  font-family: "Noto Serif";
+}
+
+.chart h2 {
+  font-size: 1em;
+}
+
+.destileriesContainer {
+  padding: 40px 20px;
+  margin: 40px 0;
+}
+
+.statisticsContainer h1 {
+  display: none;
+}
+
+.statisticsContainer h2 {
+  margin: 20px auto;
+}
+
+.destilleryChart h2 {
+  margin-bottom: 20px;
+}
+
+.percentageContainer,
+.priceContainer {
+  margin: 40px 0;
+}
+
+.countryChart,
+.destilleryChart {
+  margin-top: 40px;
+}
+
+.fullWidthBlock {
+  margin: 40px 0;
+  padding: 40px 0;
+  padding-bottom: 20px;
+  background: var(--primary);
+  width: 100vw;
+  margin-left: -10px;
+}
+
+.createdAtChart {
+  margin-bottom: 40px !important;
+}
+
 @media only screen and (min-width: 760px) {
-  .destileriesContainer {
-    padding: 40px 20px;
-    margin: 40px 0;
-  }
-
-  .statisticsContainer h1 {
-    display: none;
-  }
-
   .chart {
     display: block;
     width: 700px;
     margin: 0 auto;
   }
 
-  .countryChart,
-  .destilleryChart {
-    margin-top: 40px;
-  }
-
-  .chart strong {
-    font-size: 30px;
-    padding: 0 10px;
-    font-family: "Noto Serif";
-  }
-
-  .chart h2 {
-    font-size: 1em;
+  .countryChart {
+    width: 350px;
+    margin: 0 auto;
   }
 }
 
@@ -108,10 +143,12 @@
   .chart {
     width: 800px;
   }
+}
 
-  .percentageContainer,
-  .priceContainer {
-    margin: 40px 0;
+@media only screen and (min-width: 1025px) {
+  .destilleryChart h2 {
+    margin-bottom: -40px;
+    margin-top: 40px;
   }
 }
 

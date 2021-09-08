@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import useFirestore from "../../../hooks/useFirestore";
 import { Line } from "react-chartjs-2";
-import { BrowserView, MobileOnlyView, TabletView } from "react-device-detect";
+import {
+  BrowserView,
+  MobileOnlyView,
+  TabletView,
+  MobileView,
+} from "react-device-detect";
 
 const CreatedAt = () => {
   const { docs } = useFirestore();
   const [CreatedAt] = useState([]);
-  const [distCount, setDistCount] = useState(null);
-  const [name] = useState([]);
   const [amount] = useState([]);
 
   const options = {
@@ -34,7 +37,14 @@ const CreatedAt = () => {
     ],
     datasets: [
       {
-        label: "Antall flasker",
+        label: "2020",
+        data: [0, 2, 3, 0, 2, 4, 2, 0, 0, 1, 1],
+        backgroundColor: ["rgba(252, 213, 206)"],
+        borderColor: ["rgba(252, 213, 206)"],
+        borderWidth: 3,
+      },
+      {
+        label: "2021",
         data: amount,
         backgroundColor: ["rgba(254, 200, 154)"],
         borderColor: ["rgba(254, 200, 154)"],
@@ -42,12 +52,6 @@ const CreatedAt = () => {
       },
     ],
   };
-
-  function count(value, set) {
-    var total = 0;
-    Object.entries(value).map(([]) => (total += 1));
-    set(total);
-  }
 
   useEffect(() => {
     docs.map((item) => {
@@ -69,7 +73,6 @@ const CreatedAt = () => {
       } else {
         CreatedAt["2021-03"] = (CreatedAt["2021-03"] || 0) + 0;
       }
-
       if (item.createdAt.includes("2021-04")) {
         CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
       } else {
@@ -121,28 +124,26 @@ const CreatedAt = () => {
         CreatedAt["2021-12"] = (CreatedAt["2021-12"] || 0) + 0;
       }
     });
-    Object.entries(CreatedAt).map(([distillery, value]) => amount.push(value));
-    //  amount.reverse();
-    console.log(amount);
-
-    console.log(CreatedAt);
+    Object.entries(CreatedAt).map(([month, value]) => amount.push(value));
   }, [docs]);
 
   return (
     <>
       <BrowserView>
-        <div className="chart destilleryChart">
+        <div className="chart createdAtChart">
+          <h2>Når flaskene ble lagt til</h2>
           <Line data={data} options={options} />
         </div>
       </BrowserView>
 
-      <TabletView>
-        <div className="chart destilleryChart">
+      <MobileView>
+        <div className="chart createdAtChart">
+          <h2>Når flaskene ble lagt til</h2>
           <Line data={data} options={options} />
         </div>
-      </TabletView>
+      </MobileView>
 
-      <MobileOnlyView>
+      {/* <MobileOnlyView>
         <div className="countriesContainer">
           {CreatedAt ? (
             <ul>
@@ -154,7 +155,7 @@ const CreatedAt = () => {
             </ul>
           ) : null}
         </div>
-      </MobileOnlyView>
+      </MobileOnlyView> */}
     </>
   );
 };
