@@ -10,6 +10,7 @@ const Statistics = () => {
   const [price] = useState([]);
   const [stars, setStars] = useState([]);
   const [titles, setTitles] = useState([]);
+  const [totalPrice, setTotalPrice] = useState([]);
   const [percentages] = useState([]);
   const [averageProcentage, setAverageProcentage] = useState(null);
   const [priceAvg, setPriceAvg] = useState([]);
@@ -23,6 +24,14 @@ const Statistics = () => {
     }
     var value = total / num.length;
     set(value);
+  }
+
+  function total(value, set) {
+    let total = 0;
+    for (let i = 0; i < value.length; i++) {
+      total += value[i];
+    }
+    set(total);
   }
 
   useEffect(() => {
@@ -49,10 +58,12 @@ const Statistics = () => {
       let priceFormattedNumber = ("0" + priceNumber).slice(-6);
       if (formattedNumber != "aN") {
         price.push(parseInt(priceFormattedNumber));
+        totalPrice.push(parseInt(priceFormattedNumber));
       }
 
       calc(percentages, averageProcentage, setAverageProcentage);
       calc(price, priceAvg, setPriceAvg);
+      total(totalPrice, setTotalPrice);
       setStars(stars);
       setTitles(titles);
     });
@@ -99,6 +110,17 @@ const Statistics = () => {
       </div>
 
       <CreatedAt />
+
+      <div className="fullWidthBlock">
+        <div className="percentageContainer">
+          {totalPrice ? (
+            <p>
+              Totalprisen på flaskene er <br />
+              <strong>{totalPrice}</strong> NOK
+            </p>
+          ) : null}
+        </div>
+      </div>
     </>
   );
 };
