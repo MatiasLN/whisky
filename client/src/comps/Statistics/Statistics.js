@@ -53,6 +53,10 @@ const Statistics = () => {
       // add price to array and get them ready for avg calculation
       let priceNumber = "";
       priceNumber = item.polet_price;
+      priceNumber.toString().replace("Kr", "").replace(/\s+/g, "");
+
+      // console.log(parseInt(priceNumber));
+
       let priceDec = priceNumber - Math.floor(priceNumber);
       priceNumber = priceNumber - priceDec;
       let priceFormattedNumber = ("0" + priceNumber).slice(-6);
@@ -102,7 +106,7 @@ const Statistics = () => {
         <div className="priceContainer">
           {priceAvg ? (
             <p>
-              Gjennomsnittlig pris på flaskene er <br />
+              Gjennomsnittlig pris for flaskene er <br />
               <strong>{priceAvg}0</strong> NOK
             </p>
           ) : null}
@@ -115,8 +119,9 @@ const Statistics = () => {
         <div className="percentageContainer">
           {totalPrice ? (
             <p>
-              Totalprisen på flaskene er <br />
-              <strong>{totalPrice}</strong> NOK
+              Totalprisen for flaskene er <br />
+              <strong>{totalPrice.toLocaleString().replace(",", " ")}</strong>
+              NOK
             </p>
           ) : null}
         </div>
