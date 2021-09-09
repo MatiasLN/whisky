@@ -60,8 +60,10 @@ const Statistics = () => {
         .replace(",", ".");
 
       if (priceNumber.includes(".9")) {
-        priceNumber = priceNumber + 0;
+        priceNumber = priceNumber - 0.9;
       }
+
+      console.log(priceNumber);
 
       let priceDec = priceNumber - Math.floor(priceNumber);
       priceNumber = priceNumber - priceDec;
@@ -113,7 +115,7 @@ const Statistics = () => {
           {priceAvg ? (
             <p>
               Gjennomsnittlig pris for flaskene er <br />
-              <strong>{priceAvg}0</strong> NOK
+              <strong>{priceAvg.toFixed(2)}</strong> NOK
             </p>
           ) : null}
         </div>
