@@ -61,6 +61,7 @@ const FetchData = ({ notFound, setCallback }) => {
       })
         .then((response) => response.json())
         .then((data) => {
+          // format price
           data.price = data.price
             .toString()
             .replace("Kr", "")
@@ -69,6 +70,9 @@ const FetchData = ({ notFound, setCallback }) => {
           if (data.price.includes(".9")) {
             data.price = data.price - 0.9;
           }
+
+          // remove unused %
+          data.percentage = data.percentage.replace("%", "");
 
           data.details.map(getProductDetails);
           function getProductDetails(item) {

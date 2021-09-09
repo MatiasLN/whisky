@@ -48,6 +48,9 @@ let ProductDetails = ({
     price = price - 0.9;
   }
 
+  // remove unused %
+  alcohol = alcohol.replace("%", "");
+
   useEffect(() => {
     collectionRef.update({
       polet_name: productNameState,
