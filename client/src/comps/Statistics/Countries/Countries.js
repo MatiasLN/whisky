@@ -38,12 +38,11 @@ const Countries = () => {
     labels: name,
     datasets: [
       {
-        label: "Antall flasker",
+        label: "Land",
         data: amount,
         backgroundColor: [
           "rgba(254, 200, 154)",
-          "rgba(255, 215, 186)",
-          "rgba(255, 229, 217)",
+          "rgba(216, 226, 220)",
           "rgba(254, 197, 187)",
           "rgba(252, 213, 206)",
           "rgba(250, 225, 221)",
@@ -54,8 +53,7 @@ const Countries = () => {
         ],
         borderColor: [
           "rgba(254, 200, 154)",
-          "rgba(255, 215, 186)",
-          "rgba(255, 229, 217)",
+          "rgba(232, 232, 228)",
           "rgba(254, 197, 187)",
           "rgba(252, 213, 206)",
           "rgba(250, 225, 221)",
