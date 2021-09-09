@@ -58,70 +58,65 @@ const CreatedAt = () => {
       item.createdAt = item.createdAt
         .toDate()
         .toLocaleDateString("nb-NO", { year: "numeric", month: "2-digit" });
-      if (item.createdAt.includes("2021-01")) {
+      if (item.createdAt.includes("01.2021")) {
         CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["2021-01"] = (CreatedAt["2021-01"] || 0) + 0;
+        CreatedAt["01.2021"] = (CreatedAt["01.2021"] || 0) + 0;
       }
-      if (item.createdAt.includes("2021-02")) {
+      if (item.createdAt.includes("02.2021")) {
         CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["2021-02"] = (CreatedAt["2021-02"] || 0) + 0;
+        CreatedAt["02.2021"] = (CreatedAt["02.2021"] || 0) + 0;
       }
-      if (item.createdAt.includes("2021-03")) {
+      if (item.createdAt.includes("03.2021")) {
         CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["2021-03"] = (CreatedAt["2021-03"] || 0) + 0;
+        CreatedAt["03.2021"] = (CreatedAt["03.2021"] || 0) + 0;
       }
-      if (item.createdAt.includes("2021-04")) {
+      if (item.createdAt.includes("04.2021")) {
         CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["2021-04"] = (CreatedAt["2021-04"] || 0) + 0;
+        CreatedAt["04.2021"] = (CreatedAt["04.2021"] || 0) + 0;
       }
-      if (item.createdAt.includes("2021-02")) {
+      if (item.createdAt.includes("05.2021")) {
         CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["2021-05"] = (CreatedAt["2021-05"] || 0) + 0;
+        CreatedAt["05.2021"] = (CreatedAt["05.2021"] || 0) + 0;
       }
-      if (item.createdAt.includes("2021-05")) {
+      if (item.createdAt.includes("06.2021")) {
         CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["2021-05"] = (CreatedAt["2021-05"] || 0) + 0;
+        CreatedAt["06.2021"] = (CreatedAt["06.2021"] || 0) + 0;
       }
-      if (item.createdAt.includes("2021-06")) {
+      if (item.createdAt.includes("07.2021")) {
         CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["2021-06"] = (CreatedAt["2021-06"] || 0) + 0;
+        CreatedAt["07.2021"] = (CreatedAt["07.2021"] || 0) + 0;
       }
-      if (item.createdAt.includes("2021-07")) {
+      if (item.createdAt.includes("08.2021")) {
         CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["2021-07"] = (CreatedAt["2021-07"] || 0) + 0;
+        CreatedAt["08.2021"] = (CreatedAt["08.2021"] || 0) + 0;
       }
-      if (item.createdAt.includes("2021-08")) {
+      if (item.createdAt.includes("09.2021")) {
         CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["2021-08"] = (CreatedAt["2021-08"] || 0) + 0;
+        CreatedAt["09.2021"] = (CreatedAt["09.2021"] || 0) + 0;
       }
-      if (item.createdAt.includes("2021-09")) {
+      if (item.createdAt.includes("10.2021")) {
         CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["2021-09"] = (CreatedAt["2021-09"] || 0) + 0;
+        CreatedAt["10.2021"] = (CreatedAt["10.2021"] || 0) + 0;
       }
-      if (item.createdAt.includes("2021-10")) {
+      if (item.createdAt.includes("11.2021")) {
         CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["2021-10"] = (CreatedAt["2021-10"] || 0) + 0;
+        CreatedAt["11.2021"] = (CreatedAt["11.2021"] || 0) + 0;
       }
-      if (item.createdAt.includes("2021-11")) {
+      if (item.createdAt.includes("12.2021")) {
         CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["2021-11"] = (CreatedAt["2021-11"] || 0) + 0;
-      }
-      if (item.createdAt.includes("2021-12")) {
-        CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
-      } else {
-        CreatedAt["2021-12"] = (CreatedAt["2021-12"] || 0) + 0;
+        CreatedAt["12.2021"] = (CreatedAt["12.2021"] || 0) + 0;
       }
     });
     Object.entries(CreatedAt).map(([month, value]) => amount.push(value));
