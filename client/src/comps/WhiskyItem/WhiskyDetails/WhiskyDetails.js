@@ -37,6 +37,17 @@ let ProductDetails = ({
   const [odourState, setDescOdour] = useState(descOdour);
   const [colourState, setDescColour] = useState(descColour);
 
+  // format price
+  price = price
+    .toString()
+    .replace("Kr", "")
+    .replace(/\s+/g, "")
+    .replace(",", ".");
+
+  if (price.includes(".9")) {
+    price = price - 0.9;
+  }
+
   useEffect(() => {
     collectionRef.update({
       polet_name: productNameState,

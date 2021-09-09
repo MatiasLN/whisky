@@ -53,9 +53,15 @@ const Statistics = () => {
       // add price to array and get them ready for avg calculation
       let priceNumber = "";
       priceNumber = item.polet_price;
-      priceNumber.toString().replace("Kr", "").replace(/\s+/g, "");
+      priceNumber = priceNumber
+        .toString()
+        .replace("Kr", "")
+        .replace(/\s+/g, "")
+        .replace(",", ".");
 
-      // console.log(parseInt(priceNumber));
+      if (priceNumber.includes(".9")) {
+        priceNumber = priceNumber + 0;
+      }
 
       let priceDec = priceNumber - Math.floor(priceNumber);
       priceNumber = priceNumber - priceDec;

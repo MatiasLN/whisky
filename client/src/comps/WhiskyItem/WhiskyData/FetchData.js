@@ -61,6 +61,15 @@ const FetchData = ({ notFound, setCallback }) => {
       })
         .then((response) => response.json())
         .then((data) => {
+          data.price = data.price
+            .toString()
+            .replace("Kr", "")
+            .replace(/\s+/g, "")
+            .replace(",", ".");
+          if (data.price.includes(".9")) {
+            data.price = data.price - 0.9;
+          }
+
           data.details.map(getProductDetails);
           function getProductDetails(item) {
             if (item.type === "Varenummer") {
