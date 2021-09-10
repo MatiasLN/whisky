@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import { projectFirestore } from "../../../firebase/config";
 import { WhiskyContext } from "../../../context/WhiskyContext";
+import Loading from "../../LoadingCircle/LoadingCircle";
 
 const FetchData = ({ notFound, setCallback }) => {
   const [input, setInput] = useState("");
   const [data, setData] = useState("");
   const [isLoading, setLoading] = useState(true);
+  const [loadingCircle, setLoadingCircle] = useState(false);
   const [id] = useState(localStorage.getItem("id"));
   const [uid] = useState(localStorage.getItem("uid"));
   const [selected, setSelected] = useState(null);
@@ -24,6 +26,14 @@ const FetchData = ({ notFound, setCallback }) => {
         ":relevance:visibleInSearch:true:mainCategory:brennevin:mainSubCategory:brennevin_whisky&searchType=product"
     );
   }, [input]);
+
+  const handleSelectedClick = () => {
+    setLoadingCircle(true);
+    let changeStyle = document.querySelectorAll(".whiskyDescription");
+    let changeStyle2 = document.querySelectorAll(".whiskyDetails");
+    changeStyle[0].style.opacity = "0.1";
+    changeStyle2[0].style.opacity = "0.1";
+  };
 
   const handleRequest = () => {
     fetch("/api/search", {
@@ -48,6 +58,7 @@ const FetchData = ({ notFound, setCallback }) => {
     const searchResults = document.querySelectorAll(".searchResults");
     searchResults[0].style.display = "block";
     searchResults[1].style.display = "block";
+    window.scrollTo(0, document.body.scrollHeight);
   };
 
   useEffect(() => {
@@ -109,8 +120,17 @@ const FetchData = ({ notFound, setCallback }) => {
             await update({ searchResults: selected });
           };
           updateDetails();
-
+          setLoading(false);
+          setLoadingCircle(false);
+          let changeStyle = document.querySelectorAll(
+            ".whiskyDetailsContainer"
+          );
           const searchResults = document.querySelectorAll(".searchResults");
+          let changeStyle2 = document.querySelectorAll(".whiskyDescription");
+          let changeStyle3 = document.querySelectorAll(".whiskyDetails");
+          changeStyle[0].removeAttribute("style");
+          changeStyle2[0].removeAttribute("style");
+          changeStyle3[0].removeAttribute("style");
           searchResults[0].style.display = "none";
           searchResults[1].style.display = "none";
         });
@@ -120,25 +140,28 @@ const FetchData = ({ notFound, setCallback }) => {
   return (
     <>
       <div className="getWhiskyInfo">
-        {notFound ? (
-          <p className="noDataFound">Søk etter produktet hos Vinmonopolet</p>
-        ) : (
-          <p>Stemmer ikke informasjonen?</p>
-        )}
+        {loadingCircle ? (
+          <div className="loadingCircle">
+            <h3 className="loadingData">Oppdaterer data ...</h3>
+            <Loading />
+          </div>
+        ) : null}
+        <p>Søk etter produktet hos Vinmonopolet</p>
         <div className="searchForm">
           <input
             type="text"
             onChange={(event) => setInput(event.target.value)}
           />
           <button className="addNewBtn search" onClick={handleRequest}>
-            Finn riktig produkt
+            Finn produkt
           </button>
         </div>
-        <div className="searchResults">
+        <div id="loadingAnchor" className="searchResults">
           {isLoading ? (
-            <h3 className="loadingData">
-              Søker etter produkter på Vinmonopolet ...
-            </h3>
+            <>
+              <Loading />
+              <h3 className="loadingData">Henter data fra Vinmonopolet ...</h3>
+            </>
           ) : (
             <div className="displayData">
               <ul>
@@ -149,6 +172,7 @@ const FetchData = ({ notFound, setCallback }) => {
                       onClick={function () {
                         setSelected(data);
                         setProductUrl("http://vinmonopolet.no" + data.url);
+                        handleSelectedClick();
                       }}
                     >
                       {data.name}
