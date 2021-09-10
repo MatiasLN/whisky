@@ -63,8 +63,6 @@ const Statistics = () => {
         priceNumber = priceNumber - 0.9;
       }
 
-      console.log(priceNumber);
-
       let priceDec = priceNumber - Math.floor(priceNumber);
       priceNumber = priceNumber - priceDec;
       let priceFormattedNumber = ("0" + priceNumber).slice(-6);
