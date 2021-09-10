@@ -49,7 +49,10 @@ let ProductDetails = ({
   }
 
   // remove unused %
-  alcohol = alcohol.replace("%", "");
+  alcohol = alcohol.toString();
+  if (alcohol.includes("%")) {
+    alcohol = alcohol.replace("%", "");
+  }
 
   useEffect(() => {
     collectionRef.update({
