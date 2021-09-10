@@ -20,6 +20,9 @@ const Countries = () => {
       legend: {
         position: "right",
       },
+      datalabels: {
+        color: "#36A2EB",
+      },
     },
   };
 
