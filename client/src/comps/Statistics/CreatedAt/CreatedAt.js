@@ -10,8 +10,10 @@ import {
 
 const CreatedAt = () => {
   const { docs } = useFirestore();
-  const [CreatedAt] = useState([]);
-  const [amount] = useState([]);
+  const [twentyOneCount] = useState([]);
+  const [twentyOneAmount] = useState([]);
+  const [twentyTwoCount] = useState([]);
+  const [twentyTwoAmount] = useState([]);
 
   const options = {
     plugins: {
@@ -45,11 +47,18 @@ const CreatedAt = () => {
       },
       {
         label: "2021",
-        data: amount,
+        data: twentyOneAmount,
         backgroundColor: ["rgba(254, 200, 154)"],
         borderColor: ["rgba(254, 200, 154)"],
         borderWidth: 3,
       },
+      // {
+      //   label: "2022",
+      //   data: twentyTwoAmount,
+      //   backgroundColor: ["rgba(216, 226, 220)"],
+      //   borderColor: ["rgba(216, 226, 220)"],
+      //   borderWidth: 3,
+      // },
     ],
   };
 
@@ -58,68 +67,161 @@ const CreatedAt = () => {
       item.createdAt = item.createdAt
         .toDate()
         .toLocaleDateString("nb-NO", { year: "numeric", month: "2-digit" });
+
+      // 2021
       if (item.createdAt.includes("01.2021")) {
-        CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
+        twentyOneCount[item.createdAt] =
+          (twentyOneCount[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["01.2021"] = (CreatedAt["01.2021"] || 0) + 0;
+        twentyOneCount["01.2021"] = (twentyOneCount["01.2021"] || 0) + 0;
       }
       if (item.createdAt.includes("02.2021")) {
-        CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
+        twentyOneCount[item.createdAt] =
+          (twentyOneCount[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["02.2021"] = (CreatedAt["02.2021"] || 0) + 0;
+        twentyOneCount["02.2021"] = (twentyOneCount["02.2021"] || 0) + 0;
       }
       if (item.createdAt.includes("03.2021")) {
-        CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
+        twentyOneCount[item.createdAt] =
+          (twentyOneCount[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["03.2021"] = (CreatedAt["03.2021"] || 0) + 0;
+        twentyOneCount["03.2021"] = (twentyOneCount["03.2021"] || 0) + 0;
       }
       if (item.createdAt.includes("04.2021")) {
-        CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
+        twentyOneCount[item.createdAt] =
+          (twentyOneCount[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["04.2021"] = (CreatedAt["04.2021"] || 0) + 0;
+        twentyOneCount["04.2021"] = (twentyOneCount["04.2021"] || 0) + 0;
       }
       if (item.createdAt.includes("05.2021")) {
-        CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
+        twentyOneCount[item.createdAt] =
+          (twentyOneCount[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["05.2021"] = (CreatedAt["05.2021"] || 0) + 0;
+        twentyOneCount["05.2021"] = (twentyOneCount["05.2021"] || 0) + 0;
       }
       if (item.createdAt.includes("06.2021")) {
-        CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
+        twentyOneCount[item.createdAt] =
+          (twentyOneCount[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["06.2021"] = (CreatedAt["06.2021"] || 0) + 0;
+        twentyOneCount["06.2021"] = (twentyOneCount["06.2021"] || 0) + 0;
       }
       if (item.createdAt.includes("07.2021")) {
-        CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
+        twentyOneCount[item.createdAt] =
+          (twentyOneCount[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["07.2021"] = (CreatedAt["07.2021"] || 0) + 0;
+        twentyOneCount["07.2021"] = (twentyOneCount["07.2021"] || 0) + 0;
       }
       if (item.createdAt.includes("08.2021")) {
-        CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
+        twentyOneCount[item.createdAt] =
+          (twentyOneCount[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["08.2021"] = (CreatedAt["08.2021"] || 0) + 0;
+        twentyOneCount["08.2021"] = (twentyOneCount["08.2021"] || 0) + 0;
       }
       if (item.createdAt.includes("09.2021")) {
-        CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
+        twentyOneCount[item.createdAt] =
+          (twentyOneCount[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["09.2021"] = (CreatedAt["09.2021"] || 0) + 0;
+        twentyOneCount["09.2021"] = (twentyOneCount["09.2021"] || 0) + 0;
       }
       if (item.createdAt.includes("10.2021")) {
-        CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
+        twentyOneCount[item.createdAt] =
+          (twentyOneCount[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["10.2021"] = (CreatedAt["10.2021"] || 0) + 0;
+        twentyOneCount["10.2021"] = (twentyOneCount["10.2021"] || 0) + 0;
       }
       if (item.createdAt.includes("11.2021")) {
-        CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
+        twentyOneCount[item.createdAt] =
+          (twentyOneCount[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["11.2021"] = (CreatedAt["11.2021"] || 0) + 0;
+        twentyOneCount["11.2021"] = (twentyOneCount["11.2021"] || 0) + 0;
       }
       if (item.createdAt.includes("12.2021")) {
-        CreatedAt[item.createdAt] = (CreatedAt[item.createdAt] || 0) + 1;
+        twentyOneCount[item.createdAt] =
+          (twentyOneCount[item.createdAt] || 0) + 1;
       } else {
-        CreatedAt["12.2021"] = (CreatedAt["12.2021"] || 0) + 0;
+        twentyOneCount["12.2021"] = (twentyOneCount["12.2021"] || 0) + 0;
+      }
+
+      // 2020
+      if (item.createdAt.includes("01.2020")) {
+        twentyTwoCount[item.createdAt] =
+          (twentyTwoCount[item.createdAt] || 0) + 1;
+      } else {
+        twentyTwoCount["01.2020"] = (twentyTwoCount["01.2020"] || 0) + 0;
+      }
+      if (item.createdAt.includes("02.2020")) {
+        twentyTwoCount[item.createdAt] =
+          (twentyTwoCount[item.createdAt] || 0) + 1;
+      } else {
+        twentyTwoCount["02.2020"] = (twentyTwoCount["02.2020"] || 0) + 0;
+      }
+      if (item.createdAt.includes("03.2020")) {
+        twentyTwoCount[item.createdAt] =
+          (twentyTwoCount[item.createdAt] || 0) + 1;
+      } else {
+        twentyTwoCount["03.2020"] = (twentyTwoCount["03.2020"] || 0) + 0;
+      }
+      if (item.createdAt.includes("04.2020")) {
+        twentyTwoCount[item.createdAt] =
+          (twentyTwoCount[item.createdAt] || 0) + 1;
+      } else {
+        twentyTwoCount["04.2020"] = (twentyTwoCount["04.2020"] || 0) + 0;
+      }
+      if (item.createdAt.includes("05.2020")) {
+        twentyTwoCount[item.createdAt] =
+          (twentyTwoCount[item.createdAt] || 0) + 1;
+      } else {
+        twentyTwoCount["05.2020"] = (twentyTwoCount["05.2020"] || 0) + 0;
+      }
+      if (item.createdAt.includes("06.2020")) {
+        twentyTwoCount[item.createdAt] =
+          (twentyTwoCount[item.createdAt] || 0) + 1;
+      } else {
+        twentyTwoCount["06.2020"] = (twentyTwoCount["06.2020"] || 0) + 0;
+      }
+      if (item.createdAt.includes("07.2020")) {
+        twentyTwoCount[item.createdAt] =
+          (twentyTwoCount[item.createdAt] || 0) + 1;
+      } else {
+        twentyTwoCount["07.2020"] = (twentyTwoCount["07.2020"] || 0) + 0;
+      }
+      if (item.createdAt.includes("08.2020")) {
+        twentyTwoCount[item.createdAt] =
+          (twentyTwoCount[item.createdAt] || 0) + 1;
+      } else {
+        twentyTwoCount["08.2020"] = (twentyTwoCount["08.2020"] || 0) + 0;
+      }
+      if (item.createdAt.includes("09.2020")) {
+        twentyTwoCount[item.createdAt] =
+          (twentyTwoCount[item.createdAt] || 0) + 1;
+      } else {
+        twentyTwoCount["09.2020"] = (twentyTwoCount["09.2020"] || 0) + 0;
+      }
+      if (item.createdAt.includes("10.2020")) {
+        twentyTwoCount[item.createdAt] =
+          (twentyTwoCount[item.createdAt] || 0) + 1;
+      } else {
+        twentyTwoCount["10.2020"] = (twentyTwoCount["10.2020"] || 0) + 0;
+      }
+      if (item.createdAt.includes("11.2020")) {
+        twentyTwoCount[item.createdAt] =
+          (twentyTwoCount[item.createdAt] || 0) + 1;
+      } else {
+        twentyTwoCount["11.2020"] = (twentyTwoCount["11.2020"] || 0) + 0;
+      }
+      if (item.createdAt.includes("12.2020")) {
+        twentyTwoCount[item.createdAt] =
+          (twentyTwoCount[item.createdAt] || 0) + 1;
+      } else {
+        twentyTwoCount["12.2020"] = (twentyTwoCount["12.2020"] || 0) + 0;
       }
     });
-    Object.entries(CreatedAt).map(([month, value]) => amount.push(value));
+    Object.entries(twentyOneCount).map(([month, value]) =>
+      twentyOneAmount.push(value)
+    );
+    Object.entries(twentyTwoCount).map(([month, value]) =>
+      twentyTwoAmount.push(value)
+    );
   }, [docs]);
 
   return (
@@ -137,20 +239,6 @@ const CreatedAt = () => {
           <Line data={data} options={options} />
         </div>
       </MobileView>
-
-      {/* <MobileOnlyView>
-        <div className="countriesContainer">
-          {CreatedAt ? (
-            <ul>
-              {Object.entries(CreatedAt).map(([distillery, value]) => (
-                <li key={distillery}>
-                  <p>{distillery}</p> <span>{value}</span>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-        </div>
-      </MobileOnlyView> */}
     </>
   );
 };
