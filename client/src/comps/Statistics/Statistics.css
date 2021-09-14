@@ -38,7 +38,6 @@
 .destileriesContainer,
 .countriesContainer {
   background-color: var(--primary);
-  padding: 20px;
   margin: 20px -10px;
 }
 
@@ -60,8 +59,13 @@
 .countriesContainer li {
   width: 100%;
   display: grid;
-  grid-template-columns: 95% auto;
+  grid-template-columns: 75% auto;
   columns: 2;
+  padding: 0 20px;
+}
+
+.countriesContainer li:nth-child(odd) {
+  background-color: #fff;
 }
 
 .destileriesContainer span,
