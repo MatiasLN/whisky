@@ -21,7 +21,7 @@ const FetchData = ({ notFound, setCallback }) => {
 
   useEffect(() => {
     setUrl(
-      "https://www.vinmonopolet.no/vmp/search/?q=" +
+      "https://www.vinmonopolet.no/search/?q=" +
         whiskyName +
         ":relevance:visibleInSearch:true:mainCategory:brennevin:mainSubCategory:brennevin_whisky&searchType=product"
     );
