@@ -13,7 +13,7 @@ const searchScraper = async (url) => {
   });
   const page = await browser.newPage();
   await page.goto(url, { timeout: 60000 });
-  await page.waitForSelector(".product-item");
+  await page.waitForSelector("#page");
   await page.waitFor(3000);
 
   // extracting information from code
@@ -22,7 +22,8 @@ const searchScraper = async (url) => {
       ".product-item__info-container"
     );
 
-    let productDetails = Object.values(productDetailsElement).map((x) => {
+    let productDetails = "";
+    productDetails = Object.values(productDetailsElement).map((x) => {
       let url = x.getElementsByTagName("a")[0].getAttribute("href");
       let name = x.querySelector(".product__name").textContent ?? null;
 
@@ -31,7 +32,6 @@ const searchScraper = async (url) => {
         name,
       };
     });
-
     return productDetails;
   });
 

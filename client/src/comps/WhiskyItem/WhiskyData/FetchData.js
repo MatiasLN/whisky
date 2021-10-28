@@ -36,6 +36,7 @@ const FetchData = ({ notFound, setCallback }) => {
   };
 
   const handleRequest = () => {
+    setLoading(true);
     fetch("/api/search", {
       method: "POST",
       headers: {
