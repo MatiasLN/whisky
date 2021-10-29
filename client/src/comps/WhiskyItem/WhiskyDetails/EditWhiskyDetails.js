@@ -3,6 +3,7 @@ import { projectFirestore } from "../../../firebase/config";
 import { WhiskyContext } from "../../../context/WhiskyContext";
 
 let ProductDetails = ({ name, db }) => {
+  const { state, update } = useContext(WhiskyContext);
   const [title, setTitle] = useState(db.polet_name);
   const [productID, setProductID] = useState(db.polet_productID);
   const [percentage, setPercentage] = useState(db.polet_percentage);
@@ -15,10 +16,14 @@ let ProductDetails = ({ name, db }) => {
   const [descTaste, setDescTaste] = useState(db.polet_descTaste);
   const [id] = useState(localStorage.getItem("id"));
   const [uid] = useState(localStorage.getItem("uid"));
-  const [updateStatus, setUpdateStatus] = useState(null);
-
-  const { update } = useContext(WhiskyContext);
+  const [updateStatus, setUpdateStatus] = useState(state.updateEditedDetails);
   const collectionRef = projectFirestore.collection(uid).doc(id);
+
+  useEffect(() => {
+    if (state.updateEditedDetails) {
+      setUpdateStatus(true);
+    }
+  }, [state.updateEditedDetails]);
 
   useEffect(() => {
     if (updateStatus) {
@@ -76,6 +81,11 @@ let ProductDetails = ({ name, db }) => {
         await update({ manual: false });
       };
       updateDetails();
+      setUpdateStatus(false);
+      update({
+        updateEditedDetails: (state.updateEditedDetails =
+          !state.updateEditedDetails),
+      });
     }
   }, [updateStatus]);
 
@@ -194,15 +204,6 @@ let ProductDetails = ({ name, db }) => {
             </li>
           </ul>
         </div>
-        <button
-          className="addNewBtn"
-          style={{ marginTop: 0 }}
-          onClick={() => {
-            setUpdateStatus(true);
-          }}
-        >
-          Lagre endringer
-        </button>
       </div>
     </>
   );

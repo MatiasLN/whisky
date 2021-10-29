@@ -19,6 +19,7 @@ const ImageItem = () => {
   const [id] = useState(localStorage.getItem("id"));
   const [uid] = useState(localStorage.getItem("uid"));
   const [loading, setLoading] = useState(true);
+  const [isActive, setActive] = useState(false);
 
   const { state, update } = useContext(WhiskyContext);
   const history = useHistory();
@@ -107,14 +108,33 @@ const ImageItem = () => {
             <button className="deleteButton" onClick={showDeletePopup}>
               Slett
             </button>
-            <button
-              className="editButton"
-              onClick={() => {
-                update({ manual: true });
-              }}
-            >
-              Rediger
-            </button>
+
+            {isActive ? (
+              <button
+                className="editButton"
+                onClick={() => {
+                  update({
+                    updateEditedDetails: (state.updateEditedDetails =
+                      !state.updateEditedDetails),
+                  });
+                  setActive(false);
+                }}
+              >
+                Lagre endringer
+              </button>
+            ) : (
+              <button
+                className="active editButton"
+                onClick={() => {
+                  update({
+                    manual: (state.manual = !state.manual),
+                  });
+                  setActive(true);
+                }}
+              >
+                Rediger
+              </button>
+            )}
           </div>
         </div>
         <div className="notes">
