@@ -6,6 +6,7 @@
   "author": "Matias Lie-Nielsen",
   "scripts": {
     "start": "node index.js",
+    "deploy": "git push heroku master",
     "heroku-postbuild": "cd client && yarn && yarn run build"
   },
   "keywords": [],
