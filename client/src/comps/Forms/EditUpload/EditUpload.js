@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ProgressBar from "./ProgressBar";
-import StarRating from "../../StarRating/StarRating";
+import { WhiskyContext } from "../../../context/WhiskyContext";
 
 const EditUpload = ({ title, notes }) => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const types = ["image/png", "image/jpg", "image/jpeg", "image/heic"];
-  const [rating, setRating] = useState(0);
   const [submit, setSumbit] = useState("");
+  const { state } = useContext(WhiskyContext);
+
+  useEffect(() => {
+    console.log(state.id);
+  }, []);
 
   function handleUpload(e) {
     let selected = e.target.files[0];
@@ -27,18 +31,10 @@ const EditUpload = ({ title, notes }) => {
     }
   }
 
-  const handleSetRating = (rating) => {
-    setRating(rating);
-    localStorage.setItem("rating", rating);
-  };
-
   const handleExit = (e) => {
     e.preventDefault();
     document.querySelector("form").style.display = "none";
     document.querySelector(".whiskyItem").style.display = "grid";
-    document.querySelector("#file-title").value = "";
-    document.querySelector("#file-title").style.borderColor = "#4e4e4e";
-    document.querySelector("#file-notes").value = "";
     document.querySelector(".custom-file-upload").innerHTML =
       "Legg til nytt bilde";
     document.querySelector(".thumbnail").innerHTML = "";
@@ -47,42 +43,20 @@ const EditUpload = ({ title, notes }) => {
     }
   };
 
-  const handleInput = (event) => {
-    const { name, value } = event.currentTarget;
-
-    if (name === "title") {
-      console.log(value);
-      localStorage.setItem("title", value);
-    } else if (name === "notes") {
-      localStorage.setItem("notes", value);
-    }
-  };
-
   const handleSumbit = (e) => {
     e.preventDefault();
-    if (!document.getElementById("file-title").value) {
-      var node = document.getElementById("file-title");
-      node.insertAdjacentHTML(
-        "afterend",
-        "<div class='error'><p>Du må legge til en tittel</p></div>"
-      );
-      node.scrollIntoView();
-      node.style.borderColor = "red";
-    } else {
-      setFile(submit);
-    }
+    setFile(submit);
   };
 
   return (
     <>
       <button
-        className="editWhiskyBtn"
+        className="changeImageBtn"
         onClick={(e) => {
           document.querySelector(".editForm").style.display = "flex";
-          document.querySelector(".whiskyItem").style.display = "none";
         }}
       >
-        Rediger {title}
+        Last opp et nytt bilde {title}
       </button>
       <form className="editForm" method="post" style={{ display: "none" }}>
         <button
@@ -93,24 +67,6 @@ const EditUpload = ({ title, notes }) => {
         >
           Lukk
         </button>
-        <input
-          id="file-title"
-          type="text"
-          name="title"
-          placeholder={title}
-          onChange={(event) => handleInput(event)}
-        />
-        <textarea
-          id="file-notes"
-          name="notes"
-          rows={5}
-          cols={5}
-          placeholder={notes}
-          onChange={(event) => handleInput(event)}
-        />
-        <div className="starRating">
-          <StarRating rating={rating} setRating={handleSetRating} />
-        </div>
         {<div className="thumbnail"></div>}
         <label htmlFor="file-upload" className="custom-file-upload">
           Legg til bilde
@@ -118,16 +74,14 @@ const EditUpload = ({ title, notes }) => {
         <input id="file-upload" type="file" onChange={handleUpload} />
         <div className="output">
           {error && <div className="error">{error}</div>}
-          {file && (
-            <ProgressBar file={file} setFile={setFile} setRating={setRating} />
-          )}
+          {file && <ProgressBar file={file} setFile={setFile} />}
           {
             <button
               type="submit"
               className="addNewBtn submitForm"
               onClick={(e) => handleSumbit(e)}
             >
-              Legg til i samlingen
+              Legg til bilde
             </button>
           }
         </div>
