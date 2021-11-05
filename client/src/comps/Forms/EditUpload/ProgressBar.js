@@ -1,16 +1,13 @@
 import React, { useEffect } from "react";
-import editStorage from "../../hooks/useStorage";
+import editStorage from "../../../hooks/useStoreImageUrl";
 
-const ProgressBar = ({ file, setFile, setRating }) => {
+const ProgressBar = ({ file, setFile }) => {
   const { url, progress } = editStorage(file);
   useEffect(() => {
     if (url) {
       setFile(null);
-      setRating(null);
-      document.querySelector("form").style.display = "none";
-      document.querySelector(".img-grid").style.display = "grid";
-      document.querySelector("#file-title").value = "";
-      document.querySelector("#file-notes").value = "";
+      document.querySelector(".editForm").style.display = "none";
+      // document.querySelector(".img-grid").style.display = "grid";
       document.querySelector(".custom-file-upload").innerHTML =
         "Legg til bilde";
       document.querySelector(".thumbnail").innerHTML = "";
