@@ -9,6 +9,7 @@ import WhiskyData from "../WhiskyItem/WhiskyData/WhiskyData";
 import Modal from "../Modal/Modal";
 import Stats from "../Stats/Stats";
 import Loading from "../Loading/Loading";
+import EditUpload from "../Forms/EditUpload/EditUpload";
 
 const ImageItem = () => {
   const [data, setData] = useState("");
@@ -71,10 +72,6 @@ const ImageItem = () => {
     collectionRef.update({ notes: notes });
   };
 
-  const handleModal = () => {
-    document.querySelector(".backdrop").style.display = "block";
-  };
-
   const showDeletePopup = () => {
     document.querySelector(".deleteItemContainer").style.display = "block";
   };
@@ -99,9 +96,18 @@ const ImageItem = () => {
   return (
     <>
       <div className="whiskyItem">
-        <div className="image" key={id} onClick={handleModal}>
-          <Image data={url} />
-        </div>
+        {isActive ? (
+          <div className="imageContainer">
+            <EditUpload />
+            <div className="image" key={id}>
+              <Image data={url} edit={isActive} />
+            </div>
+          </div>
+        ) : (
+          <div className="image" key={id}>
+            <Image data={url} edit={isActive} />
+          </div>
+        )}
         <div className="titleContainer">
           <h2>{title}</h2>
           <div className="buttonGroup">
