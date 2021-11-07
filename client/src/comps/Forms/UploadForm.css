@@ -19,7 +19,7 @@
 }
 
 /* upload form styles */
-form {
+.uploadForm {
   position: absolute;
   top: 0;
   left: 0;
@@ -80,11 +80,6 @@ input[type="file"] {
 .custom-file-upload:hover {
   background-color: var(--primary);
   color: var(--secondary);
-}
-
-.output {
-  height: 60px;
-  font-size: 0.8rem;
 }
 
 .error {

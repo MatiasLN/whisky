@@ -7,7 +7,7 @@ const ProgressBar = ({ file, setFile, setRating }) => {
     if (url) {
       setFile(null);
       setRating(null);
-      document.querySelector("form").style.display = "none";
+      document.querySelector(".uploadForm").style.display = "none";
       document.querySelector(".img-grid").style.display = "grid";
       document.querySelector("#file-title").value = "";
       document.querySelector("#file-notes").value = "";

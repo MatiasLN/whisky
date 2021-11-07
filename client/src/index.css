@@ -96,9 +96,10 @@ h3 {
   margin-bottom: -30px;
 }
 
-@import "./comps//Logo/Logo.css";
+@import "./comps/Logo/Logo.css";
 @import "./comps/Forms/ProgressBar.css";
 @import "./comps/Forms/UploadForm.css";
+@import "./comps/Forms//EditUpload/EditUpload.css";
 @import "./comps/ImageGrid/ImageGrid.css";
 @import "./comps/Modal/Modal.css";
 @import "./comps/StarRating/StarRating.css";
