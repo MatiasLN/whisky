@@ -41,13 +41,6 @@
   color: #000;
 }
 
-/* .whiskyDetails input:focus + label::after + .whiskyDetails li.hasValue {
-  display: inline-block;
-  content: "\2713";
-  color: green;
-  padding-left: 5px;
-} */
-
 .whiskyContainer .getWhiskyInfo {
   display: none;
 }
