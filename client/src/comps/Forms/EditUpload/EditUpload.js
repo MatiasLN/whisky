@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { WhiskyContext } from "../../../context/WhiskyContext";
 import ProgressBar from "./ProgressBar";
 
 const EditUpload = () => {
@@ -8,6 +9,8 @@ const EditUpload = () => {
   const [submit, setSumbit] = useState("");
   const [uploadImage, setUploadImage] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const { state, update } = useContext(WhiskyContext);
 
   const changeUploadStatus = (callback) => {
     // set to false when upload is done
@@ -19,6 +22,7 @@ const EditUpload = () => {
     if (selected && types.includes(selected.type)) {
       let image = document.createElement("img");
       image.src = URL.createObjectURL(selected);
+      let imgUrl = (image.src = URL.createObjectURL(selected));
       setSumbit(selected);
       setError("");
       document.querySelector(".thumbnail").innerHTML = "";
@@ -26,6 +30,9 @@ const EditUpload = () => {
       document.querySelector(".editForm").style.display = "block";
       document.querySelector(".image").style.display = "none";
       setUploadImage(true);
+      update({
+        edit: { imgUrl: imgUrl },
+      });
     } else {
       setFile(null);
       setError("Du kan bare legge til bildefiler (png, heic or jpeg)");

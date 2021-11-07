@@ -58,7 +58,14 @@ const ImageItem = () => {
         console.log("Error getting document:", error);
       });
     setLoading(false);
-  }, [state.searchResults, uid, id, loading]);
+  }, [
+    state.searchResults,
+    uid,
+    id,
+    loading,
+    state.imgUrl,
+    state.updateEditedDetails,
+  ]);
 
   const handleSetRating = (rating) => {
     const collectionRef = projectFirestore.collection(uid).doc(id);
@@ -122,6 +129,7 @@ const ImageItem = () => {
                   update({
                     updateEditedDetails: (state.updateEditedDetails =
                       !state.updateEditedDetails),
+                    edit: { imgUrl: null },
                   });
                   setActive(false);
                 }}

@@ -13,6 +13,10 @@ const initialState = {
   countedWhiskyData: "",
   currentWhisky: "",
   updateEditedDetails: false,
+  edit: {
+    active: false,
+    updateEditedDetails: false,
+  },
 };
 
 export function WhiskyProvider(props) {
