@@ -23,16 +23,38 @@ const productScraper = async (url) => {
 
   // extracting information from code
   let productDetails = await page.evaluate(() => {
-    let percentage =
-      document.body.querySelector(".product__contents-list__content-percentage")
-        .textContent ?? null;
-    let price =
-      document.body.querySelector(".product__price").textContent ?? null;
-    let name =
-      document.body.querySelector(".product__name").textContent ?? null;
-    let origins = document.body.querySelector(".product__region");
-    let country = origins.children[0].textContent ?? null;
-    let region = origins.children[1].textContent ?? null;
+    let percentage = "";
+    let price = "";
+    let name = "";
+    let country = "";
+    let region = "";
+
+    document.body.querySelector(".product__contents-list__content-percentage")
+      ? (percentage = document.body.querySelector(
+          ".product__contents-list__content-percentage"
+        ).textContent)
+      : (percentage = "");
+
+    document.body.querySelector(".product__price")
+      ? (price = document.body.querySelector(".product__price").textContent)
+      : (price = "");
+
+    document.body.querySelector(".product__name")
+      ? (name = document.body.querySelector(".product__name").textContent)
+      : (percentage = "");
+
+    document.body.querySelector(".product__region").children[0]
+      ? (country =
+          document.body.querySelector(".product__region").children[0]
+            .textContent)
+      : (country = "");
+
+    document.body.querySelector(".product__region").children[1]
+      ? (region =
+          document.body.querySelector(".product__region").children[1]
+            .textContent)
+      : (region = "Øvrige");
+
     let productDetailsElement = document.body.querySelectorAll(
       ".product__tab-list > li"
     );
