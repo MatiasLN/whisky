@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import useFirestore from "../../hooks/useFirestore";
+import { WhiskyContext } from "../../context/WhiskyContext";
 
 const Details = ({ db }) => {
   const [destilery, setDestilery] = useState(null);
   const [region, setRegion] = useState(null);
   const [country, setCountry] = useState(null);
+  const { state } = useContext(WhiskyContext);
 
   const { distilleries, countries, regions } = useFirestore();
 
@@ -39,7 +41,7 @@ const Details = ({ db }) => {
     if (db.polet_region) {
       setRegion(checkDb(regions, db.polet_region));
     }
-  }, [db, countries, distilleries, regions]);
+  }, [db, countries, distilleries, regions, state.updateEditedDetails]);
 
   return (
     <div className="stats">

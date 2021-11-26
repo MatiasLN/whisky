@@ -58,14 +58,7 @@ const ImageItem = () => {
         console.log("Error getting document:", error);
       });
     setLoading(false);
-  }, [
-    state.searchResults,
-    uid,
-    id,
-    loading,
-    state.imgUrl,
-    state.updateEditedDetails,
-  ]);
+  }, [state.searchResults, uid, id, loading, state.imgUrl]);
 
   const handleSetRating = (rating) => {
     const collectionRef = projectFirestore.collection(uid).doc(id);
