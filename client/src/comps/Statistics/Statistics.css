@@ -179,3 +179,32 @@
     width: 100vw;
   }
 }
+
+.starWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.starWrapper .header {
+  display: flex;
+}
+
+.starWrapper .container {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.starWrapper .header .star {
+  fill: #2d4f9a;
+  width: 15px;
+  height: auto;
+}
+
+.starWrapper .header li {
+  list-style-type: none;
+  margin-left: 5px;
+}
