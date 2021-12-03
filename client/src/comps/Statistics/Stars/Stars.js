@@ -110,8 +110,7 @@ const Stars = () => {
             <strong>{ratingNumber} / 10</strong> er rangert flest ganger med
           </p>
           <span>
-            <Star />
-            <h2>{maxNumber}</h2>
+            <h2>{maxNumber}</h2>x
           </span>
         </div>
       ) : null}
