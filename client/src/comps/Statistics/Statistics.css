@@ -183,10 +183,12 @@
 .starWrapper {
   display: flex;
   flex-wrap: wrap;
+  align-self: center;
 }
 
-.starWrapper .header {
-  display: flex;
+.statisticsContainer .starHeader {
+  max-width: 280px;
+  font-size: 1em;
 }
 
 .starWrapper .container {
@@ -198,6 +200,10 @@
   margin: 20px;
 }
 
+.starWrapper .header {
+  display: flex;
+}
+
 .starWrapper .header .star {
   fill: #2d4f9a;
   width: 15px;
@@ -207,4 +213,40 @@
 .starWrapper .header li {
   list-style-type: none;
   margin-left: 5px;
+}
+
+.starWrapper .body span {
+  font-size: 12px;
+  padding-left: 2px;
+}
+
+.statisticsContainer .mostRated {
+  margin: 0 auto;
+}
+
+.statisticsContainer .mostRated strong {
+  font-size: 30px;
+  padding: 0 10px;
+  font-family: "Noto Serif";
+}
+
+.statisticsContainer .mostRated h2 {
+  font-size: 48px;
+  font-family: "Noto Serif";
+  border-bottom: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 20px;
+}
+
+.statisticsContainer .mostRated span li {
+  fill: #2d4f9a;
+  width: 150px;
+  height: auto;
+  list-style-type: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
 }

@@ -7,8 +7,17 @@ const Stars = () => {
   const { docs } = useFirestore();
   const [starsCount, setStarsCount] = useState([]);
   const [stars, setStarsObj] = useState({});
-  const [starKey, setStarKey] = useState("");
+  const [ratingNumber, setRatingNumber] = useState("");
   const [maxNumber, setMaxNumber] = useState(null);
+
+  function val2key(val, array) {
+    for (let key in array) {
+      if (array[key] == val) {
+        return key;
+      }
+    }
+    return false;
+  }
 
   const data = {
     labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
@@ -58,64 +67,55 @@ const Stars = () => {
     }
   }, [docs]);
 
-  //   Object.entries(stars).map((starsCount) => {
-  //     console.log(starsCount[1]);
-  //     console.log(starsCount[1][i]);
-  //   });
-
   useEffect(() => {
     let arr = Object.values(stars);
     let max = Math.max(...arr);
-    console.log(max);
-
     if (Number.isInteger(max)) {
       setMaxNumber(max);
     }
 
-    function val2key(val, array) {
-      for (var key in array) {
-        if (array[key] == val) {
-          return key;
-        }
-      }
-      return false;
-    }
-
-    var key = val2key(max, stars);
+    const key = val2key(max, stars);
     if (key) {
-      setStarKey(key);
+      setRatingNumber(key);
     }
   }, [stars]);
 
   return (
-    <div className="chart">
+    <>
+      <h2 className="starHeader">Rating av flaskene</h2>
       <div className="starWrapper">
-        {/* {stars && (
-        <>
-          <h2>Rating av flaskene</h2>
-          {starKey ? <h3>{starKey} / 10</h3> : null}
-          {maxNumber ? maxNumber : null}
-        </>
-      )} */}
-
         {stars &&
           Object.entries(stars).map((starsCount) => {
             return (
-              <div className="container" key={starsCount[0]}>
-                <div className="header">
-                  {starsCount[0]}
-                  <span>
-                    <Star />
-                  </span>
+              <>
+                <div className="container" key={starsCount[0]}>
+                  <div className="header">
+                    {starsCount[0]}
+                    <span>
+                      <Star />
+                    </span>
+                  </div>
+                  <div className="body">
+                    <strong>{starsCount[1]}</strong>
+                    <span>x</span>
+                  </div>
                 </div>
-                <div>
-                  <strong>{starsCount[1]}</strong>x
-                </div>
-              </div>
+              </>
             );
           })}
       </div>
-    </div>
+      {stars && ratingNumber && maxNumber ? (
+        <div className="mostRated">
+          <p>
+            <strong>{ratingNumber} / 10</strong> er rangert flest ganger med
+          </p>
+          <span>
+            <Star />
+            <h2>{maxNumber}</h2>
+          </span>
+        </div>
+      ) : null}
+    </>
   );
 };
 export default Stars;
