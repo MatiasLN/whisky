@@ -130,56 +130,6 @@
   margin-bottom: 40px !important;
 }
 
-@media only screen and (min-width: 760px) {
-  .chart {
-    display: block;
-    width: 700px;
-    margin: 0 auto;
-  }
-
-  .countryChart {
-    width: 350px;
-    margin: 0 auto;
-  }
-}
-
-@media only screen and (min-width: 900px) {
-  .chart {
-    width: 800px;
-  }
-}
-
-@media only screen and (min-width: 1025px) {
-  .destilleryChart h2 {
-    margin-bottom: -40px;
-    margin-top: 40px;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  .col-2 {
-    display: flex;
-    justify-content: center;
-  }
-
-  .countryChart {
-    width: 350px;
-    margin: 0 20px;
-  }
-
-  .regionChart {
-    width: 600px;
-    margin: 0 20px;
-  }
-
-  .fullWidthBlock {
-    margin: 40px auto;
-    padding: 40px 0;
-    background: var(--primary);
-    width: 100vw;
-  }
-}
-
 .starWrapper {
   display: flex;
   flex-wrap: wrap;
@@ -244,4 +194,54 @@
   border-bottom: none;
   margin: -10px 0;
   padding: 0 10px;
+}
+
+@media only screen and (min-width: 760px) {
+  .chart {
+    display: block;
+    width: 700px;
+    margin: 0 auto;
+  }
+
+  .countryChart {
+    width: 350px;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .chart {
+    width: 800px;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .destilleryChart h2 {
+    margin-bottom: -40px;
+    margin-top: 40px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .col-2 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .countryChart {
+    width: 350px;
+    margin: 0 20px;
+  }
+
+  .regionChart {
+    width: 600px;
+    margin: 0 20px;
+  }
+
+  .fullWidthBlock {
+    margin: 40px auto;
+    padding: 40px 0;
+    background: var(--primary);
+    width: 100vw;
+  }
 }
