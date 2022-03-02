@@ -53,13 +53,17 @@ const Stars = () => {
   };
 
   useEffect(() => {
-    starsCount.push(0);
     let obj = {};
     let amount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
     docs.map((item) => {
       starsCount[item.star] = (starsCount[item.star] || 0) + 1;
       setStarsCount(starsCount);
     });
+
+    if (starsCount) {
+      starsCount.shift();
+    }
 
     for (var i = 0; i < amount.length; i++) {
       obj[amount[i]] = starsCount[i];
@@ -79,16 +83,15 @@ const Stars = () => {
       setRatingNumber(key);
     }
   }, [stars]);
-
   return (
     <>
       <h2 className="starHeader">Rating av flaskene</h2>
       <div className="starWrapper">
         {stars &&
-          Object.entries(stars).map((starsCount) => {
+          Object.entries(stars).map((starsCount, index) => {
             return (
               <>
-                <div className="container" key={starsCount[0]}>
+                <div className="container" key={index}>
                   <div className="header">
                     {starsCount[0]}
                     <span>
