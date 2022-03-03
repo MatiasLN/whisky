@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from "react";
 import useFirestore from "../../../hooks/useFirestore";
-import { Radar } from "react-chartjs-2";
 import Star from "../../StarRating/Star";
 
 const Stars = () => {
   const { docs } = useFirestore();
-  const [starsCount, setStarsCount] = useState([]);
-  const [stars, setStarsObj] = useState({});
+  const [starsCount, setStarsCount] = useState({
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+    5: 0,
+    6: 0,
+    7: 0,
+    8: 0,
+    9: 0,
+    10: 0,
+  });
   const [ratingNumber, setRatingNumber] = useState("");
   const [maxNumber, setMaxNumber] = useState(null);
 
@@ -53,42 +62,30 @@ const Stars = () => {
   };
 
   useEffect(() => {
-    let obj = {};
-    let amount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
     docs.map((item) => {
       starsCount[item.star] = (starsCount[item.star] || 0) + 1;
       setStarsCount(starsCount);
     });
 
-    if (starsCount) {
-      starsCount.shift();
-    }
-
-    for (var i = 0; i < amount.length; i++) {
-      obj[amount[i]] = starsCount[i];
-      setStarsObj(obj);
-    }
-  }, [docs]);
-
-  useEffect(() => {
-    let arr = Object.values(stars);
+    let arr = Object.values(starsCount);
     let max = Math.max(...arr);
+
     if (Number.isInteger(max)) {
       setMaxNumber(max);
     }
 
-    const key = val2key(max, stars);
+    const key = val2key(max, starsCount);
     if (key) {
       setRatingNumber(key);
     }
-  }, [stars]);
+  }, [docs]);
+
   return (
     <>
       <h2 className="starHeader">Rating av flaskene</h2>
       <div className="starWrapper">
-        {stars &&
-          Object.entries(stars).map((starsCount, index) => {
+        {starsCount &&
+          Object.entries(starsCount).map((starsCount, index) => {
             return (
               <>
                 <div className="container" key={index}>
@@ -107,7 +104,7 @@ const Stars = () => {
             );
           })}
       </div>
-      {stars && ratingNumber && maxNumber ? (
+      {starsCount && ratingNumber && maxNumber ? (
         <div className="mostRated">
           <p>
             <strong>{ratingNumber} / 10</strong> er rangert flest ganger med
