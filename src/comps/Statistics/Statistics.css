@@ -1,0 +1,246 @@
+.statisticsContainer h1 {
+  display: block;
+  text-align: center;
+  padding: 0;
+  margin-top: 20px;
+  margin-bottom: 0;
+  font-size: 1em;
+}
+
+.statisticsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.statisticsContainer h2 {
+  margin: 0 auto;
+  max-width: 180px;
+  border-bottom: 1px solid var(--primary);
+  text-align: center;
+}
+
+.numberTasted {
+  align-self: center;
+}
+
+.numberTasted strong,
+.percentageContainer strong,
+.priceContainer strong {
+  font-size: 48px;
+  padding: 0 10px;
+}
+
+.percentageContainer,
+.priceContainer {
+  text-align: center;
+}
+
+.destileriesContainer,
+.countriesContainer {
+  background-color: var(--primary);
+  margin: 20px -10px;
+}
+
+.districtsContainer,
+.percentageContainer {
+  padding: 0 20px;
+  margin: 0 -10px;
+}
+
+.destileriesContainer ul,
+.districtsContainer ul,
+.countriesContainer ul {
+  padding-inline-start: 0;
+  list-style-type: none;
+}
+
+.destileriesContainer li,
+.districtsContainer li,
+.countriesContainer li {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 75% auto;
+  columns: 2;
+  padding: 0 20px;
+}
+
+.countriesContainer li:nth-child(odd) {
+  background-color: #fff;
+}
+
+.destileriesContainer span,
+.districtsContainer span,
+.countriesContainer span {
+  font-size: 1.5em;
+  justify-self: center;
+  align-self: center;
+}
+
+.createdAtChart h2 {
+  margin-bottom: 20px;
+}
+
+.chart strong {
+  font-size: 30px;
+  padding: 0 10px;
+  font-family: "Noto Serif";
+}
+
+.chart h2 {
+  font-size: 1em;
+}
+
+.destileriesContainer {
+  padding: 40px 20px;
+  margin: 40px 0;
+}
+
+.statisticsContainer h1 {
+  display: none;
+}
+
+.statisticsContainer h2 {
+  margin: 20px auto;
+}
+
+.destilleryChart h2 {
+  margin-bottom: 20px;
+}
+
+.percentageContainer,
+.priceContainer {
+  margin: 40px 0;
+}
+
+.countryChart,
+.destilleryChart {
+  margin-top: 40px;
+}
+
+.fullWidthBlock {
+  margin: 40px 0;
+  padding: 40px 0;
+  padding-bottom: 20px;
+  background: var(--primary);
+  width: 100vw;
+  margin-left: -10px;
+}
+
+.createdAtChart {
+  margin-bottom: 40px !important;
+}
+
+.starWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+}
+
+.statisticsContainer .starHeader {
+  max-width: 280px;
+  font-size: 1em;
+}
+
+.starWrapper .container {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.starWrapper .header {
+  display: flex;
+}
+
+.starWrapper .header .star {
+  fill: #2d4f9a;
+  width: 15px;
+  height: auto;
+}
+
+.starWrapper .header li {
+  list-style-type: none;
+  margin-left: 5px;
+}
+
+.starWrapper .body span {
+  font-size: 12px;
+  padding-left: 2px;
+}
+
+.statisticsContainer .mostRated {
+  margin: 0 auto;
+}
+
+.statisticsContainer .mostRated strong {
+  font-size: 30px;
+  padding: 0 10px;
+  font-family: "Noto Serif";
+}
+
+.statisticsContainer .mostRated span {
+  display: flex;
+  align-items: flex-end;
+  margin: 0 auto 50px auto;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.statisticsContainer .mostRated h2 {
+  font-size: 48px;
+  font-family: "Noto Serif";
+  border-bottom: none;
+  margin: -10px 0;
+  padding: 0 10px;
+}
+
+@media only screen and (min-width: 760px) {
+  .chart {
+    display: block;
+    width: 700px;
+    margin: 0 auto;
+  }
+
+  .countryChart {
+    width: 350px;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .chart {
+    width: 800px;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .destilleryChart h2 {
+    margin-top: 40px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .col-2 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .countryChart {
+    width: 350px;
+    margin: 0 20px;
+  }
+
+  .regionChart {
+    width: 600px;
+    margin: 0 20px;
+  }
+
+  .fullWidthBlock {
+    margin: 40px auto;
+    padding: 40px 0;
+    background: var(--primary);
+    width: 100vw;
+  }
+}

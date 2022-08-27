@@ -1,0 +1,28 @@
+.logo {
+  display: block;
+  max-width: 90px;
+  height: auto;
+  margin: 20px auto 40px auto;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+
+.logoTitle {
+  display: none;
+}
+
+.logoTitle {
+  display: block;
+  font-size: 18px;
+  text-decoration: none;
+  color: var(--seconadry);
+  margin: -30px auto 20px auto;
+  width: 150px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--seconadry);
+}

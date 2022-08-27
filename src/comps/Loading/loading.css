@@ -1,0 +1,10 @@
+.loadingAnimation {
+  margin: 75px auto;
+  display: block;
+}
+
+.loading {
+  margin: auto;
+  text-align: center;
+  display: block;
+}
