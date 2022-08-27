@@ -145,7 +145,7 @@ const FetchData = ({ notFound, setCallback }) => {
 				<div className="searchForm">
 					<input type="text" onChange={(event) => setInput(event.target.value)} />
 					<button className="addNewBtn search" onClick={handleRequest}>
-						Finn produkttttt
+						Finn produkt
 					</button>
 				</div>
 				<div id="loadingAnchor" className="searchResults">
