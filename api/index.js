@@ -27,7 +27,6 @@ app.post("/api/singleProduct", (request, response) => {
 
 // Catches requests made for global search
 app.post("/api/search", (request, response) => {
-	console.log("send");
 	if (request != null) {
 		let url = request.body.url;
 		const getData = async () => {
@@ -43,9 +42,9 @@ app.post("/api/search", (request, response) => {
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
-// app.get("*", (req, res) => {
-// 	res.sendFile(path.join(__dirname + "/client/build/index.html"));
-// });
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname + "/build/index.html"));
+});
 
 const port = process.env.PORT || 5000;
 app.listen(port);
