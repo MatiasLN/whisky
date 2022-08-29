@@ -8,7 +8,7 @@
 		"start": "node index.js",
 		"deploy": "git push heroku master",
 		"backup": "firestore-backup-restore --accountCredentials backup/serviceKey.json --backupPath backup/users/",
-		"heroku-postbuild": "cd client && yarn && yarn run build"
+		"build": "cd client && yarn && yarn run build"
 	},
 	"keywords": [],
 	"license": "ISC",
