@@ -5,10 +5,7 @@
 	"main": "index.js",
 	"author": "Matias Lie-Nielsen",
 	"scripts": {
-		"start": "node index.js",
-		"deploy": "git push heroku master",
-		"backup": "firestore-backup-restore --accountCredentials backup/serviceKey.json --backupPath backup/users/",
-		"build": "cd client && yarn && yarn run build"
+		"start": "node index.js"
 	},
 	"keywords": [],
 	"license": "ISC",
