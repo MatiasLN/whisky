@@ -4,8 +4,7 @@ RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 COPY . /usr/src/app
-RUN npm install
-RUN npm run build
+RUN cd client && yarn && yarn install && yarn build
 
 # production environment
 FROM nginx:1.13.9-alpine
