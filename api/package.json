@@ -14,7 +14,9 @@
 		"chrome-aws-lambda": "^8.0.2",
 		"express": "^4.16.3",
 		"nodemon": "^2.0.12",
-		"puppeteer": "^10.2.0",
 		"puppeteer-core": "^8.0.0"
+	},
+	"devDependencies": {
+		"puppeteer": "^17.0.0"
 	}
 }

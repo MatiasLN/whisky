@@ -17,8 +17,9 @@ puppeteer = require("puppeteer-core");
 
 const searchScraper = async (url) => {
 	const browser = await puppeteer.launch({
-		headless: true,
-		args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage", "--single-process"],
+		args: chrome.args,
+		executablePath: await chrome.executablePath,
+		headless: chrome.headless,
 	});
 	const page = await browser.newPage();
 	await page.goto(url, { timeout: 60000 });
