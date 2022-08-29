@@ -1,20 +1,21 @@
 {
-  "name": "whisky-backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "author": "Matias Lie-Nielsen",
-  "scripts": {
-    "start": "node index.js",
-    "deploy": "git push heroku master",
-    "heroku-postbuild": "cd client && yarn && yarn run build"
-  },
-  "keywords": [],
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "express": "^4.16.3",
-    "nodemon": "^2.0.12",
-    "puppeteer": "^10.2.0"
-  }
+	"name": "whisky-backend",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"author": "Matias Lie-Nielsen",
+	"scripts": {
+		"start": "node index.js",
+		"deploy": "git push heroku master",
+		"backup": "firestore-backup-restore --accountCredentials backup/serviceKey.json --backupPath backup/users/",
+		"heroku-postbuild": "cd client && yarn && yarn run build"
+	},
+	"keywords": [],
+	"license": "ISC",
+	"dependencies": {
+		"body-parser": "^1.19.0",
+		"express": "^4.16.3",
+		"nodemon": "^2.0.12",
+		"puppeteer": "^10.2.0"
+	}
 }
