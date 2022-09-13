@@ -3,6 +3,7 @@ const puppeteer = require("puppeteer");
 
 const searchScraper = async (url) => {
   const browser = await puppeteer.launch({
+    executablePath: "/usr/bin/chromium-browser",
     headless: true,
     args: [
       "--no-sandbox",
