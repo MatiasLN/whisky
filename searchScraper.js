@@ -1,16 +1,18 @@
 const puppeteer = require("puppeteer");
 // "https://www.vinmonopolet.no/vmp/search/?q=Deanston:relevance:visibleInSearch:true&searchType=product"
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
 const searchScraper = async (url) => {
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: [
-      "--no-sandbox",
-      "--disable-setuid-sandbox",
-      "--disable-dev-shm-usage",
-      "--single-process",
-    ],
-  });
+  const browser = IS_PRODUCTION ? await puppeteer.connect({ browserWSEndpoint: 'wss://chrome.browserless.io?token=' + process.env.REACT_APP_BROWSERLESS_TOKEN }) :
+    await puppeteer.launch({
+      headless: true,
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-dev-shm-usage",
+        "--single-process",
+      ],
+    });
   const page = await browser.newPage();
   await page.goto(url, { timeout: 60000 });
   await page.waitForSelector("#page");

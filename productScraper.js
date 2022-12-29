@@ -1,16 +1,18 @@
 const puppeteer = require("puppeteer");
 // "https://www.vinmonopolet.no/Land/Skottland/Deanston-12-YO-Single-Malt/p/10733101"
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
 const productScraper = async (url) => {
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: [
-      "--no-sandbox",
-      "--disable-setuid-sandbox",
-      "--disable-dev-shm-usage",
-      "--single-process",
-    ],
-  });
+  const browser = IS_PRODUCTION ? await puppeteer.connect({ browserWSEndpoint: 'wss://chrome.browserless.io?token=' + process.env.REACT_APP_BROWSERLESS_TOKEN }) :
+    await puppeteer.launch({
+      headless: true,
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-dev-shm-usage",
+        "--single-process",
+      ],
+    });
   const page = await browser.newPage();
   await page.goto(url, { timeout: 60000 });
 
@@ -31,8 +33,8 @@ const productScraper = async (url) => {
 
     document.body.querySelector(".product__contents-list__content-percentage")
       ? (percentage = document.body.querySelector(
-          ".product__contents-list__content-percentage"
-        ).textContent)
+        ".product__contents-list__content-percentage"
+      ).textContent)
       : (percentage = "");
 
     document.body.querySelector(".product__price")
@@ -45,14 +47,14 @@ const productScraper = async (url) => {
 
     document.body.querySelector(".product__region").children[0]
       ? (country =
-          document.body.querySelector(".product__region").children[0]
-            .textContent)
+        document.body.querySelector(".product__region").children[0]
+          .textContent)
       : (country = "");
 
     document.body.querySelector(".product__region").children[1]
       ? (region =
-          document.body.querySelector(".product__region").children[1]
-            .textContent)
+        document.body.querySelector(".product__region").children[1]
+          .textContent)
       : (region = "Øvrige");
 
     let productDetailsElement = document.body.querySelectorAll(
