@@ -4,7 +4,7 @@ import placeholderImg from "../../../images/placeholder.jpeg";
 
 const Image = ({ data, edit }) => {
   const LOCAL_DOMAINS = ["localhost", "127.0.0.1"];
-  const { state, update } = useContext(WhiskyContext);
+  const { state } = useContext(WhiskyContext);
 
   const handleModal = () => {
     document.querySelector(".backdrop").style.display = "block";

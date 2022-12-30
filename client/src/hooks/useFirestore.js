@@ -50,6 +50,7 @@ const useFirestore = () => {
       // this is a cleanup function that react will run when
       // a component using the hook unmounts
     }
+    // eslint-disable-next-line
   }, [uid]);
   return { docs, loading, titles, distilleries, countries, regions };
 };

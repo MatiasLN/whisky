@@ -3,8 +3,6 @@ import useFirestore from "../../../hooks/useFirestore";
 import { Pie } from "react-chartjs-2";
 import {
   BrowserView,
-  MobileOnlyView,
-  TabletView,
   MobileView,
 } from "react-device-detect";
 
@@ -72,11 +70,13 @@ const Countries = () => {
 
   function count(value, set) {
     var total = 0;
+    // eslint-disable-next-line
     Object.entries(value).map(([]) => (total += 1));
     set(total);
   }
 
   useEffect(() => {
+    // eslint-disable-next-line
     docs.map((item) => {
       countries[item.polet_country] = (countries[item.polet_country] || 0) + 1;
     });
@@ -85,6 +85,7 @@ const Countries = () => {
     Object.entries(countries).map(
       ([country, value]) => name.push(country) && amount.push(value)
     );
+    // eslint-disable-next-line
   }, [docs]);
 
   return (

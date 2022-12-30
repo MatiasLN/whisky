@@ -3,8 +3,6 @@ import useFirestore from "../../../hooks/useFirestore";
 import { Bar } from "react-chartjs-2";
 import {
   BrowserView,
-  MobileOnlyView,
-  TabletView,
   MobileView,
 } from "react-device-detect";
 
@@ -92,11 +90,13 @@ const Regions = () => {
 
   function count(value, set) {
     var total = 0;
+    // eslint-disable-next-line
     Object.entries(value).map(([]) => (total += 1));
     set(total);
   }
 
   useEffect(() => {
+    // eslint-disable-next-line
     docs.map((item) => {
       Regions[item.polet_region] = (Regions[item.polet_region] || 0) + 1;
     });
@@ -105,6 +105,7 @@ const Regions = () => {
     Object.entries(Regions).map(
       ([region, value]) => name.push(region) && amount.push(value)
     );
+    // eslint-disable-next-line
   }, [docs]);
 
   return (

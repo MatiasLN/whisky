@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { logOut } from "../../firebase/config";
-import { NavLink, Route } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import useUser from "../../hooks/useUser";
 
 const Navigation = () => {
   const { uid, photoURL, displayName } = useUser();
-  const [isActive, setActive] = useState(false);
 
   const handleClose = () => {
     document.querySelector(".mainMenuContainer").classList.toggle("show");

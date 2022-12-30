@@ -3,8 +3,6 @@ import useFirestore from "../../../hooks/useFirestore";
 import { Line } from "react-chartjs-2";
 import {
   BrowserView,
-  MobileOnlyView,
-  TabletView,
   MobileView,
 } from "react-device-detect";
 
@@ -63,6 +61,7 @@ const CreatedAt = () => {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line
     docs.map((item) => {
       item.createdAt = item.createdAt
         .toDate()
@@ -222,6 +221,7 @@ const CreatedAt = () => {
     Object.entries(twentyTwoCount).map(([month, value]) =>
       twentyTwoAmount.push(value)
     );
+    // eslint-disable-next-line
   }, [docs]);
 
   return (

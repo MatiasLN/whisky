@@ -58,6 +58,7 @@ const ImageItem = () => {
         console.log("Error getting document:", error);
       });
     setLoading(false);
+    // eslint-disable-next-line
   }, [state.searchResults, uid, id, loading, state.imgUrl]);
 
   const handleSetRating = (rating) => {

@@ -23,6 +23,7 @@ const Statistics = () => {
     for (let i = 0; i < num.length; i++) {
       total += num[i];
     }
+    // eslint-disable-next-line
     var value = total / num.length;
     set(value);
   }
@@ -36,6 +37,7 @@ const Statistics = () => {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line
     docs.map((item) => {
       titles.push(item.title);
       stars[item.star] = (stars[item.star] || 0) + 1;
@@ -47,7 +49,7 @@ const Statistics = () => {
       number = number - dec;
       let formattedNumber = ("0" + number).slice(-2);
 
-      if (formattedNumber != "aN") {
+      if (formattedNumber !== "aN") {
         percentages.push(parseInt(formattedNumber));
       }
 
@@ -67,7 +69,7 @@ const Statistics = () => {
       let priceDec = priceNumber - Math.floor(priceNumber);
       priceNumber = priceNumber - priceDec;
       let priceFormattedNumber = ("0" + priceNumber).slice(-6);
-      if (formattedNumber != "aN") {
+      if (formattedNumber !== "aN") {
         price.push(parseInt(priceFormattedNumber));
         totalPrice.push(parseInt(priceFormattedNumber));
       }
@@ -78,6 +80,7 @@ const Statistics = () => {
       setStars(stars);
       setTitles(titles);
     });
+    // eslint-disable-next-line
   }, [docs]);
 
   if (loading === true) {

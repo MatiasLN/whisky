@@ -5,7 +5,7 @@ const useStoreImageUrl = (file) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
-  const [docId, setDocId] = useState(localStorage.getItem("id"));
+  const [docId,] = useState(localStorage.getItem("id"));
   const [uid] = useState(localStorage.getItem("uid"));
   const [id] = useState(localStorage.getItem("id"));
 
@@ -35,6 +35,7 @@ const useStoreImageUrl = (file) => {
         setUrl(url);
       }
     );
+    // eslint-disable-next-line
   }, [file, uid]);
 
   return { progress, url, error, docId };

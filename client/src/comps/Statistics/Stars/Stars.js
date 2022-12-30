@@ -21,47 +21,15 @@ const Stars = () => {
 
   function val2key(val, array) {
     for (let key in array) {
-      if (array[key] == val) {
+      if (array[key] === val) {
         return key;
       }
     }
     return false;
   }
 
-  const data = {
-    labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-    datasets: [
-      {
-        label: "Antall stjerner",
-        data: starsCount,
-        backgroundColor: [
-          "rgba(254, 200, 154)",
-          "rgba(216, 226, 220)",
-          "rgba(254, 197, 187)",
-          "rgba(252, 213, 206)",
-          "rgba(250, 225, 221)",
-          "rgba(248, 237, 235)",
-          "rgba(232, 232, 228)",
-          "rgba(216, 226, 220)",
-          "rgba(236, 228, 219)",
-        ],
-        borderColor: [
-          "rgba(254, 200, 154)",
-          "rgba(232, 232, 228)",
-          "rgba(254, 197, 187)",
-          "rgba(252, 213, 206)",
-          "rgba(250, 225, 221)",
-          "rgba(248, 237, 235)",
-          "rgba(232, 232, 228)",
-          "rgba(216, 226, 220)",
-          "rgba(236, 228, 219)",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  };
-
   useEffect(() => {
+    // eslint-disable-next-line
     docs.map((item) => {
       starsCount[item.star] = (starsCount[item.star] || 0) + 1;
       setStarsCount(starsCount);
@@ -78,6 +46,7 @@ const Stars = () => {
     if (key) {
       setRatingNumber(key);
     }
+    // eslint-disable-next-line
   }, [docs]);
 
   return (

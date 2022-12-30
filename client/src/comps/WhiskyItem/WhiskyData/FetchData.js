@@ -22,9 +22,10 @@ const FetchData = ({ notFound, setCallback }) => {
   useEffect(() => {
     setUrl(
       "https://www.vinmonopolet.no/search/?q=" +
-        whiskyName +
-        ":relevance:visibleInSearch:true:mainCategory:brennevin:mainSubCategory:brennevin_whisky&searchType=product"
+      whiskyName +
+      ":relevance:visibleInSearch:true:mainCategory:brennevin:mainSubCategory:brennevin_whisky&searchType=product"
     );
+    // eslint-disable-next-line
   }, [input]);
 
   const handleSelectedClick = () => {
@@ -136,6 +137,7 @@ const FetchData = ({ notFound, setCallback }) => {
           searchResults[1].style.display = "none";
         });
     }
+    // eslint-disable-next-line
   }, [selected]);
 
   return (

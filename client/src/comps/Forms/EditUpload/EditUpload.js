@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { WhiskyContext } from "../../../context/WhiskyContext";
 import ProgressBar from "./ProgressBar";
 
@@ -10,7 +10,7 @@ const EditUpload = () => {
   const [uploadImage, setUploadImage] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { state, update } = useContext(WhiskyContext);
+  const { update } = useContext(WhiskyContext);
 
   const changeUploadStatus = (callback) => {
     // set to false when upload is done

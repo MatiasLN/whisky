@@ -15,6 +15,7 @@ const ProgressBar = ({ file, setFile, setLoading, changeUploadStatus }) => {
       document.querySelector(".output").style.marginTop = "0px";
       document.querySelector(".thumbnail").style.opacity = "1";
     }
+    // eslint-disable-next-line
   }, [url, setFile]);
 
   return <div className="progress-bar" style={{ width: progress + "%" }}></div>;

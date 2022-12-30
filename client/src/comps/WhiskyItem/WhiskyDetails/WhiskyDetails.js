@@ -20,6 +20,7 @@ let ProductDetails = ({
   // search
   useEffect(() => {
     console.log("whiskyId is " + productID);
+    // eslint-disable-next-line
   }, [state.searchResults]);
 
   const [uid] = useState(localStorage.getItem("uid"));
@@ -67,6 +68,7 @@ let ProductDetails = ({
       polet_descTaste: tasteState,
       polet_descOdour: odourState,
     });
+    // eslint-disable-next-line
   }, [
     productNameState,
     productIDState,

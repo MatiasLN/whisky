@@ -5,7 +5,6 @@ import {
   BrowserView,
   MobileOnlyView,
   TabletView,
-  MobileView,
 } from "react-device-detect";
 
 const Distilleries = () => {
@@ -80,11 +79,13 @@ const Distilleries = () => {
 
   function count(value, set) {
     var total = 0;
+    // eslint-disable-next-line
     Object.entries(value).map(([]) => (total += 1));
     set(total);
   }
 
   useEffect(() => {
+    // eslint-disable-next-line
     docs.map((item) => {
       distilleries[item.polet_destilery] =
         (distilleries[item.polet_destilery] || 0) + 1;
@@ -94,6 +95,7 @@ const Distilleries = () => {
     Object.entries(distilleries).map(
       ([distillery, value]) => name.push(distillery) && amount.push(value)
     );
+    // eslint-disable-next-line
   }, [docs]);
 
   return (

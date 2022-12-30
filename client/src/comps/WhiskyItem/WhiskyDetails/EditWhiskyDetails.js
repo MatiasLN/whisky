@@ -87,6 +87,7 @@ let ProductDetails = ({ name, db }) => {
           !state.updateEditedDetails),
       });
     }
+    // eslint-disable-next-line
   }, [updateStatus]);
 
   return (
