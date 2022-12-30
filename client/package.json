@@ -1,43 +1,46 @@
 {
-  "name": "whisky",
-  "version": "1.0.0",
-  "private": true,
-  "homepage": ".",
-  "dependencies": {
-    "chart.js": "^3.5.1",
-    "firebase": "^7.22.1",
-    "gh-pages": "^3.1.0",
-    "hamburgers": "^1.1.3",
-    "mapbox-gl": "^1.13.0",
-    "react": "^16.13.1",
-    "react-chartjs-2": "^3.0.4",
-    "react-device-detect": "^1.17.0",
-    "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
-  },
-  "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -b gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "proxy": "http://localhost:5000",
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "whisky",
+	"version": "1.0.0",
+	"private": true,
+	"homepage": ".",
+	"dependencies": {
+		"chart.js": "^3.5.1",
+		"firebase": "^7.22.1",
+		"gh-pages": "^3.1.0",
+		"hamburgers": "^1.1.3",
+		"mapbox-gl": "^1.13.0",
+		"react": "^16.13.1",
+		"react-chartjs-2": "^3.0.4",
+		"react-device-detect": "^1.17.0",
+		"react-dom": "^16.13.1",
+		"react-router-dom": "^5.2.0"
+	},
+	"scripts": {
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -b gh-pages -d build",
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject"
+	},
+	"proxy": "http://localhost:5000",
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"react-scripts": "^4.0.3",
+		"typescript": ">=2.8.0"
+	}
 }
