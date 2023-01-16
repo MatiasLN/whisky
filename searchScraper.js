@@ -12,7 +12,7 @@ const searchScraper = async (url) => {
   // extracting information from code
   let productDetails = await page.evaluate(() => {
     let productDetailsElement = document.body.querySelectorAll(
-      ".product-item__info-container"
+      ".info-container"
     );
 
     let productDetails = "";
