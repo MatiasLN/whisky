@@ -9,7 +9,7 @@ const Loading = () => {
         src={LoadingImg}
         alt="loading animation"
       />
-      <p className="loading">Laster ...</p>;
+      <p className="loading">Laster ...</p>
     </div>
   );
 };
