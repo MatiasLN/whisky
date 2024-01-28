@@ -7,8 +7,6 @@ const productScraper = async (url) => {
   const page = await browser.newPage();
   await page.goto(url, { timeout: 60000 });
 
-  await page.waitForSelector(".product__tab-list");
-  await page.waitForSelector(".product__contents-list__content-percentage");
   await page.waitForSelector(".product__price");
   await page.waitForSelector(".product__name");
   await page.waitForSelector(".product__region");
@@ -22,11 +20,14 @@ const productScraper = async (url) => {
     let country = "";
     let region = "";
 
-    document.body.querySelector(".product__contents-list__content-percentage")
-      ? (percentage = document.body.querySelector(
-        ".product__contents-list__content-percentage"
-      ).textContent)
-      : (percentage = "");
+    const contentItem = document.body.querySelector(".product__properties-list__content-item");
+
+    if (contentItem) {
+      const textContent = contentItem.children[1].textContent;
+      if (textContent.includes('%')) {
+        percentage = textContent;
+      }
+    }
 
     document.body.querySelector(".product__price")
       ? (price = document.body.querySelector(".product__price").textContent)
