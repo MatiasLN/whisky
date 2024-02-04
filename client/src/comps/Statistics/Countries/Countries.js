@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
 import useFirestore from "../../../hooks/useFirestore";
 import { Pie } from "react-chartjs-2";
-import {
-  BrowserView,
-  MobileView,
-} from "react-device-detect";
+import { BrowserView, MobileView } from "react-device-detect";
 
 const Countries = () => {
   const { docs } = useFirestore();
-  const [countries] = useState([]);
-  const [countryCount, setCountryCount] = useState(null);
-  const [name] = useState([]);
-  const [amount] = useState([]);
+  const [, setCountryCounts] = useState({});
+  const [countryCount, setCountryCount] = useState(0);
+  const [names, setNames] = useState([]);
+  const [amounts, setAmounts] = useState([]);
 
   const options = {
     plugins: {
@@ -24,7 +21,7 @@ const Countries = () => {
     },
   };
 
-  const mobile = {
+  const mobileOptions = {
     plugins: {
       legend: {
         position: "bottom",
@@ -35,12 +32,26 @@ const Countries = () => {
     },
   };
 
+  useEffect(() => {
+    let newCountryCounts = {};
+    docs.forEach((item) => {
+      if (item.polet_country) {
+        newCountryCounts[item.polet_country] = (newCountryCounts[item.polet_country] || 0) + 1;
+      }
+    });
+
+    setCountryCounts(newCountryCounts);
+    setNames(Object.keys(newCountryCounts));
+    setAmounts(Object.values(newCountryCounts));
+    setCountryCount(Object.keys(newCountryCounts).length);
+  }, [docs]);
+
   const data = {
-    labels: name,
+    labels: names,
     datasets: [
       {
         label: "Land",
-        data: amount,
+        data: amounts,
         backgroundColor: [
           "rgba(254, 200, 154)",
           "rgba(216, 226, 220)",
@@ -68,43 +79,19 @@ const Countries = () => {
     ],
   };
 
-  function count(value, set) {
-    var total = 0;
-    // eslint-disable-next-line
-    Object.entries(value).map(([]) => (total += 1));
-    set(total);
-  }
-
-  useEffect(() => {
-    // eslint-disable-next-line
-    docs.map((item) => {
-      countries[item.polet_country] = (countries[item.polet_country] || 0) + 1;
-    });
-    count(countries, setCountryCount);
-
-    Object.entries(countries).map(
-      ([country, value]) => name.push(country) && amount.push(value)
-    );
-    // eslint-disable-next-line
-  }, [docs]);
-
   return (
     <>
       <BrowserView>
         <div className="chart countryChart">
-          <h2>
-            Fra<strong>{countryCount}</strong>land
-          </h2>
+          <h2>Fra <strong>{countryCount}</strong> land</h2>
           <Pie data={data} options={options} />
         </div>
       </BrowserView>
 
       <MobileView>
         <div className="chart countryChart">
-          <h2>
-            Fra<strong>{countryCount}</strong>land
-          </h2>
-          <Pie data={data} options={mobile} />
+          <h2>Fra <strong>{countryCount}</strong> land</h2>
+          <Pie data={data} options={mobileOptions} />
         </div>
       </MobileView>
     </>
