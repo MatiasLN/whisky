@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
 import useFirestore from "../../../hooks/useFirestore";
 import { Bar } from "react-chartjs-2";
-import {
-  BrowserView,
-  MobileView,
-} from "react-device-detect";
+import { BrowserView, MobileView } from "react-device-detect";
 
 const Regions = () => {
   const { docs } = useFirestore();
-  const [Regions] = useState([]);
-  const [regCount, setregCount] = useState(null);
-  const [name] = useState([]);
-  const [amount] = useState([]);
+  const [, setRegionCounts] = useState({});
+  const [regCount, setRegCount] = useState(0);
+  const [names, setNames] = useState([]);
+  const [amounts, setAmounts] = useState([]);
 
   const options = {
     plugins: {
@@ -33,7 +30,7 @@ const Regions = () => {
     },
   };
 
-  const mobile = {
+  const mobileOptions = {
     plugins: {
       legend: {
         display: false,
@@ -54,11 +51,11 @@ const Regions = () => {
   };
 
   const data = {
-    labels: name,
+    labels: names,
     datasets: [
       {
         label: "Antall flasker",
-        data: amount,
+        data: amounts,
         backgroundColor: [
           "rgba(254, 197, 187)",
           "rgba(252, 213, 206)",
@@ -88,24 +85,18 @@ const Regions = () => {
     ],
   };
 
-  function count(value, set) {
-    var total = 0;
-    // eslint-disable-next-line
-    Object.entries(value).map(([]) => (total += 1));
-    set(total);
-  }
-
   useEffect(() => {
-    // eslint-disable-next-line
-    docs.map((item) => {
-      Regions[item.polet_region] = (Regions[item.polet_region] || 0) + 1;
+    const newRegionCounts = {};
+    docs.forEach((item) => {
+      if (item.polet_region) { // Only include non-empty regions
+        newRegionCounts[item.polet_region] = (newRegionCounts[item.polet_region] || 0) + 1;
+      }
     });
-    count(Regions, setregCount);
+    setRegionCounts(newRegionCounts);
 
-    Object.entries(Regions).map(
-      ([region, value]) => name.push(region) && amount.push(value)
-    );
-    // eslint-disable-next-line
+    setNames(Object.keys(newRegionCounts));
+    setAmounts(Object.values(newRegionCounts));
+    setRegCount(Object.keys(newRegionCounts).length);
   }, [docs]);
 
   return (
@@ -113,7 +104,7 @@ const Regions = () => {
       <BrowserView>
         <div className="chart regionChart">
           <h2>
-            Fra<strong>{regCount}</strong>regioner
+            Fra <strong>{regCount}</strong> regioner
           </h2>
           <Bar data={data} options={options} />
         </div>
@@ -122,9 +113,9 @@ const Regions = () => {
       <MobileView>
         <div className="chart regionChart">
           <h2>
-            Fra<strong>{regCount}</strong>regioner
+            Fra <strong>{regCount}</strong> regioner
           </h2>
-          <Bar data={data} options={mobile} />
+          <Bar data={data} options={mobileOptions} />
         </div>
       </MobileView>
     </>
