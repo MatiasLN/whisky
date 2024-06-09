@@ -1,17 +1,17 @@
-name: Deploy branch to prod
+name: Deploy branch to dev
 
 # This allows the workflow to be triggered manually.
 on:
     workflow_dispatch:
         inputs:
             branch:
-                description: "Deploy branch to prod"
+                description: "Deploy branch to dev"
                 required: true
                 default: "main"
                 type: string
 
 jobs:
-    deploy-to-prod:
+    deploy-to-dev:
         runs-on: ubuntu-latest
         timeout-minutes: 120
 
@@ -40,8 +40,8 @@ jobs:
             - name: Deploy to Server
               uses: appleboy/ssh-action@master
               with:
-                  host: ${{ secrets.PROD_SSH_HOST }}
-                  username: ${{ secrets.PROD_SSH_USERNAME }}
+                  host: ${{ secrets.SSH_HOST }}
+                  username: ${{ secrets.SSH_USERNAME }}
                   key: ${{ secrets.SSH_PRIVATE_KEY }}
                   port: ${{ secrets.SSH_PORT }}
                   passphrase: ${{ secrets.SSH_PASSPHRASE }}
@@ -66,12 +66,12 @@ jobs:
 
                       # Check if docker-compose.yml already exists in ROOT_PATH
                       if [ ! -f "$ROOT_PATH/docker-compose.yml" ]; then
-                        # Attempt to copy docker-compose-prod.yml to ROOT_PATH
-                        if [ -f "$REPO_PATH/docker-compose-prod.yml" ]; then
-                          cp $REPO_PATH/docker-compose-prod.yml $ROOT_PATH/docker-compose.yml
-                          echo "docker-compose-prod.yml has been copied to $ROOT_PATH/docker-compose.yml"
+                        # Attempt to copy docker-compose-dev.yml to ROOT_PATH
+                        if [ -f "$REPO_PATH/docker-compose-dev.yml" ]; then
+                          cp $REPO_PATH/docker-compose-dev.yml $ROOT_PATH/docker-compose.yml
+                          echo "docker-compose-dev.yml has been copied to $ROOT_PATH/docker-compose.yml"
                         else
-                          echo "Error: docker-compose-prod.yml not found in repository. Cannot proceed."
+                          echo "Error: docker-compose-dev.yml not found in repository. Cannot proceed."
                           exit 1
                         fi
                       else
