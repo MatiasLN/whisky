@@ -1,0 +1,18 @@
+services:
+    app:
+        build: ./src/
+        container_name: whisky
+        restart: unless-stopped
+        env_file: ./src/.env
+        security_opt:
+            - no-new-privileges:true
+        ports:
+            - "${PORT}:${PORT}"
+        networks:
+            - tunnel
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+networks:
+    tunnel:
+        external: true

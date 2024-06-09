@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+    app:
+        build: ./src/
+        container_name: whisky
+        restart: unless-stopped
+        env_file: ./src/.env
+        security_opt:
+            - no-new-privileges:true
+        networks:
+            - proxy
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.whisky.entrypoints=http"
+            - "traefik.http.routers.whisky.rule=Host(`${URL}`)"
+            - "traefik.http.routers.traefik.middlewares=https-redirect"
+            - "traefik.http.routers.whisky.middlewares=geo-ipwhitelist@file"
+            - "traefik.http.routers.whisky-secure.middlewares=geo-ipwhitelist@file"
+            - "traefik.http.routers.whisky-secure.entrypoints=https"
+            - "traefik.http.routers.whisky-secure.rule=Host(`${URL}`)"
+            - "traefik.http.routers.whisky-secure.tls=true"
+            - "traefik.http.routers.whisky-secure.tls.certresolver=http"
+            - "traefik.http.routers.whisky-secure.service=whisky"
+            - "traefik.http.services.whisky.loadbalancer.server.port=${PORT}"
+            - "traefik.docker.network=proxy"
+
+networks:
+    proxy:
+        external: true
