@@ -63,9 +63,13 @@ jobs:
                       # Fetch the latest changes from the specified branch
                       git fetch origin ${{ github.event.inputs.branch }}
 
-                      # Copy docker-compose-dev.yml to ROOT_PATH and rename it to docker-compose.yml
-                      cp $REPO_PATH/docker-compose-prod.yml $ROOT_PATH/docker-compose.yml
-                      echo "docker-compose-dev.yml has been copied to $ROOT_PATH/docker-compose.yml"
+                      # Check if docker-compose.yml already exists in ROOT_PATH
+                      if [ ! -f "$ROOT_PATH/docker-compose.yml" ]; then
+                        cp $REPO_PATH/docker-compose-prod.yml $ROOT_PATH/docker-compose.yml
+                        echo "docker-compose-prod.yml has been copied to $ROOT_PATH/docker-compose.yml"
+                      else
+                        echo "docker-compose.yml already exists in $ROOT_PATH. Skipping copy."
+                      fi
 
                       # Check if there are any changes
                       if ! git diff --quiet origin/${{ github.event.inputs.branch }}; then
@@ -77,7 +81,7 @@ jobs:
                         docker-compose -f $ROOT_PATH/docker-compose.yml build
                         docker-compose -f $ROOT_PATH/docker-compose.yml up -d
                       else
-                        echo "No changes detected, skipping Docker Compose build and deploy2."
+                        echo "No changes detected, skipping Docker Compose build and deploy."
                       fi
 
               env:
