@@ -1,0 +1,13 @@
+.git
+.github
+.gitignore
+.gitattributes
+node_modules
+Dockerfile
+.dockerignore
+docker-compose-dev.yml
+docker-compose-prod.yml
+docker-compose.yml
+LICENSE
+README.md
+.env
