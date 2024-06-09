@@ -1,0 +1,89 @@
+name: Deploy branch to prod
+
+# This allows the workflow to be triggered manually.
+on:
+    workflow_dispatch:
+        inputs:
+            branch:
+                description: "Deploy branch to prod"
+                required: true
+                default: "main"
+                type: string
+
+jobs:
+    deploy-to-prod:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Install OpenVPN
+              run: |
+                  sudo apt update
+                  sudo apt install -y openvpn openvpn-systemd-resolved
+
+            - name: Decode OpenVPN configuration
+              env:
+                  OVPN_CONFIG: ${{ secrets.SE_OVPN_CONFIG }}
+              run: |
+                  echo "$OVPN_CONFIG" > client.ovpn
+
+            - name: Connect to VPN
+              run: |
+                  sudo openvpn --config client.ovpn --daemon --log openvpn.log --writepid openvpn.pid
+                  sleep 10  # Wait for the VPN connection to establish
+
+            - name: Check VPN IP
+              run: |
+                  VPN_IP=$(wget -qO- http://ifconfig.me)
+                  echo "Connected VPN IP: $VPN_IP"
+
+            - name: Deploy to Server
+              uses: appleboy/ssh-action@master
+              with:
+                  host: ${{ secrets.PROD_SSH_HOST }}
+                  username: ${{ secrets.PROD_SSH_USERNAME }}
+                  key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  port: ${{ secrets.SSH_PORT }}
+                  passphrase: ${{ secrets.SSH_PASSPHRASE }}
+                  script: |
+                      # Define the repo and root paths
+                      ROOT_PATH=${{ secrets.ROOT_PATH }}
+                      REPO_PATH=$ROOT_PATH/src
+
+                      # Create the src directory if it doesn't exist
+                      mkdir -p $REPO_PATH
+
+                      # Clone the repository if it doesn't exist
+                      if [ ! -d "$REPO_PATH/.git" ]; then
+                        git clone https://${{ secrets.GH_PAT }}@github.com/MatiasLN/whisky.git $REPO_PATH
+                      fi
+
+                      # Change to the repo directory
+                      cd $REPO_PATH
+
+                      # Fetch the latest changes from the specified branch
+                      git fetch origin ${{ github.event.inputs.branch }}
+
+                      # Copy docker-compose-dev.yml to ROOT_PATH and rename it to docker-compose.yml
+                      cp $REPO_PATH/docker-compose-prod.yml $ROOT_PATH/docker-compose.yml
+                      echo "docker-compose-dev.yml has been copied to $ROOT_PATH/docker-compose.yml"
+
+                      # Check if there are any changes
+                      if ! git diff --quiet origin/${{ github.event.inputs.branch }}; then
+                        # Reset the local copy to match the remote branch
+                        git reset --hard origin/${{ github.event.inputs.branch }}
+
+                        # Build and deploy the services using Docker Compose
+                        docker-compose -f $ROOT_PATH/docker-compose.yml down
+                        docker-compose -f $ROOT_PATH/docker-compose.yml build
+                        docker-compose -f $ROOT_PATH/docker-compose.yml up -d
+                      else
+                        echo "No changes detected, skipping Docker Compose build and deploy2."
+                      fi
+
+              env:
+                  GH_PAT: ${{ secrets.GH_PAT }}
+
+            - name: Disconnect VPN
+              run: |
+                  sudo pkill openvpn
+                  rm client.ovpn openvpn.log openvpn.pid
