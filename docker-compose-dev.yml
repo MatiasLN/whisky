@@ -3,7 +3,7 @@ services:
         build: ./src/
         container_name: whisky
         restart: unless-stopped
-        env_file: ./src/.env
+        env_file: .env
         security_opt:
             - no-new-privileges:true
         ports:
