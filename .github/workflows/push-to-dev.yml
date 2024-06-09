@@ -59,13 +59,8 @@ jobs:
                       git fetch origin main
 
                       # Copy docker-compose-dev.yml to ROOT_PATH and rename it to docker-compose.yml
-
-
-                      if [ -f "$ROOT_PATH/docker-compose.yml" ]; then
-                        echo "docker-compose-dev.yml exists in $ROOT_PATH"
-                      else
-                        cp $REPO_PATH/docker-compose-dev.yml $ROOT_PATH/docker-compose.yml
-                      fi
+                      cp $REPO_PATH/docker-compose-dev.yml $ROOT_PATH/docker-compose.yml
+                      echo "docker-compose-dev.yml has been copied to $ROOT_PATH/docker-compose.yml"
 
                       # Check if there are any changes
                       if ! git diff --quiet origin/main; then
